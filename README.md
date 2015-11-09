@@ -1,6 +1,6 @@
 
 #SECTION I: ABOUT
-to make a long story short, we have group projects at a school we attend, and for one of these projects me and some friends decided to throw together a super-simple pi-based, web-controlled, ~~toaster~~ lamp.
+to make a long story short, we have group projects at a school we attend, and for one of these projects our group decided to throw together a super-simple pi-based, web-controlled, ~~toaster~~ lamp.
 
 
 
