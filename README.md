@@ -10,19 +10,19 @@ to make a long story short, we have group projects at a school we attend, and fo
 STEP 0: PARTS LIST
 
 
-***Raspberry Pi**(plus power supply, sd card, etc…)
+*	**Raspberry Pi**(power supply, sd card, etc…)
 
 
-***Pi Cobbler**
+*	**Pi Cobbler**
 
 
-***Breadboard Jumper Wires**
+*	**Breadboard Jumper Wires**
 
 
-***Solderless Breadboard** (or you can solder all of this if you're hardcore)
+*	**Solderless Breadboard** (or you can solder all of this if you're hardcore)
 
 
-***Power Switch Tail II**
+*	**Power Switch Tail II**
 
 
-***Something to connect to the pi** (over the network, or a keyboard+mouse+display to connect directly)
+*	**Something to connect to the pi** (over the network, or a keyboard+mouse+display to connect directly)
