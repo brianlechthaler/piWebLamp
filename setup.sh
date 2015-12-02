@@ -13,8 +13,10 @@ echo "Enabling CGI in Apache"
 	a2enmod cgi
 echo "Copying lamphtml.sh to /usr/lib/cgi-bin/"
 	cp weblamp/apache2/cgi-bin/lamphtml.sh /usr/lib/cgi-bin/lamphtml.sh
-	cp weblamp/apache2/cgi-bin/iframe.txt /usr/lib/cgi-bin/iframe.txt
+	cp weblamp/apache2/cgi-bin/iframe.txt  /usr/lib/cgi-bin/iframe.txt
 	cp weblamp/apache2/cgi-bin/iframe.html /usr/lib/cgi-bin/iframe.html
+echo "Copying index.html to /var/www/html/"
+	cp weblamp/apache2/index.html          /var/www/html/index.html 
 echo "Copying lampctl to /usr/local/bin/"
 	cp weblamp/apache2/lampctl /usr/local/bin/lampctl
 echo ""
