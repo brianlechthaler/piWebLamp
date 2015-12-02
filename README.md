@@ -31,15 +31,17 @@ To make a long story short, we have group projects at a school we attend, and fo
 
 After [putting NOOBS on the Pi and installing Raspbian](https://www.raspberrypi.org/help/noobs-setup/), run the following commands in the console or LXterminal:
 
-* `sudo apt update && sudo apt upgrade`*####Make sure any packages on the Pi are up-to date*
+* `sudo apt-get update && sudo apt-get upgrade`*####Make sure any packages on the Pi are up-to date*
 
 * `sudo reboot`*####Reboot to finish installing packages*
 
 * (Now, wait for the Pi to power back up)
  
-* `sudo apt install git python-pip`
+* `sudo apt-get install git python-pip`
   `sudo pip install flask`*####Install dependencies*
-
+  `sudo apt-get install apache2`
+  `sudo apt-get install wiringpi`
+  
 ### STEP 2: DOWNLOAD THIS REPOSITORY TO THE PI
 
 * `git clone "https://github.com/brianlechthaler/piWebLamp.git"`*####Grab the latest copy of this repository*

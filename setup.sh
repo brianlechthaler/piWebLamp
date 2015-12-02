@@ -6,6 +6,8 @@ echo "Installing Apache2"
 echo ""
 	apt-get update
 	apt-get install apache2
+echo "Installing WiringPi"
+	apt-get install wiringpi
 echo ""
 echo "Enabling CGI in Apache"
 	a2enmod cgi
@@ -21,8 +23,7 @@ echo "Copying configuration file to /etc/apache2/apache2.conf"
 echo "Changing permissions of /usr/lib/cgi-bin/"
 	chmod 777 /usr/lib/cgi-bin/
 	chmod 777 /usr/lib/cgi-bin/*
-echo "Done!"
-echo "Rebooting in 10 seconds ..."
-echo "Press Ctrl+C to cancel."
-	sleep 10
-	shutdown -r now
+echo "Restarting Apache"
+	service apache2 restart
+echo "Done."
+
