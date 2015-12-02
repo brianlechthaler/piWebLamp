@@ -95,6 +95,7 @@ function html ()
 			"<input type=\"radio\" name=\"MODE\" value=\"setup\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "setup" ] ; then echo 'checked' ; fi )> Setup<br>"\
 			"<input type=\"radio\" name=\"MODE\" value=\"on\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "on" ] ; then echo 'checked' ; fi )> On<br>"\
 			"<input type=\"radio\" name=\"MODE\" value=\"off\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "off" ] ; then echo 'checked' ; fi )> Off"
+			"<input type=\"radio\" name=\"MODE\" value=\"toggle\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "toggle" ] ; then echo 'checked' ; fi )> Toggle"
 		echo '</form>'
 		
 		echo "<form method=GET action=\"${SCRIPT}\" id=\"flags\">" \
@@ -187,6 +188,17 @@ function html ()
 						echo "<link href=\"txtstyle.css\" rel=\"stylesheet\" type=\"text/css\" />" > /usr/lib/cgi-bin/iframe.html
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE off "$PIN" >> /usr/lib/cgi-bin/iframe.txt &
 					;;
+					"toggle")
+						echo "<form method=POST action=\"${SCRIPT}\" id=\"off\">"
+						echo '<table nowrap>'\
+								'<tr><td>Pin</TD><TD><input type="text" name="PIN" size=12></td></tr>'\
+								'</tr></table>'
+						echo '<br><input type="submit" value="Execute">'
+						echo '</form>'
+						cgi_getvars POST ALL
+						echo "<link href=\"txtstyle.css\" rel=\"stylesheet\" type=\"text/css\" />" > /usr/lib/cgi-bin/iframe.html
+						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE toggle "$PIN" >> /usr/lib/cgi-bin/iframe.txt &
+						;;
 				esac
 		fi
 	echo '</body>'
