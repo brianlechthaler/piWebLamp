@@ -384,6 +384,17 @@ function off ()
 	if [ "$MORSE" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "		OFF" ; fi ; else if [ "$VERBOSE" = "true" ] ; then echo "OFF" ; fi fi
 }
 
+function toggle ()
+	local STATE=$(gpio -g read $PIN)
+	case $STATE in
+		0)
+			on $PIN
+		;;
+		1)
+			off $PIN
+		;;
+	esac
+	
 function usage ()
 {
 	# Prints out usage information
@@ -438,6 +449,10 @@ function arguments ()
 					echo 'Turns off the lamp.  '
 					echo '	lampctl off PIN'
 					exit 0
+				;;
+				toggle)
+					echo 'Toggles the lamp from off to on or on to off.  '
+					echo '	lampctl toggle PIN'
 				;;
 				dot)
 					echo 'Flashes a dot in Morse code.  '
@@ -559,6 +574,11 @@ function arguments ()
 						off
 						shift
 					;;
+					"toggle")
+						EXIT_STATUS="0"
+						PIN=$2
+						toggle
+						shift
 					"dot")
 						EXIT_STATUS="0"
 						PIN=$2
