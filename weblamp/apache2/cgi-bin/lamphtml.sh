@@ -94,7 +94,7 @@ function html ()
 			"<input type=\"radio\" name=\"MODE\" value=\"ramp\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "ramp" ] ; then echo 'checked' ; fi )> Ramp On Off<br>"\
 			"<input type=\"radio\" name=\"MODE\" value=\"setup\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "setup" ] ; then echo 'checked' ; fi )> Setup<br>"\
 			"<input type=\"radio\" name=\"MODE\" value=\"on\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "on" ] ; then echo 'checked' ; fi )> On<br>"\
-			"<input type=\"radio\" name=\"MODE\" value=\"off\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "off" ] ; then echo 'checked' ; fi )> Off"
+			"<input type=\"radio\" name=\"MODE\" value=\"off\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "off" ] ; then echo 'checked' ; fi )> Off<br>"
 			"<input type=\"radio\" name=\"MODE\" value=\"toggle\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "toggle" ] ; then echo 'checked' ; fi )> Toggle"
 		echo '</form>'
 		
