@@ -396,7 +396,13 @@ function toggle ()
 		;;
 	esac
 }
-	
+
+function read ()
+{
+	local GPIO$PIN=$(gpio -g read $PIN)
+	if [ "$VERBOSE" = "true" ] ; then echo $GPIO$PIN ; fi
+}
+
 function usage ()
 {
 	# Prints out usage information
@@ -580,6 +586,12 @@ function arguments ()
 						EXIT_STATUS="0"
 						PIN=$2
 						toggle
+						shift
+					;;
+					"read")
+						EXIT_STATUS="0"
+						PIN=$2
+						read
 						shift
 					;;
 					"dot")
