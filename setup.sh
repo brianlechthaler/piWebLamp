@@ -18,6 +18,7 @@ echo "0"
 echo "Installing..."
 echo ""
 echo "Updating apt"
+echo ""
 	apt-get update
 echo ""
 echo "Installing Apache2"
