@@ -16,10 +16,11 @@ echo "1"
 echo "0"
 	sleep 0.5
 echo "Installing..."
-
-echo "Installing Apache2"
 echo ""
+echo "Updating apt"
 	apt-get update
+echo ""
+echo "Installing Apache2"
 	apt-get install apache2
 echo "Installing WiringPi"
 	apt-get install wiringpi
@@ -42,6 +43,8 @@ echo "Changing permissions of /usr/lib/cgi-bin/"
 	chmod 777 /usr/lib/cgi-bin/*
 echo "Restarting Apache"
 	service apache2 restart
+echo ""
 echo "Done."
 	sleep 0.5
+echo ""
 echo "To uninstall, run uninstall.sh"
