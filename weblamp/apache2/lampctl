@@ -385,6 +385,7 @@ function off ()
 }
 
 function toggle ()
+{
 	local STATE=$(gpio -g read $PIN)
 	case $STATE in
 		0)
@@ -394,6 +395,7 @@ function toggle ()
 			off $PIN
 		;;
 	esac
+}
 	
 function usage ()
 {
