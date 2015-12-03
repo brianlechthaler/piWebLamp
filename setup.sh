@@ -1,5 +1,5 @@
 #!/bin/bash
-function inital_setup ()
+function initial_setup ()
 {
 	echo "Updating apt"
 	echo ""
