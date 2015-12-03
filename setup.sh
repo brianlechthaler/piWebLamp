@@ -1,7 +1,22 @@
-echo “Run this as root.”
+#!/bin/bash
+
+echo "Run this script using sudo or as root."
+sleep 0.5
+echo "Press Ctl+C in the next 5 seconds if you do not wish for the script to be installed."
+echo "5"
 	sleep 1
-echo “I’ll wait a sec before I start in case you accidentally did not run this as root”
-	sleep 5
+echo "4"
+	sleep 1
+echo "3"
+	sleep 1
+echo "2"
+	sleep 1
+echo "1"
+	sleep 1
+echo "0"
+	sleep 0.5
+echo "Installing..."
+
 echo "Installing Apache2"
 echo ""
 	apt-get update
@@ -28,4 +43,5 @@ echo "Changing permissions of /usr/lib/cgi-bin/"
 echo "Restarting Apache"
 	service apache2 restart
 echo "Done."
-
+	sleep 0.5
+echo "To uninstall, run uninstall.sh"
