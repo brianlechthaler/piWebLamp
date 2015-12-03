@@ -95,8 +95,7 @@ function html ()
 			"<input type=\"radio\" name=\"MODE\" value=\"setup\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "setup" ] ; then echo 'checked' ; fi )> Setup<br>"\
 			"<input type=\"radio\" name=\"MODE\" value=\"on\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "on" ] ; then echo 'checked' ; fi )> On<br>"\
 			"<input type=\"radio\" name=\"MODE\" value=\"off\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "off" ] ; then echo 'checked' ; fi )> Off<br>"\
-			"<input type=\"radio\" name=\"MODE\" value=\"toggle\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "toggle" ] ; then echo 'checked' ; fi )> Toggle<br>"\
-			"<input type=\"radio\" name=\"MODE\" value=\"read\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "read" ] ; then echo 'checked' ; fi )> Pin Status"
+			"<input type=\"radio\" name=\"MODE\" value=\"toggle\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "toggle" ] ; then echo 'checked' ; fi )> Toggle"
 		echo '</form>'
 		
 		echo "<form method=GET action=\"${SCRIPT}\" id=\"flags\">" \
@@ -199,9 +198,7 @@ function html ()
 						cgi_getvars POST ALL
 						echo "<link href=\"txtstyle.css\" rel=\"stylesheet\" type=\"text/css\" />" > /usr/lib/cgi-bin/iframe.html
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE toggle "$PIN" >> /usr/lib/cgi-bin/iframe.txt &
-						;;
-					"read")
-						
+						;;				
 				esac
 		fi
 	echo  "<pre>"
