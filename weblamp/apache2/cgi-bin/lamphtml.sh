@@ -49,7 +49,7 @@ function cgi_getvars()
 	GET)
 	    [ ! -z "${QUERY_STRING}" ] && q="${QUERY_STRING}&"
 	    ;;
-	POST)
+	POST)form
 	    cgi_get_POST_vars
 	    [ ! -z "${QUERY_STRING_POST}" ] && q="${QUERY_STRING_POST}&"
 	    ;;
@@ -204,6 +204,9 @@ function html ()
 						
 				esac
 		fi
+	echo  "<pre>"
+	gpio readall 
+	echo "</pre>"
 	echo '</body>'
 	echo '</html>'
 	
