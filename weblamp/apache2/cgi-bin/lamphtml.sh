@@ -119,7 +119,6 @@ function html ()
 						echo '<br><input type="submit" value="Execute">'
 						echo '</form>'
 						cgi_getvars POST ALL
-						echo "lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE morse \"$PIN\" \"$BASE_TIME\" \"$MESSAGE\""
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE morse "$PIN" "$BASE_TIME" "$MESSAGE" > /usr/lib/cgi-bin/iframe.txt &
 					;;
 					"simple")
@@ -133,8 +132,6 @@ function html ()
 						echo '<br><input type="submit" value="Execute">'
 						echo '</form>'
 						cgi_getvars POST ALL
-						echo "lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE simple \"$PIN\" \"$ON_TIME\" \"$OFF_TIME\" \"$CYCLES\""
-						echo "<link href=\"txtstyle.css\" rel=\"stylesheet\" type=\"text/css\" />" > /usr/lib/cgi-bin/iframe.html
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE simple "$PIN" "$ON_TIME" "$OFF_TIME" "$CYCLES" >> /usr/lib/cgi-bin/iframe.html &
 						echo "<br>"
 					;;
@@ -151,8 +148,6 @@ function html ()
 						echo '<br><input type="submit" value="Execute">'
 						echo '</form>'
 						cgi_getvars POST ALL
-						echo "lampctl ramp \"$PIN\" \"$START_ON_TIME\" \"$START_OFF_TIME\" \"$END_ON_TIME\" \"$END_OFF_TIME\" \"$CYCLES\""
-						echo "<link href=\"txtstyle.css\" rel=\"stylesheet\" type=\"text/css\" />" > /usr/lib/cgi-bin/iframe.html
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE ramp "$PIN" "$START_ON_TIME" "$START_OFF_TIME" "$END_ON_TIME" "$END_OFF_TIME" "$CYCLES" >> /usr/lib/cgi-bin/iframe.html &
 					;;
 					"setup")
@@ -163,8 +158,6 @@ function html ()
 						echo '<br><input type="submit" value="Execute">'
 						echo '</form>'
 						cgi_getvars POST ALL
-						echo "lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE setup \"$PIN\""
-						echo "<link href=\"txtstyle.css\" rel=\"stylesheet\" type=\"text/css\" />" > /usr/lib/cgi-bin/iframe.html
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE setup "$PIN" >> /usr/lib/cgi-bin/iframe.html &
 					;;
 					"on")
@@ -185,7 +178,6 @@ function html ()
 						echo '<br><input type="submit" value="Execute">'
 						echo '</form>'
 						cgi_getvars POST ALL
-						echo "<link href=\"txtstyle.css\" rel=\"stylesheet\" type=\"text/css\" />" > /usr/lib/cgi-bin/iframe.html
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE off "$PIN" >> /usr/lib/cgi-bin/iframe.txt &
 					;;
 					"toggle")
@@ -196,13 +188,15 @@ function html ()
 						echo '<br><input type="submit" value="Execute">'
 						echo '</form>'
 						cgi_getvars POST ALL
-						echo "<link href=\"txtstyle.css\" rel=\"stylesheet\" type=\"text/css\" />" > /usr/lib/cgi-bin/iframe.html
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE toggle "$PIN" >> /usr/lib/cgi-bin/iframe.txt &
 						;;				
 				esac
 		fi
 	echo  "<pre>"
 	gpio readall 
+	echo "</pre>"
+	echo  "<pre>"
+	cat /usr/lib/cgi-bin/iframe.txt 
 	echo "</pre>"
 	echo '</body>'
 	echo '</html>'
