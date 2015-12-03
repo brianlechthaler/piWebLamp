@@ -195,9 +195,7 @@ function html ()
 	echo  "<pre>"
 	gpio readall 
 	echo "</pre>"
-	echo  "<pre>"
-	cat /usr/lib/cgi-bin/iframe.txt 
-	echo "</pre>"
+	echo "<iframe src=\"cgi-bin/output.sh\"></iframe>"
 	echo '</body>'
 	echo '</html>'
 	
