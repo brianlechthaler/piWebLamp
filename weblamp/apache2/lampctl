@@ -581,6 +581,7 @@ function arguments ()
 						PIN=$2
 						toggle
 						shift
+					;;
 					"dot")
 						EXIT_STATUS="0"
 						PIN=$2
