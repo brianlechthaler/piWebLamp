@@ -368,6 +368,7 @@ function setup ()
 	# Sets up a GPIO pin for output
 	if [ "$VERBOSE" = "true" ] ; then echo "Setting GPIO pin $PIN to output." ; fi
 	gpio -g mode $PIN out
+	gpio -g export $PIN out
 }
 
 function on ()
