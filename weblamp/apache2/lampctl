@@ -399,8 +399,8 @@ function toggle ()
 
 function read ()
 {
-	local GPIO$PIN=$(gpio -g read $PIN)
-	if [ "$VERBOSE" = "true" ] ; then echo $GPIO"$PIN" ; fi
+	local GPIO=$(gpio -g read $PIN)
+	if [ "$VERBOSE" = "true" ] ; then echo $GPIO ; fi
 }
 
 function usage ()
