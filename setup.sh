@@ -61,7 +61,7 @@ case $1 in
 	"-i"|"--initial-setup")
 		initial_setup
 	;;
-	"*")
+	*)
 		setup
 	;;
 esac
