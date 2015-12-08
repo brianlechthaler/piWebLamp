@@ -25,7 +25,9 @@ Content-type: text/html
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Lamp Control</title>
+		<script src="jquery-2.1.4.js"></script>
 	</head>
+	
 <script type="text/javascript">
 	function mode() {
 		var mode = document.forms[0];
@@ -35,7 +37,14 @@ Content-type: text/html
 				selected_mode = i;
 				switch(selected_mode) {
 					case 0:
-						$("#options").load("cgi-bin/morse.sh");
+						document.getElementById("options").innerHTML =  "<form method=POST action=\"\" id=\"morse\">";
+						document.getElementById("options").innerHTML += "<table nowrap>";
+						document.getElementById("options").innerHTML += "<tr><td>Pin</TD><TD><input type=\"text\" name=\"PIN\" size=12></td></tr>";
+						document.getElementById("options").innerHTML += "<tr><td>Base Time Unit</TD><TD><input type=\"text\" name=\"BASE_TIME\" size=12></td></tr>";
+						document.getElementById("options").innerHTML += "<tr><td>Message</TD><TD><input type=\"text\" name=\"MESSAGE\" size=12></td></tr>";
+						document.getElementById("options").innerHTML += "</tr></table>";
+						document.getElementById("options").innerHTML += "<br><input type=\"submit\" value=\"Execute\">";
+						document.getElementById("options").innerHTML += "</form>";
 						break;
 					case 1:
 						document.getElementById("options").innerHTML = "";
