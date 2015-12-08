@@ -41,7 +41,8 @@ function setup ()
 		cp weblamp/apache2/cgi-bin/iframe.txt  /usr/lib/cgi-bin/iframe.txt
 		cp weblamp/apache2/cgi-bin/iframe.html /usr/lib/cgi-bin/iframe.html
 		cp weblamp/apache2/cgi-bin/output.sh   /usr/lib/cgi-bin/output.sh
-
+		cp morse.sh					    /usr/lib/cgi-bin/morse.sh
+		cp lamp.html					    /var/www/html/lamp.html
 	echo "Copying index.html to /var/www/html/"
 		cp weblamp/apache2/index.html          /var/www/html/index.html 
 	echo "Copying lampctl to /usr/local/bin/"
