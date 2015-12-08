@@ -84,6 +84,13 @@ function html ()
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
 	echo '<title>Lamp Control</title>'
 	echo '</head>'
+	<script type="text/javascript">
+echo "function recp() {
+  $('#myStyle').load('data.php?id=' + id);
+}
+</script>
+"
+
 	echo '<body>'
 		echo "Lamp Control"
 		echo '<br>'

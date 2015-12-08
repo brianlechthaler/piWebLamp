@@ -12,6 +12,8 @@ function initial_setup ()
 	echo ""
 	echo "Enabling CGI in Apache"
 		a2enmod cgi
+	echo "Enabling HTTP2"
+		a2enmod h2
 	setup
 }
 function setup ()

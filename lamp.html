@@ -1,0 +1,87 @@
+<!--
+   lamp.html
+   
+   Copyright 2015 root <root@mel-debian>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+Content-type: text/html
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Lamp Control</title>
+	</head>
+<script type="text/javascript">
+	function mode() {
+		var mode = document.forms[0];
+		var selected_mode;
+		for (i = 0; i < mode.length; i++) {
+			if (mode[i].checked) {
+				selected_mode = i;
+				switch(selected_mode) {
+					case 0:
+						
+						break;
+					case 1:
+						document.getElementById("options").innerHTML = "";
+						break;
+					case 2:
+						document.getElementById("options").innerHTML = "";
+						break;
+					case 3:
+						document.getElementById("options").innerHTML = "";
+						break;
+					case 4:
+						document.getElementById("options").innerHTML = "";
+						break;
+					case 5:
+						document.getElementById("options").innerHTML = "";
+						break;
+					case 6:
+						document.getElementById("options").innerHTML = "";
+						break;
+					default:
+						document.getElementById("options").innerHTML = "";
+						break;
+				}
+			break;
+			}
+		}
+	}
+</script>
+<body>
+	Lamp Control
+	<br>
+	<br>
+	<form onsubmit="return mode();" id="mode">
+		<input type="radio" name="MODE" value="morse" onclick="mode();"> Morse<br>
+		<input type="radio" name="MODE" value="simple" onclick="mode();"> Simple On Off<br>
+		<input type="radio" name="MODE" value="ramp" onclick="mode();"> Ramp On Off<br>
+		<input type="radio" name="MODE" value="setup" onclick="mode();"> Setup<br>
+		<input type="radio" name="MODE" value="on" onclick="mode();"> On<br>
+		<input type="radio" name="MODE" value="off" onclick="mode();"> Off<br>
+		<input type="radio" name="MODE" value="toggle" onclick="mode();"> Toggle<br>
+	</form>
+	<form onsubmit="return parameters();" id="parameters">
+		<input type="checkbox" name="VERBOSE" value="-v" onclick="options()"> Verbose<br>
+		<input type="checkbox" name="MORSE" value="-m" onclick="options()"> Morse Output<br>
+		<input type="checkbox" name="SHOW_SLEEP_TIME" value="-t" onclick="options()"> Show Sleep Times <br>
+	</form>
+	<p id="options"></p>
+</body>
+</html>
