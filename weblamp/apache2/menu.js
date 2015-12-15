@@ -170,7 +170,6 @@ function toggle(){
 }
 function output(){
 		$("#output").load("cgi-bin/output");
-		console.log("loop");
 		setTimeout( output , 100);
 }
 output();
