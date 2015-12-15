@@ -36,20 +36,22 @@ function setup ()
 	echo "Installing..."
 	echo ""
 	
-	echo "Copying lamphtml.sh to /usr/lib/cgi-bin/"
-		cp weblamp/apache2/cgi-bin/lamphtml.sh /usr/lib/cgi-bin/lamphtml.sh
-		cp weblamp/apache2/cgi-bin/iframe.txt  /usr/lib/cgi-bin/iframe.txt
-		cp weblamp/apache2/cgi-bin/iframe.html /usr/lib/cgi-bin/iframe.html
-		cp weblamp/apache2/cgi-bin/output.sh   /usr/lib/cgi-bin/output.sh
-		cp morse.sh					    /usr/lib/cgi-bin/morse.sh
-		cp lamp.html					    /var/www/html/lamp.html
-	echo "Copying index.html to /var/www/html/"
-		cp weblamp/apache2/index.html          /var/www/html/index.html 
+	echo "Copying files to /usr/lib/cgi-bin/"
+		cp weblamp/apache2/cgi-bin/lamphtml.sh  /usr/lib/cgi-bin/lamphtml.sh
+		cp weblamp/apache2/cgi-bin/iframe.txt   /usr/lib/cgi-bin/iframe.txt
+		cp weblamp/apache2/cgi-bin/iframe.html  /usr/lib/cgi-bin/iframe.html
+		cp weblamp/apache2/cgi-bin/output.sh    /usr/lib/cgi-bin/output.sh
+	echo "Copying files to /var/www/html/"
+		cp weblamp/apache2/lamp.html            /var/www/html/lamp.html
+		cp weblamp/apache2/menu.js              /var/www/html/menu.js
+		cp weblamp/apache2/jquery-2.1.4.js      /var/www/html/jquery-2.1.4.js
+		cp weblamp/apache2/.htaccess            /var/www/html/.htaccess
 	echo "Copying lampctl to /usr/local/bin/"
-		cp weblamp/apache2/lampctl /usr/local/bin/lampctl
+		cp weblamp/apache2/lampctl              /usr/local/bin/lampctl
 	echo ""
-	echo "Copying configuration file to /etc/apache2/apache2.conf"
-		cp weblamp/apache2/etc/apache2.conf /etc/apache2/apache2.conf
+	echo "Copying configuration files to /etc/apache2/"
+		cp weblamp/apache2/etc/apache2.conf     /etc/apache2/apache2.conf
+		cp weblamp/apache2/etc/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 	echo "Changing permissions of /usr/lib/cgi-bin/"
 		chmod 777 /usr/lib/cgi-bin/
 		chmod 777 /usr/lib/cgi-bin/*
