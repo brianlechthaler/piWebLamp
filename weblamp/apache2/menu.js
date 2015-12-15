@@ -141,7 +141,7 @@ function toggle(){
 	return false;
 }
 function output(){
-	while true {
+	while (true) {
 		$("#output").load("cgi-bin/output");
 		$.delay(250);
 	}
