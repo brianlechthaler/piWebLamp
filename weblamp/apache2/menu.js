@@ -175,7 +175,7 @@ function output(){
 		success : function (data) {
 			$(".text").html(data);
 		}
-	}
+	});
 	setTimeout( output , 250);
 }
 output();
