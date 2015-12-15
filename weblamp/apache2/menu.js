@@ -140,3 +140,9 @@ function toggle(){
 	$.get("cgi-bin/lamphtml.sh", { MODE: "toggle", PIN: data.pin });
 	return false;
 }
+function output(){
+	while true {
+		$("#output").load("cgi-bin/output");
+		$.delay(250);
+	}
+}
