@@ -169,11 +169,11 @@ function toggle(){
 	return false;
 }
 function output(){
-	$("#output").ajax({
+	$ajax({
 		url : "cgi-bin/output",
 		dataType: "text",
-		success : function (data) {
-			$(".text").html(data);
+		success : function (outputdata) {
+			$("#text").html(outputdata);
 		}
 	});
 	setTimeout( output , 250);
