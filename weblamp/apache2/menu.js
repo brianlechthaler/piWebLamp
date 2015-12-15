@@ -176,6 +176,6 @@ function output(){
 			$("#output").html(outputdata);
 		}
 	});
-	setTimeout( output , 250);
+	setTimeout( output , 100);
 }
 output();
