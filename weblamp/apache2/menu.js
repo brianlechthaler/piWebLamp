@@ -173,7 +173,7 @@ function output(){
 		url : "output",
 		dataType: "text",
 		success : function (outputdata) {
-			$("#text").html(outputdata);
+			$("#output").html(outputdata);
 		}
 	});
 	setTimeout( output , 250);
