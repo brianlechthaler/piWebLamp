@@ -75,137 +75,33 @@ function cgi_getvars()
 }
 function html ()
 	{
-	cgi_getvars GET ALL
-	echo "Content-type: text/html"
-	echo ""
-	
-	echo '<html>'
-	echo '<head>'
-	echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
-	echo '<title>Lamp Control</title>'
-	echo '</head>'
-	<script type="text/javascript">
-echo "function recp() {
-  $('#myStyle').load('data.php?id=' + id);
-}
-</script>
-"
-
-	echo '<body>'
-		echo "Lamp Control"
-		echo '<br>'
-		echo '<br>'
-		echo "<form method=GET action=\"${SCRIPT}\" id=\"mode_select\">"\
-			"<input type=\"radio\" name=\"MODE\" value=\"morse\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "morse" ] ; then echo 'checked' ; fi )> Morse<br>"\
-			"<input type=\"radio\" name=\"MODE\" value=\"simple\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "simple" ] ; then echo 'checked' ; fi )> Simple On Off<br>"\
-			"<input type=\"radio\" name=\"MODE\" value=\"ramp\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "ramp" ] ; then echo 'checked' ; fi )> Ramp On Off<br>"\
-			"<input type=\"radio\" name=\"MODE\" value=\"setup\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "setup" ] ; then echo 'checked' ; fi )> Setup<br>"\
-			"<input type=\"radio\" name=\"MODE\" value=\"on\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "on" ] ; then echo 'checked' ; fi )> On<br>"\
-			"<input type=\"radio\" name=\"MODE\" value=\"off\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "off" ] ; then echo 'checked' ; fi )> Off<br>"\
-			"<input type=\"radio\" name=\"MODE\" value=\"toggle\" onclick=\"document.getElementById('mode_select').submit();\" $( if [ "$MODE" = "toggle" ] ; then echo 'checked' ; fi )> Toggle"
-		echo '</form>'
-		
-		echo "<form method=GET action=\"${SCRIPT}\" id=\"flags\">" \
-			"<input type=\"hidden\"   name=\"MODE\" value=\"$MODE\">"\
-			"<input type=\"checkbox\" name=\"VERBOSE\" value=\"-v\" onclick=\"document.getElementById('flags').submit();\" $( if [ "$VERBOSE" = "-v" ] ; then echo 'checked' ; fi )> Verbose<br>"\
-			"<input type=\"checkbox\" name=\"MORSE\" value=\"-m\" onclick=\"document.getElementById('flags').submit();\" $( if [ "$MORSE" = "-m" ] ; then echo 'checked' ; fi )> Morse Output<br>"\
-			"<input type=\"checkbox\" name=\"SHOW_SLEEP_TIME\" value=\"-t\" onclick=\"document.getElementById('flags').submit();\" $( if [ "$SHOW_SLEEP_TIME" = "-t" ] ; then echo 'checked' ; fi )> Show Sleep Times <br>"
-		echo "</form>"
-		echo '<br>'
+	cgi_getvars BOTH ALL
 		if [ "$MODE" != "" ]
 			then
-				echo '<br>'
 				case $MODE in
 					"morse")
-						echo "<form method=POST action=\"${SCRIPT}\" id=\"morse\">"
-						echo '<table nowrap>'\
-								'<tr><td>Pin</TD><TD><input type="text" name="PIN" size=12></td></tr>'\
-								'<tr><td>Base Time Unit</TD><TD><input type="text" name="BASE_TIME" size=12></td></tr>'\
-								'<tr><td>Message</TD><TD><input type="text" name="MESSAGE" size=12></td></tr>'\
-								'</tr></table>'
-						echo '<br><input type="submit" value="Execute">'
-						echo '</form>'
-						cgi_getvars POST ALL
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE morse "$PIN" "$BASE_TIME" "$MESSAGE" > /usr/lib/cgi-bin/iframe.txt &
 					;;
 					"simple")
-						echo "<form method=POST action=\"${SCRIPT}\" id=\"simple\">"
-						echo '<table nowrap>'\
-								'<tr><td>Pin</TD><TD><input type="text" name="PIN" size=12></td></tr>'\
-								'<tr><td>On Time</TD><TD><input type="text" name="ON_TIME" size=12></td></tr>'\
-								'<tr><td>Off Time</TD><TD><input type="text" name="OFF_TIME" size=12></td></tr>'\
-								'<tr><td>Cycles</TD><TD><input type="text" name="CYCLES" size=12></td></tr>'\
-								'</tr></table>'
-						echo '<br><input type="submit" value="Execute">'
-						echo '</form>'
-						cgi_getvars POST ALL
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE simple "$PIN" "$ON_TIME" "$OFF_TIME" "$CYCLES" >> /usr/lib/cgi-bin/iframe.html &
-						echo "<br>"
 					;;
 					"ramp")
-						echo "<form method=POST action=\"${SCRIPT}\" id=\"ramp\">"
-						echo '<table nowrap>'\
-								'<tr><td>Pin</TD><TD><input type="text" name="PIN" size=12></td></tr>'\
-								'<tr><td>Starting On Time</TD><TD><input type="text" name="START_ON_TIME" size=12></td></tr>'\
-								'<tr><td>Starting Off Time</TD><TD><input type="text" name="START_OFF_TIME" size=12></td></tr>'\
-								'<tr><td>Ending On Time</TD><TD><input type="text" name="END_ON_TIME" size=12></td></tr>'\
-								'<tr><td>Ending Off Time</TD><TD><input type="text" name="END_OFF_TIME" size=12></td></tr>'\
-								'<tr><td>Cycles</TD><TD><input type="text" name="CYCLES" size=12></td></tr>'\
-								'</tr></table>'
-						echo '<br><input type="submit" value="Execute">'
-						echo '</form>'
-						cgi_getvars POST ALL
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE ramp "$PIN" "$START_ON_TIME" "$START_OFF_TIME" "$END_ON_TIME" "$END_OFF_TIME" "$CYCLES" >> /usr/lib/cgi-bin/iframe.html &
 					;;
 					"setup")
-						echo "<form method=POST action=\"${SCRIPT}\" id=\"setup\">"
-						echo '<table nowrap>'\
-								'<tr><td>Pin</TD><TD><input type="text" name="PIN" size=12></td></tr>'\
-								'</tr></table>'
-						echo '<br><input type="submit" value="Execute">'
-						echo '</form>'
-						cgi_getvars POST ALL
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE setup "$PIN" >> /usr/lib/cgi-bin/iframe.html &
 					;;
-					"on")
-						echo "<form method=POST action=\"${SCRIPT}\" id=\"on\">"
-						echo '<table nowrap>'\
-								'<tr><td>Pin</TD><TD><input type="text" name="PIN" size=12></td></tr>'\
-								'</tr></table>'
-						echo '<br><input type="submit" value="Execute">'
-						echo '</form>'
-						cgi_getvars POST ALL
+					"on") 
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE on "$PIN" >> /usr/lib/cgi-bin/iframe.html &
 					;;
 					"off")
-						echo "<form method=POST action=\"${SCRIPT}\" id=\"off\">"
-						echo '<table nowrap>'\
-								'<tr><td>Pin</TD><TD><input type="text" name="PIN" size=12></td></tr>'\
-								'</tr></table>'
-						echo '<br><input type="submit" value="Execute">'
-						echo '</form>'
-						cgi_getvars POST ALL
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE off "$PIN" >> /usr/lib/cgi-bin/iframe.txt &
 					;;
 					"toggle")
-						echo "<form method=POST action=\"${SCRIPT}\" id=\"off\">"
-						echo '<table nowrap>'\
-								'<tr><td>Pin</TD><TD><input type="text" name="PIN" size=12></td></tr>'\
-								'</tr></table>'
-						echo '<br><input type="submit" value="Execute">'
-						echo '</form>'
-						cgi_getvars POST ALL
 						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE toggle "$PIN" >> /usr/lib/cgi-bin/iframe.txt &
 						;;				
 				esac
 		fi
-	echo  "<pre>"
-	gpio readall 
-	echo "</pre>"
-	echo "<iframe src=\"output.sh\"></iframe>"
-	echo '</body>'
-	echo '</html>'
-	
 	exit 0
 }
 html
