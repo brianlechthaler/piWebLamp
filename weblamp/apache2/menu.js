@@ -24,7 +24,7 @@ function mode() {
 					HTML += "<tr><td>Off Time</TD><TD><input type=\"text\" name=\"OFF_TIME\" size=12></td></tr>";
 					HTML += "<tr><td>Cycles</TD><TD><input type=\"text\" name=\"CYCLES\" size=12></td></tr>";
 					HTML += "</tr></table>";
-					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"morse()\">";
+					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"simple()\">";
 					HTML += "</form>";
 					document.getElementById("options").innerHTML = HTML;
 					break;
@@ -38,7 +38,7 @@ function mode() {
 					HTML += "<tr><td>End Off Time</TD><TD><input type=\"text\" name=\"END_OFF_TIME\" size=12 id=\"end_off_time\"></td></tr>";
 					HTML += "<tr><td>Cycles</TD><TD><input type=\"text\" name=\"CYCLES\" size=12 id=\"cycles\"></td></tr>";
 					HTML += "</tr></table>";
-					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"morse()\">";
+					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"ramp()\">";
 					HTML += "</form>";
 					document.getElementById("options").innerHTML = HTML;
 					break;
@@ -47,7 +47,7 @@ function mode() {
 					HTML += "<table nowrap>";
 					HTML += "<tr><td>Pin</TD><TD><input type=\"text\" name=\"PIN\" size=12 id=\"pin\"></td></tr>";
 					HTML += "</tr></table>";
-					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"morse()\">";
+					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"setup()\">";
 					HTML += "</form>";
 					document.getElementById("options").innerHTML = HTML;
 					break;
@@ -56,7 +56,7 @@ function mode() {
 					HTML += "<table nowrap>";
 					HTML += "<tr><td>Pin</TD><TD><input type=\"text\" name=\"PIN\" size=12 id=\"pin\"></td></tr>";
 					HTML += "</tr></table>";
-					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"morse()\">";
+					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"on()\">";
 					HTML += "</form>";
 					document.getElementById("options").innerHTML = HTML;
 					break;
@@ -65,7 +65,7 @@ function mode() {
 					HTML += "<table nowrap>";
 					HTML += "<tr><td>Pin</TD><TD><input type=\"text\" name=\"PIN\" size=12 id=\"pin\"></td></tr>";
 					HTML += "</tr></table>";
-					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"morse()\">";
+					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"off()\">";
 					HTML += "</form>";
 					document.getElementById("options").innerHTML = HTML;
 					break;
@@ -74,7 +74,7 @@ function mode() {
 					HTML += "<table nowrap>"
 					HTML += "<tr><td>Pin</TD><TD><input type=\"text\" name=\"PIN\" size=12 id=\"pin\"></td></tr>";
 					HTML += "</tr></table>";
-					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"morse()\">";
+					HTML += "<input type=\"button\" value=\"Execute\" onclick=\"toggle()\">";
 					HTML += "</form>";
 					document.getElementById("options").innerHTML = HTML;
 					break;
@@ -91,7 +91,7 @@ function morse(){
 	var pin=morse[0].value;
 	var base_time_unit=morse[1].value;
 	var message=morse[2].value;
-	jQuery.get("cgi-bin/lamphtml.sh", { MODE: "morse", PIN: pin, BASE_TIME_UNIT: base_time_unit, MESSAGE: message });
+	jQuery.get("cgi-bin/lamphtml.sh", { MODE: "morse", PIN: pin, BASE_TIME: base_time_unit, MESSAGE: message });
 }
 function simple(){
 	var simple = document.forms[2];
