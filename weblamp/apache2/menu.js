@@ -91,7 +91,7 @@ function morse(){
 	return false;
 }
 function simple(){
-	var simple = document.forms[2];
+	var simple = document.forms[3];
 	var data = new Object();
 	data.pin=simple[0].value;
 	data.on_time=simple[1].value;
@@ -101,7 +101,7 @@ function simple(){
 	return false;
 }
 function ramp(){
-	var ramp = document.forms[2];
+	var ramp = document.forms[4];
 	var data = new Object();
 	data.pin=ramp[0].value;
 	data.start_on_time=ramp[1].value;
@@ -113,28 +113,28 @@ function ramp(){
 	return false;
 }
 function setup(){
-	var setup = document.forms[2];
+	var setup = document.forms[5];
 	var data = new Object();
 	data.pin=setup[0].value;
 	jQuery.get("cgi-bin/lamphtml.sh", { MODE: "setup", PIN: data.pin });
 	return false;
 }
 function on(){
-	var on = document.forms[2];
+	var on = document.forms[6];
 	var data = new Object();
 	data.pin=on[0].value;
 	$.get("cgi-bin/lamphtml.sh", { MODE: "on", PIN: data.pin });
 	return false;
 }
 function off(){
-	var off = document.forms[2];
+	var off = document.forms[7];
 	var data = new Object();
 	data.pin=off[0].value;
 	$.get("cgi-bin/lamphtml.sh", { MODE: "off", PIN: data.pin });
 	return false;
 }
 function toggle(){
-	var toggle = document.forms[2];
+	var toggle = document.forms[8];
 	var data = new Object();
 	data.pin =toggle[0].value;
 	$.get("cgi-bin/lamphtml.sh", { MODE: "toggle", PIN: data.pin });
