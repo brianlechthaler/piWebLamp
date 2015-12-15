@@ -44,7 +44,7 @@ function setup ()
 		cp weblamp/apache2/cgi-bin/lamphtml.sh  /usr/lib/cgi-bin/lamphtml.sh
 		cp weblamp/apache2/cgi-bin/iframe.txt   /usr/lib/cgi-bin/iframe.txt
 		cp weblamp/apache2/cgi-bin/iframe.html  /usr/lib/cgi-bin/iframe.html
-		cp weblamp/apache2/cgi-bin/output.sh    /usr/lib/cgi-bin/output.sh
+		cp weblamp/apache2/cgi-bin/output       /usr/lib/cgi-bin/output
 	echo "Copying files to /var/www/html/"
 		cp weblamp/apache2/lamp.html            /var/www/html/lamp.html
 		cp weblamp/apache2/menu.js              /var/www/html/menu.js
