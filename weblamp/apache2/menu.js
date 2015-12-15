@@ -169,7 +169,7 @@ function toggle(){
 	return false;
 }
 function output(){
-	$ajax({
+	$.ajax({
 		url : "cgi-bin/output",
 		dataType: "text",
 		success : function (outputdata) {
