@@ -84,25 +84,32 @@ function html ()
 			then
 				case $MODE in
 					"morse")
+						echo "" > output
 						{ echo '<p>'; /usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE morse "$PIN" "$BASE_TIME" "$MESSAGE"; } >> output &
 					;;
 					"simple")
+						echo "" > output
 						{ echo '<p>'; /usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE simple "$PIN" "$ON_TIME" "$OFF_TIME" "$CYCLES"; } >> output &
 					;;
 					"ramp")
+						echo "" > output
 						{ echo '<p>'; /usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE ramp "$PIN" "$START_ON_TIME" "$START_OFF_TIME" "$END_ON_TIME" "$END_OFF_TIME" "$CYCLES"; } >> output &
 					;;
 					"setup")
+						echo "" > output
 						{ echo '<p>'; /usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE setup "$PIN"; } >> output &
 					;;
 					"on") 
+						echo "" > output
 						{ echo '<p>'; /usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE on "$PIN"; } >> output &
 					;;
 					"off")
+						echo "" > output
 						{ echo '<p>'; /usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE off "$PIN"; } >> output &
 					;;
 					"toggle")
-						{ echo '<p>'; /usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE toggle "$PIN"; } >> output
+						echo "" > output
+						{ echo '<p>'; /usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE toggle "$PIN"; } >> output &
 						;;				
 				esac
 		fi
