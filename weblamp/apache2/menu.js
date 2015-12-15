@@ -169,8 +169,8 @@ function toggle(){
 	return false;
 }
 function output(){
-	while (true) {
 		$("#output").load("cgi-bin/output");
-		$.delay(250);
-	}
+		console.log("loop");
+		setTimeout( output , 100);
 }
+output();
