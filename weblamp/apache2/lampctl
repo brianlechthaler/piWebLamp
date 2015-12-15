@@ -384,7 +384,7 @@ function off ()
 	if [ "$MORSE" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "		OFF" ; fi ; else if [ "$VERBOSE" = "true" ] ; then echo "OFF" ; fi fi
 }
 
-function toggle ()
+geanyfunction toggle ()
 {
 	local STATE=$(gpio -g read $PIN)
 	case $STATE in
