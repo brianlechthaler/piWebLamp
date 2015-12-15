@@ -169,7 +169,13 @@ function toggle(){
 	return false;
 }
 function output(){
-		$("#output").load("cgi-bin/output");
-		setTimeout( output , 100);
+	$.ajax({
+		url : "helloworld.txt",
+		dataType: "text",
+		success : function (data) {
+			$(".text").html(data);
+		}
+	}
+	setTimeout( output , 250);
 }
 output();
