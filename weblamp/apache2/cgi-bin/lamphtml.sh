@@ -84,25 +84,25 @@ function html ()
 			then
 				case $MODE in
 					"morse")
-						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE morse "$PIN" "$BASE_TIME" "$MESSAGE" > output &
+						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE morse "$PIN" "$BASE_TIME" "$MESSAGE" > /var/www/html/output &
 					;;
 					"simple")
-						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE simple "$PIN" "$ON_TIME" "$OFF_TIME" "$CYCLES" > output &
+						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE simple "$PIN" "$ON_TIME" "$OFF_TIME" "$CYCLES" > /var/www/html/output &
 					;;
 					"ramp")
-						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE ramp "$PIN" "$START_ON_TIME" "$START_OFF_TIME" "$END_ON_TIME" "$END_OFF_TIME" "$CYCLES" > output &
+						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE ramp "$PIN" "$START_ON_TIME" "$START_OFF_TIME" "$END_ON_TIME" "$END_OFF_TIME" "$CYCLES" > /var/www/html/output &
 					;;
 					"setup")
-						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE setup "$PIN" > output &
+						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE setup "$PIN" > /var/www/html/output &
 					;;
 					"on") 
-						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE on "$PIN" > output &
+						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE on "$PIN" > /var/www/html/output &
 					;;
 					"off")
-						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE off "$PIN" > output &
+						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE off "$PIN" > /var/www/html/output &
 					;;
 					"toggle")
-						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE toggle "$PIN" > output &
+						/usr/local/bin/lampctl $VERBOSE $SHOW_SLEEP_TIME $MORSE toggle "$PIN" > /var/www/html/output &
 						;;				
 				esac
 		fi
