@@ -28,23 +28,101 @@
 		<script type="text/javascript" src="menu.js"></script>
 	</head>
 <body>
-	Lamp Control
-	<br>
-	<br>
-	<form id="mode_select">
-		<input type="radio" name="MODE" value="morse" onclick="mode()"> Morse<br>
-		<input type="radio" name="MODE" value="simple" onclick="mode()"> Simple On Off<br>
-		<input type="radio" name="MODE" value="ramp" onclick="mode()"> Ramp On Off<br>
-		<input type="radio" name="MODE" value="setup" onclick="mode()"> Setup<br>
-		<input type="radio" name="MODE" value="on" onclick="mode()"> On<br>
-		<input type="radio" name="MODE" value="off" onclick="mode()"> Off<br>
-		<input type="radio" name="MODE" value="toggle" onclick="mode()"> Toggle<br>
-	</form>
-	<form id="parameters">
-		<input type="checkbox" name="VERBOSE" value="-v" onclick="options()"> Verbose<br>
-		<input type="checkbox" name="MORSE" value="-m" onclick="options()"> Morse Output<br>
-		<input type="checkbox" name="SHOW_SLEEP_TIME" value="-t" onclick="options()"> Show Sleep Times <br>
-	</form>
-	<div id="options"></div>
+	<div id="main">
+		Lamp Control
+		<br>
+		<br>
+		<form id="mode_select">
+			<input type="radio" name="MODE" value="morse" onclick="mode()"> Morse<br>
+			<input type="radio" name="MODE" value="simple" onclick="mode()"> Simple On Off<br>
+			<input type="radio" name="MODE" value="ramp" onclick="mode()"> Ramp On Off<br>
+			<input type="radio" name="MODE" value="setup" onclick="mode()"> Setup<br>
+			<input type="radio" name="MODE" value="on" onclick="mode()"> On<br>
+			<input type="radio" name="MODE" value="off" onclick="mode()"> Off<br>
+			<input type="radio" name="MODE" value="toggle" onclick="mode()"> Toggle<br>
+		</form>
+		<form id="parameters">
+			<input type="checkbox" name="VERBOSE" value="-v" onclick="options()"> Verbose<br>
+			<input type="checkbox" name="MORSE" value="-m" onclick="options()"> Morse Output<br>
+			<input type="checkbox" name="SHOW_SLEEP_TIME" value="-t" onclick="options()"> Show Sleep Times <br>
+		</form>
+	</div>
+	<div id="morse" style="display: none;">
+		<form method="POST" onsubmit="return morse();">
+			<table nowrap="">
+				<tbody>
+					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
+					<tr><td>Base Time Unit</td><td><input type="text" name="BASE_TIME" size="12" id="base_time_unit"></td></tr>
+					<tr><td>Message</td><td><input type="text" name="MESSAGE" size="12" id="message"></td></tr>
+				</tbody>
+			</table>
+			<input type="button" value="Execute">
+		</form>
+	</div>
+	<div id="simple" style="display: none;">
+		<form method="POST" onsubmit="return simple();">
+			<table nowrap="">
+				<tbody>
+					<tr><td>Pin</td><td><input type="text" name="PIN" size="12"></td></tr>
+					<tr><td>On Time</td><td><input type="text" name="ON_TIME" size="12"></td></tr>
+					<tr><td>Off Time</td><td><input type="text" name="OFF_TIME" size="12"></td></tr>
+					<tr><td>Cycles</td><td><input type="text" name="CYCLES" size="12"></td></tr>
+				</tbody>
+			</table>
+			<input type="submit" value="Execute">
+		</form>
+	</div>
+	<div id="ramp" style="display: none;">
+		<form method="POST" onsubmit="return ramp();">
+			<table nowrap="">
+				<tbody>
+					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
+					<tr><td>Start On Time</td><td><input type="text" name="START_ON_TIME" size="12" id="start_on_time"></td></tr>
+					<tr><td>Start Off Time</td><td><input type="text" name="START_OFF_TIME" size="12" id="start_off_time"></td></tr>
+					<tr><td>End On Time</td><td><input type="text" name="END_ON_TIME" size="12" id="end_on_time"></td></tr>
+					<tr><td>End Off Time</td><td><input type="text" name="END_OFF_TIME" size="12" id="end_off_time"></td></tr>
+					<tr><td>Cycles</td><td><input type="text" name="CYCLES" size="12" id="cycles"></td></tr>
+				</tbody>
+			</table>
+			<input type="button" value="Execute">
+		</form>
+	</div>
+	<div id="setup" style="display: none;">
+		<form method="POST" onsubmit="return setup();">
+			<table nowrap="">
+				<tbody>
+					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
+				</tbody>
+			</table>
+			<input type="submit" value="Execute">
+		</form>
+	</div>
+	<div id="on" style="display: none;">
+		<form method="POST" onsubmit="return on();">
+			<table nowrap="">
+				<tbody>
+					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
+				</tbody>
+			</table>
+			<input type="submit" value="Execute">
+	</div>
+	<div id="off" style="display: none;">
+		<form method="POST" onsubmit="return off();">
+			<table nowrap="">
+				<tbody>
+					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
+				</tbody>
+			</table>
+			<input type="submit" value="Execute">
+	</div>
+	<div id="toggle" style="display: none;">
+		<form method="POST" onsubmit="return toggle();">
+			<table nowrap="">
+				<tbody>
+					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
+				</tbody>
+			</table>
+			<input type="submit" value="Execute">
+	</div>
 </body>
 </html>
