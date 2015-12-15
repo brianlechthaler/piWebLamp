@@ -72,8 +72,9 @@ case $1 in
 	"-i"|"--initial-setup")
 		initial_setup
 	;;
-	"-n"|"--no-delay"
+	"-n"|"--no-delay")
 		setup
+	;;
 	*)
 		human_setup
 	;;
