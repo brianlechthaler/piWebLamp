@@ -77,6 +77,9 @@ function html ()
 	{
 	echo '<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title></title></head></html>'
 	cgi_getvars BOTH ALL
+	VERBOSE=$(if [$VERBOSE = "true"]; then echo '-v' fi)
+	SHOW_SLEEP_TIME=$(if [$SHOW_SLEEP_TIME = "true"]; then echo '-t' fi)
+	MORSE=$(if [$MORSE = "true"]; then echo '-m' fi)
 		if [ "$MODE" != "" ]
 			then
 				case $MODE in
