@@ -170,7 +170,7 @@ function toggle(){
 }
 function output(){
 	$.ajax({
-		url : "helloworld.txt",
+		url : "cgi-bin/output",
 		dataType: "text",
 		success : function (data) {
 			$(".text").html(data);
