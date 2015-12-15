@@ -16,7 +16,7 @@ function initial_setup ()
 		a2enmod h2
 	setup
 }
-function setup ()
+function human_setup ()
 {
 	echo "Run this script using sudo or as root."
 		sleep 0.5
@@ -33,6 +33,10 @@ function setup ()
 		sleep 1
 	echo "0"
 		sleep 0.5
+	setup
+}
+function setup ()
+{
 	echo "Installing..."
 	echo ""
 	
@@ -68,7 +72,9 @@ case $1 in
 	"-i"|"--initial-setup")
 		initial_setup
 	;;
-	*)
+	"-n"|"--no-delay"
 		setup
+	*)
+		human_setup
 	;;
 esac
