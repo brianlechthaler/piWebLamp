@@ -2,7 +2,7 @@ var Comet = Class.create();
 Comet.prototype = {
 	
 	timestamp: 0,
-	url: './output.php',
+	url: 'cgi-bin/output.php',
 	noerror: true,
 	
 	initialize: function() { },
