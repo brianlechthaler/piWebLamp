@@ -35,14 +35,14 @@ function morse() {
 		switch (strtolower($message_char)) {
 			case "a":
 				if ($morse) {
-					file_put_contents(output,'<p style="no_indent">A</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">A</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, true);
 				break;
 			case "b":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">B</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">B</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -51,7 +51,7 @@ function morse() {
 				break;
 			case "c":
 					if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">C</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">C</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -60,7 +60,7 @@ function morse() {
 				break; 
 			case "d":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">D</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">D</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -68,13 +68,13 @@ function morse() {
 				break; 
 			case "e":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">E</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">E</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				break; 
 			case "f":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">F</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">F</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -83,7 +83,7 @@ function morse() {
 				break; 
 			case "g":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">G</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">G</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -91,7 +91,7 @@ function morse() {
 				break; 
 			case "h":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">H</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">H</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -100,14 +100,14 @@ function morse() {
 				break; 
 			case "i":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">I</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">I</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, true);
 				break; 
 			case "j":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">J</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">J</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -116,7 +116,7 @@ function morse() {
 				break; 
 			case "k":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">K</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">K</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -124,7 +124,7 @@ function morse() {
 				break; 
 			case "l":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">L</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">L</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -133,21 +133,21 @@ function morse() {
 				break; 
 			case "m":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">M</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">M</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, true);
 				break; 
 			case "n":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">N</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">N</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, true);
 				break; 
 			case "o":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">O</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">O</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -155,7 +155,7 @@ function morse() {
 				break; 
 			case "p":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">P</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">P</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -164,7 +164,7 @@ function morse() {
 				break; 
 			case "q":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">Q</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">Q</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -173,7 +173,7 @@ function morse() {
 				break; 
 			case "r":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">R</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">R</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -181,7 +181,7 @@ function morse() {
 				break; 
 			case "s":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">S</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">S</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -189,13 +189,13 @@ function morse() {
 				break; 
 			case "t":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">T</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">T</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				break; 
 			case "u":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">U</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">U</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -203,7 +203,7 @@ function morse() {
 				break; 
 			case "v":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">V</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">V</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -212,7 +212,7 @@ function morse() {
 				break; 
 			case "w":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">W</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">W</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -220,7 +220,7 @@ function morse() {
 				break; 
 			case "x":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">X</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">X</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -229,7 +229,7 @@ function morse() {
 				break; 
 			case "y":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">Y</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">Y</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -238,7 +238,7 @@ function morse() {
 				break; 
 			case "z":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">Z</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">Z</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -247,7 +247,7 @@ function morse() {
 				break; 
 			case "1":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">1</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">1</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -257,7 +257,7 @@ function morse() {
 				break; 
 			case "2":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">2</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">2</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -267,7 +267,7 @@ function morse() {
 				break; 
 			case "3":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">3</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">3</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -277,7 +277,7 @@ function morse() {
 				break; 
 			case "4":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">4</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">4</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -287,7 +287,7 @@ function morse() {
 				break; 
 			case "5":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">5</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">5</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -297,7 +297,7 @@ function morse() {
 				break; 
 			case "6":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">6</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">6</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -307,7 +307,7 @@ function morse() {
 				break; 
 			case "7":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">7</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">7</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -317,7 +317,7 @@ function morse() {
 				break; 
 			case "8":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">8</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">8</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -327,7 +327,7 @@ function morse() {
 				break; 
 			case "9":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">9</p>', FILE_APPEND);
+					file_put_contents(output,'<p margin:0px;>9</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -337,7 +337,7 @@ function morse() {
 				break; 
 			case "0":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">0</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">0</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -347,7 +347,7 @@ function morse() {
 				break; 
 			case ".":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">.</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">.</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -359,7 +359,7 @@ function morse() {
 				break; 
 			case ",":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">,</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">,</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -370,7 +370,7 @@ function morse() {
 				break; 
 			case "?":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">?</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">?</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -381,7 +381,7 @@ function morse() {
 				break; 
 			case "'":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">\'</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">\'</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -392,7 +392,7 @@ function morse() {
 				break; 
 			case "!":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">!</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">!</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -403,7 +403,7 @@ function morse() {
 				break; 
 			case "/":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">/</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">/</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -413,7 +413,7 @@ function morse() {
 				break; 
 			case "(":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">(</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">(</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -423,7 +423,7 @@ function morse() {
 				break; 
 			case ")":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">)</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">)</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -434,7 +434,7 @@ function morse() {
 				break; 
 			case "&":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">&</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">&</p>', FILE_APPEND);
 				}		sleep($base_time_unit*3);
 
 				dot($pin, $base_time_unit, false);
@@ -445,7 +445,7 @@ function morse() {
 				break; 
 			case ":":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">:</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">:</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -456,7 +456,7 @@ function morse() {
 				break; 
 			case ";":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">;</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">;</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -467,7 +467,7 @@ function morse() {
 				break; 
 			case "=":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">=</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">=</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -477,7 +477,7 @@ function morse() {
 				break; 
 			case "+":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">+</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">+</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -487,7 +487,7 @@ function morse() {
 				break; 
 			case "-":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">-</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">-</p>', FILE_APPEND);
 				}
 				dash($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -498,7 +498,7 @@ function morse() {
 				break; 
 			case "$":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">$</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">$</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -510,7 +510,7 @@ function morse() {
 				break; 
 			case "_":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">_</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">_</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dot($pin, $base_time_unit, false);
@@ -532,7 +532,7 @@ function morse() {
 				break; 
 			case "@":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">@</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">@</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
@@ -543,12 +543,12 @@ function morse() {
 				break;
 			case " ":
 				if ($morse) { 
-					file_put_contents(output,'<p style="no_indent">SPACE</p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:0px;">SPACE</p>', FILE_APPEND);
 				}
 				if ($morse && $show_sleep_time && $verbose) { 
-					file_put_contents(output,'<p style="double_indent">Sleeping '. $base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:100px;">Sleeping '. $base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
 				} elseif ($morse && $show_sleep_time) {
-					file_put_contents(output,'<p style="single_indent">Sleeping '.$base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
+					file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
 				}
 				sleep($base_time_unit*7);
 				break;
@@ -556,9 +556,9 @@ function morse() {
 		$i++;
 		if ($message[$i] != " ") {
 			if ($morse && $show_sleep_time && $verbose) { 
-				file_put_contents(output,'<p style="double_indent">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+				file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 			} elseif ($morse && $show_sleep_time) {
-				file_put_contents(output,'<p style="single_indent">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+				file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 			}
 			sleep($base_time_unit*3);
 		}
@@ -575,12 +575,12 @@ function simple() {
 	for ($i = 1; $i <= $cycles; $i++) {
 		on($pin);
 		if ($show_sleep_time && $verbose) {
-			file_put_contents(output,'<p style="single_indent">Sleeping '.$on_time .' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$on_time .' seconds.  </p>', FILE_APPEND);
 		}
 		sleep($on_time);
 		off($pin);
 		if ($show_sleep_time && $verbose) {
-			file_put_contents(output,'<p style="single_indent">Sleeping '.$off_time .' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$off_time .' seconds.  </p>', FILE_APPEND);
 		}
 		sleep($off_time);
 	}
@@ -602,12 +602,12 @@ function ramp() {
 		$off_time = $off_fraction * $i + $start_off_time;
 		on($pin);
 		if ($show_sleep_time && $verbose) {
-			file_put_contents(output,'<p style="single_indent">Sleeping '.$on_time.' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$on_time.' seconds.  </p>', FILE_APPEND);
 		}
 		sleep($on_time);
 		off($pin);
 		if ($show_sleep_time && $verbose) {
-			file_put_contents(output,'<p style="single_indent">Sleeping '.$off_time.' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$off_time.' seconds.  </p>', FILE_APPEND);
 		}
 		sleep($off_time);
 	}
@@ -657,20 +657,20 @@ function dot($pin, $base_time_unit, $last_in_letter) {
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
 	if ($morse) {
-		file_put_contents(output,'<p style="no_indent">DOT</p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:0px;">DOT</p>', FILE_APPEND);
 	}
 	on($pin);
 	if ($morse && $show_sleep_time && $verbose) { 
-		file_put_contents(output,'<p style="double_indent">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 	} elseif ($morse && $show_sleep_time) {
-		file_put_contents(output,'<p style="single_indent">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 	}
 	off($pin);
 	if ($last_in_letter != true) {
 		if ($morse && $show_sleep_time && $verbose) { 
-			file_put_contents(output,'<p style="double_indent">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		} elseif ($morse && $show_sleep_time) {
-			file_put_contents(output,'<p style="single_indent">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		}
 		sleep($base_time_unit);
 	}
@@ -681,20 +681,20 @@ function dash($pin, $base_time_unit) {
 	$verbose = $_GET['verbose'];
 	$message = str_split($_GET['message'],1);
 	if ($morse) {
-		file_put_contents(output,'<p style="no_indent">DASH</p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:0px;">DASH</p>', FILE_APPEND);
 	}
 	on($pin);
 	if ($morse && $show_sleep_time && $verbose) { 
-		file_put_contents(output,'<p style="double_indent">Sleeping '. $base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:100px;">Sleeping '. $base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 	} elseif ($morse && $show_sleep_time) {
-		file_put_contents(output,'<p style="single_indent">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 	}
 	off($pin);
 	if ($last_in_letter != true) {
 		if ($morse && $show_sleep_time && $verbose) { 
-			file_put_contents(output,'<p style="double_indent">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		} elseif ($morse && $show_sleep_time) {
-			file_put_contents(output,'<p style="single_indent">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		}
 		sleep($base_time_unit);
 	}
@@ -707,11 +707,11 @@ function on($pin) {
 	$safecommand = escapeshellcmd($cmd); 
 	exec($safecommand);
 	if ($verbose && $morse) {
-		file_put_contents(output,'<p style="single_indent">ON</p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:50px;">ON</p>', FILE_APPEND);
 	} elseif ($verbose && $show_sleep_time) {
-		file_put_contents(output,'<p style="no_indent">ON</p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:0px;">ON</p>', FILE_APPEND);
 	} elseif ($verbose){
-		file_put_contents(output,'<p style="no_indent">ON</p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:0px;">ON</p>', FILE_APPEND);
 	}
 }
 function off($pin) {
@@ -722,11 +722,11 @@ function off($pin) {
 	$safecommand = escapeshellcmd($cmd); 
 	exec($safecommand);
 	if ($verbose && $morse) {
-		file_put_contents(output,'<p style="single_indent">OFF</p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:50px;">OFF</p>', FILE_APPEND);
 	} elseif ($verbose && $show_sleep_time) {
-		file_put_contents(output,'<p style="no_indent">OFF</p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:0px;">OFF</p>', FILE_APPEND);
 	} elseif ($verbose){
-		file_put_contents(output,'<p style="no_indent">OFF</p>', FILE_APPEND);
+		file_put_contents(output,'<p style="margin:0px;">OFF</p>', FILE_APPEND);
 	}
 }
 ?>
