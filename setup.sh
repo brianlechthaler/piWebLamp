@@ -42,13 +42,12 @@ function setup ()
 	
 	echo "Copying files to /usr/lib/cgi-bin/"
 		cp weblamp/apache2/cgi-bin/lamphtml.sh  /usr/lib/cgi-bin/lamphtml.sh
-		cp weblamp/apache2/cgi-bin/iframe.txt   /usr/lib/cgi-bin/iframe.txt
-		cp weblamp/apache2/cgi-bin/iframe.html  /usr/lib/cgi-bin/iframe.html
-		cp weblamp/apache2/cgi-bin/output       /usr/lib/cgi-bin/output
 	echo "Copying files to /var/www/html/"
 		cp weblamp/apache2/lamp.html            /var/www/html/lamp.html
+		cp weblamp/apache2/lampctl.php          /var/www/html/lampctl.php
 		cp weblamp/apache2/menu.js              /var/www/html/menu.js
 		cp weblamp/apache2/jquery-2.1.4.js      /var/www/html/jquery-2.1.4.js
+		cp weblamp/apache2/comet.js             /var/www/html/comet.js
 		cp weblamp/apache2/.htaccess            /var/www/html/.htaccess
 	echo "Copying lampctl to /usr/local/bin/"
 		cp weblamp/apache2/lampctl              /usr/local/bin/lampctl
