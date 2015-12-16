@@ -617,9 +617,9 @@ function setup() {
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
 	$pin = $_GET['pin'];
-	$command = 'gpio -g mode '.$pin.' out';
+	$command = '/usr/bin/gpio -g mode '.$pin.' out';
 	$safecommand = escapeshellcmd($cmd); 
-	exec($safecommand);
+	shell_exec($safecommand);
 }
 function on_function() {
 	$morse = $_GET['morse'];
@@ -640,7 +640,7 @@ function toggle() {
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
 	$pin = $_GET['pin'];
-	$command = 'gpio -g read '.$pin;
+	$command = '/usr/bin/gpio -g read '.$pin;
 	$safecommand = escapeshellcmd($cmd); 
 	passthru($safecommand, $state);
 	switch ($state) {
@@ -704,8 +704,8 @@ function on($pin) {
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
 	$safearg = escapeshellarg($pin); 
-	$command = 'gpio -g write 1 '.$safearg;
-	exec($command);
+	$command = '/usr/bin/gpio -g write 1 '.$safearg;
+	shell_exec($command);
 	if ($verbose && $morse) {
 		file_put_contents(output,'<p style="margin:50px;">ON</p>', FILE_APPEND);
 	} elseif ($verbose && $show_sleep_time) {
@@ -714,13 +714,13 @@ function on($pin) {
 		file_put_contents(output,'<p style="margin:0px;">ON</p>', FILE_APPEND);
 	}
 }
-function off($pin) {
+function off($pAin) {
 	$morse = $_GET['morse'];
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
 	$safearg = escapeshellarg($pin); 
-	$command = 'gpio -g write 1 '.$safearg;
-	exec($command);
+	$command = '/usr/bin/gpio -g write 1 '.$safearg;
+	shell_exec($command);
 	if ($verbose && $morse) {
 		file_put_contents(output,'<p style="margin:50px;">OFF</p>', FILE_APPEND);
 	} elseif ($verbose && $show_sleep_time) {
