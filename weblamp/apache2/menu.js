@@ -91,7 +91,7 @@ function morse(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lamphtml.sh", { MODE: "morse", PIN: data.pin, BASE_TIME: data.base_time_unit, MESSAGE: data.message, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
+	$.get("lampctl.php", { MODE: "morse", PIN: data.pin, BASE_TIME: data.base_time_unit, MESSAGE: data.message, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
 	return false;
 }
 function simple(){
@@ -105,7 +105,7 @@ function simple(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lamphtml.sh", { MODE: "simple", PIN: data.pin, ON_TIME: data.on_time, OFF_TIME: data.off_time, CYCLES: data.cycles, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
+	$.get("lampctl.php", { MODE: "simple", PIN: data.pin, ON_TIME: data.on_time, OFF_TIME: data.off_time, CYCLES: data.cycles, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
 	return false;
 }
 function ramp(){
@@ -121,7 +121,7 @@ function ramp(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lamphtml.sh", { MODE: "ramp", PIN: data.pin, START_ON_TIME: data.start_on_time, START_OFF_TIME: data.start_off_time, END_ON_TIME: data.end_on_time, END_OFF_TIME: data.end_off_time, CYCLES: data.cycles, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
+	$.get("lampctl.php", { MODE: "ramp", PIN: data.pin, START_ON_TIME: data.start_on_time, START_OFF_TIME: data.start_off_time, END_ON_TIME: data.end_on_time, END_OFF_TIME: data.end_off_time, CYCLES: data.cycles, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
 	return false;
 }
 function setup(){
@@ -132,7 +132,7 @@ function setup(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	jQuery.get("cgi-bin/lamphtml.sh", { MODE: "setup", PIN: data.pin, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
+	jQuery.get("lampctl.php", { MODE: "setup", PIN: data.pin, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
 	return false;
 }
 function on(){
@@ -143,7 +143,7 @@ function on(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lamphtml.sh", { MODE: "on", PIN: data.pin, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
+	$.get("lampctl.php", { MODE: "on", PIN: data.pin, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
 	return false;
 }
 function off(){
@@ -154,7 +154,7 @@ function off(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lamphtml.sh", { MODE: "off", PIN: data.pin, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
+	$.get("lampctl.php", { MODE: "off", PIN: data.pin, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
 	return false;
 }
 function toggle(){
@@ -165,17 +165,6 @@ function toggle(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lamphtml.sh", { MODE: "toggle", PIN: data.pin, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
+	$.get("lampctl.php", { MODE: "toggle", PIN: data.pin, VERBOSE: data.verbose, SHOW_SLEEP_TIME: data.show_sleep_time, MORSE: data.morse });
 	return false;
 }
-function output(){
-	$.ajax({
-		url : "output",
-		dataType: "text",
-		success : function (outputdata) {
-			$("#output").html(outputdata);
-		}
-	});
-	setTimeout( output , 100);
-}
-output();
