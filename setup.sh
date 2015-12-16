@@ -48,6 +48,7 @@ function setup ()
 		cp weblamp/apache2/menu.js              /var/www/html/menu.js
 		cp weblamp/apache2/jquery-2.1.4.js      /var/www/html/jquery-2.1.4.js
 		cp weblamp/apache2/comet.js             /var/www/html/comet.js
+		cp weblamp/apache2/output.php           /var/www/html/output.php
 		cp weblamp/apache2/.htaccess            /var/www/html/.htaccess
 	echo "Copying lampctl to /usr/local/bin/"
 		cp weblamp/apache2/lampctl              /usr/local/bin/lampctl
