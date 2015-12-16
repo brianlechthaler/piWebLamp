@@ -703,9 +703,9 @@ function on($pin) {
 	$morse = $_GET['morse'];
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
-	$command = 'gpio -g write 1 '.$pin;
-	$safecommand = escapeshellcmd($cmd); 
-	exec($safecommand);
+	$safearg = escapeshellarg($pin); 
+	$command = 'gpio -g write 1 '.$safearg;
+	exec($command);
 	if ($verbose && $morse) {
 		file_put_contents(output,'<p style="margin:50px;">ON</p>', FILE_APPEND);
 	} elseif ($verbose && $show_sleep_time) {
@@ -718,9 +718,9 @@ function off($pin) {
 	$morse = $_GET['morse'];
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
-	$command = 'gpio -g write 0 '.$pin;
-	$safecommand = escapeshellcmd($cmd); 
-	exec($safecommand);
+	$safearg = escapeshellarg($pin); 
+	$command = 'gpio -g write 1 '.$safearg;
+	exec($command);
 	if ($verbose && $morse) {
 		file_put_contents(output,'<p style="margin:50px;">OFF</p>', FILE_APPEND);
 	} elseif ($verbose && $show_sleep_time) {
