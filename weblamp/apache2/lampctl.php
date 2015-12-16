@@ -381,7 +381,7 @@ function morse() {
 				break; 
 			case "'":
 				if ($morse) { 
-					file_put_contents(output,"<p style="no_indent">'</p>"
+					file_put_contents(output,'<p style="no_indent">\'</p>', FILE_APPEND);
 				}
 				dot($pin, $base_time_unit, false);
 				dash($pin, $base_time_unit, false);
