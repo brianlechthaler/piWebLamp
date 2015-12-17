@@ -5,7 +5,8 @@ if ('root' == exec('whoami')) {
 	echo('Running as root');
 	mode_select();
 } else {
-	$get=(string) var_dump($_GET);
+	$get = $_GET;
+	$get = is_array($get[0]) ? $get[0] : $get;
 	exec('sudo -u root php -B "\$_GET = '.$get.' -F /usr/lib/cgi-bin/lampctl.php');
 	die();
 }
