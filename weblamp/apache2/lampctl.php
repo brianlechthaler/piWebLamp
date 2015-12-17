@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+require_once 'src/autoload.php';
 use PhpGpio\Gpio;
 $mode = $_GET['mode'];
 switch ($mode) {
