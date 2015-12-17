@@ -1,597 +1,588 @@
 <?php
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
-if ('root' != exec('whoami')) {
-	echo('Not running as root');
-	shell_exec('sudo -u root php /usr/lib/cgi-bin/lampctl.php '.escapeshellarg(serialize($_GET)));
-	die();
-} else {
- 	echo('Running as root');
-	$_GET=unserialize($argv[1]);
-	mode_select();
-	function mode_select(){
-		$mode = $_GET['mode'];
-		switch ($mode) {
+class lampctl{
+	public  	$this->get;
+	private   $pin  = $this->get['pin'];;
+	private 	$morse = $this->get['morse'];
+	private 	$show_sleep_time = $this->get['show_sleep_time'];
+	private 	$verbose = $this->get['verbose'];
+	public function mode_select(){
+		private $mode = $this->get['mode'];
+		switch ($this->mode) {
 			case "morse":
-				morse();
+				$this->morse();
 				break;
 			case "simple":
-				simple();
+				$this->simple();
 				break;
 			case "ramp":
-				ramp();
+				$this->ramp();
 				break;
 			case "setup":
-				setup();
+				$this->setup();
 				break;
 			case "on":
-				on_function();
+				$this->on();
 				break;
 			case "off":
-				off_function();
+				$this->off();
 				break;
 			case "toggle":
-				toggle();
+				$this->toggle();
 				break;
 		}
 	}
-	function morse() {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
-		$pin = $_GET['pin'];
-		$base_time_unit = $_GET['base_time_unit'];
-		$message = str_split($_GET['message'],1);
+	private function morse() {
+		private $this->pin = $this->get['pin'];
+		private $base_time_unit = $this->get['base_time_unit'];
+		private $message = str_split($this->get['message'],1);
 		$i=1;
-		foreach ($message as $message_char) {
+		foreach ($this->message as $message_char) {
 			switch (strtolower($message_char)) {
 				case "a":
-					if ($morse) {
+					if ($this->morse) {
 						file_put_contents(output,'<p style="margin:0px;">A</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break;
 				case "b":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">B</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break;
 				case "c":
-						if ($morse) { 
+						if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">C</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "d":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">D</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "e":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">E</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
+					$this->dot($base_time_unit, false);
 					break; 
 				case "f":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">F</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "g":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">G</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "h":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">H</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "i":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">I</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "j":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">J</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "k":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">K</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "l":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">L</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "m":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">M</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "n":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">N</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "o":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">O</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "p":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">P</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "q":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">Q</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "r":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">R</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "s":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">S</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "t":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">T</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
+					$this->dash($base_time_unit, false);
 					break; 
 				case "u":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">U</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "v":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">V</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "w":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">W</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "x":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">X</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "y":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">Y</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "z":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">Z</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "1":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">1</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "2":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">2</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "3":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">3</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "4":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">4</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "5":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">5</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "6":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">6</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "7":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">7</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "8":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">8</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "9":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p margin:0px;>9</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "0":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">0</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case ".":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">.</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit);
 				
 					break; 
 				case ",":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">,</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "?":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">?</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "'":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">\'</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "!":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">!</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "/":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">/</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "(":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">(</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case ")":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">)</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "&":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">&</p>', FILE_APPEND);
 					}		sleep($base_time_unit*3);
 	
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case ":":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">:</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case ";":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">;</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "=":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">=</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "+":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">+</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "-":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">-</p>', FILE_APPEND);
 					}
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "$":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">$</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case "_":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">_</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, true);
 					break; 
 				case '"':
-					if ($morse) {
+					if ($this->morse) {
 						echo '"';
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, true);
 					break; 
 				case "@":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">@</p>', FILE_APPEND);
 					}
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit, false);
-					dot($pin, $base_time_unit, false);
-					dash($pin, $base_time_unit ,false);
-					dot($pin, $base_time_unit, true);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dash($base_time_unit, false);
+					$this->dot($base_time_unit, false);
+					$this->dash($base_time_unit ,false);
+					$this->dot($base_time_unit, true);
 					break;
 				case " ":
-					if ($morse) { 
+					if ($this->morse) { 
 						file_put_contents(output,'<p style="margin:0px;">SPACE</p>', FILE_APPEND);
 					}
-					if ($morse && $show_sleep_time && $verbose) { 
+					if ($this->morse && $show_sleep_time && $verbose) { 
 						file_put_contents(output,'<p style="margin:100px;">Sleeping '. $base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
-					} elseif ($morse && $show_sleep_time) {
+					} elseif ($this->morse && $show_sleep_time) {
 						file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
 					}
 					sleep($base_time_unit*7);
 					break;
 			}
 			$i++;
-			if ($message[$i] != " ") {
-				if ($morse && $show_sleep_time && $verbose) { 
-					file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
-				} elseif ($morse && $show_sleep_time) {
-					file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+			if ($this->message[$i] != " ") {
+				if ($this->morse && $this->show_sleep_time && $this->verbose) { 
+					file_put_contents(output,'<p style="margin:100px;">Sleeping '.$this->base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+				} elseif ($this->morse && $this->show_sleep_time) {
+					file_put_contents(output,'<p style="margin:50px;">Sleeping '.$this->base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 				}
-				sleep($base_time_unit*3);
+				sleep($this->base_time_unit*3);
 			}
 		}
 		die();
 	}
-	function simple() {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
-		$pin = $_GET['pin'];
-		$on_time = $_GET['on_time'];
-		$off_time = $_GET['off_time'];
-		$cycles = $_GET['cycles'];
+	private function simple() {
+		$on_time = $this->get['on_time'];
+		$off_time = $this->get['off_time'];
+		$cycles = $this->get['cycles'];
 		for ($i = 1; $i <= $cycles; $i++) {
-			on($pin);
+			$this->on();
 			if ($show_sleep_time && $verbose) {
 				file_put_contents(output,'<p style="margin:50px;">Sleeping '.$on_time .' seconds.  </p>', FILE_APPEND);
 			}
 			sleep($on_time);
-			off($pin);
+			$this->off();
 			if ($show_sleep_time && $verbose) {
 				file_put_contents(output,'<p style="margin:50px;">Sleeping '.$off_time .' seconds.  </p>', FILE_APPEND);
 			}
@@ -599,27 +590,23 @@ if ('root' != exec('whoami')) {
 		}
 		die();
 	}
-	function ramp() {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
-		$pin = $_GET['pin'];
-		$start_on_time = $_GET['start_on_time'];
-		$end_on_time = $_GET['end_on_time'];
-		$start_off_time = $_GET['start_off_time'];
-		$end_off_time = $_GET['end_off_time'];
-		$cycles = $_GET['cycles'];
+	private function ramp() {
+		$start_on_time = $this->get['start_on_time'];
+		$end_on_time = $this->get['end_on_time'];
+		$start_off_time = $this->get['start_off_time'];
+		$end_off_time = $this->get['end_off_time'];
+		$cycles = $this->get['cycles'];
 		$on_fraction = ($end_on_time - $start_on_time) / $cycles;
 		$off_fraction = ($end_off_time - $start_off_time) / $cycles;
 		for ($i = 1; $i <= $cycles; $i++) {
 			$on_time = $on_fraction * $i + $start_on_time;
 			$off_time = $off_fraction * $i + $start_off_time;
-			on($pin);
+			$this->on();
 			if ($show_sleep_time && $verbose) {
 				file_put_contents(output,'<p style="margin:50px;">Sleeping '.$on_time.' seconds.  </p>', FILE_APPEND);
 			}
 			sleep($on_time);
-			off($pin);
+			$this->off();
 			if ($show_sleep_time && $verbose) {
 				file_put_contents(output,'<p style="margin:50px;">Sleeping '.$off_time.' seconds.  </p>', FILE_APPEND);
 			}
@@ -627,103 +614,70 @@ if ('root' != exec('whoami')) {
 		}
 		die();
 	}
-	function setup() {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
-		$pin = $_GET['pin'];
-		$command = '/usr/bin/gpio -g mode '.$pin.' out';
-		$safecommand = escapeshellcmd($cmd); 
-		shell_exec($safecommand);
-		die();
-	}
-	function on_function() {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
-		$pin = $_GET['pin'];
-		on($pin);
-		die();
-	}
-	function off_function() {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
-		$pin = $_GET['pin'];
-		off($pin);
-		die();
-	}
-	function toggle() {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
-		$pin = $_GET['pin'];
+	private function setup() {
 		$gpio = new GPIO();
-		$state = $gpio->readValuePin($pin);
+		$gpio->setup($this->pin, "out");
+		die();
+	}
+	private function toggle() {
+		$gpio = new GPIO();
+		$state = $gpio->readValuePin($this->pin);
 		switch ($state) {
 			case 0:
-				on($pin);
+				$this->on();
 				break;
 			case 1:
-				off($pin);
+				$this->off();
 				break;
 		}
 		die();
 	}
-	function dot($pin, $base_time_unit, $last_in_letter) {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
-		if ($morse) {
+	private function dot($base_time_unit, $last_in_letter) {
+		if ($this->morse) {
 			file_put_contents(output,'<p style="margin:0px;">DOT</p>', FILE_APPEND);
 		}
-		on($pin);
-		if ($morse && $show_sleep_time && $verbose) { 
+		$this->on();
+		if ($this->morse && $this->show_sleep_time && $this->verbose) { 
 			file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		} elseif ($morse && $show_sleep_time) {
 			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		}
-		off($pin);
+		sleep($base_time_unit);
+		$this->off();
 		if ($last_in_letter != true) {
-			if ($morse && $show_sleep_time && $verbose) { 
+			if ($this->morse && $this->show_sleep_time && $this->verbose) { 
 				file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
-			} elseif ($morse && $show_sleep_time) {
+			} elseif ($this->morse && $this->show_sleep_time) {
 				file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 			}
 			sleep($base_time_unit);
 		}
 	}
-	function dash($pin, $base_time_unit) {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
-		$message = str_split($_GET['message'],1);
-		if ($morse) {
+	private function dash($base_time_unit, $last_in_letter) {
+		if ($this->morse) {
 			file_put_contents(output,'<p style="margin:0px;">DASH</p>', FILE_APPEND);
 		}
-		on($pin);
-		if ($morse && $show_sleep_time && $verbose) { 
-			file_put_contents(output,'<p style="margin:100px;">Sleeping '. $base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+		$this->on();
+		if ($this->morse && $this->show_sleep_time && $this->verbose) { 
+			file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 		} elseif ($morse && $show_sleep_time) {
-			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit.*3 ' seconds.  </p>', FILE_APPEND);
 		}
-		off($pin);
+		sleep($base_time_unit*3);
+		$this->off();
 		if ($last_in_letter != true) {
-			if ($morse && $show_sleep_time && $verbose) { 
+			if ($this->morse && $this->show_sleep_time && $this->verbose) { 
 				file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
-			} elseif ($morse && $show_sleep_time) {
+			} elseif ($this->morse && $this->show_sleep_time) {
 				file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 			}
 			sleep($base_time_unit);
 		}
 	}
-	function on($pin) {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
+	private function on() {
 		$gpio = new GPIO();
-		$gpio->setup($pin, "out");
-		$gpio->output($pin, 1);
+		$gpio->setup($this->pin, "out");
+		$gpio->output($this->pin, 1);
 		if ($verbose && $morse) {
 			file_put_contents(output,'<p style="margin:50px;">ON</p>', FILE_APPEND);
 		} elseif ($verbose && $show_sleep_time) {
@@ -732,22 +686,31 @@ if ('root' != exec('whoami')) {
 			file_put_contents(output,'<p style="margin:0px;">ON</p>', FILE_APPEND);
 		}
 	}
-	function off($pin) {
-		$morse = $_GET['morse'];
-		$show_sleep_time = $_GET['show_sleep_time'];
-		$verbose = $_GET['verbose'];
+	private function off() {
 		$gpio = new GPIO();
-		$gpio->setup($pin, "out");
-		$gpio->output($pin, 0);
-		if ($verbose && $morse) {
+		$gpio->setup($this->pin, "out");
+		$gpio->output($this->pin, 0);
+		if ($this->verbose && $this->morse) {
 			file_put_contents(output,'<p style="margin:50px;">OFF</p>', FILE_APPEND);
-		} elseif ($verbose && $show_sleep_time) {
+		} elseif ($this->verbose && $this->show_sleep_time) {
 			file_put_contents(output,'<p style="margin:0px;">OFF</p>', FILE_APPEND);
-		} elseif ($verbose){
+		} elseif ($this->verbose){
 			file_put_contents(output,'<p style="margin:0px;">OFF</p>', FILE_APPEND);
 		}
 	}
 }
+if ('root' != exec('whoami')) {
+	echo('Not running as root');
+	shell_exec('sudo -u root php /usr/lib/cgi-bin/lampctl.php '.escapeshellarg(serialize($_GET)));
+	die();
+} else {
+	echo('Running as root');
+	mode_select();
+	$lampctl = new lampctl;
+	$lampctl->get=unserialize($argv[1]);
+	$lampctl->mode_select();
+}
+
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
