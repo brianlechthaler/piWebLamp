@@ -1,14 +1,19 @@
 <?php
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
-class lampctl{
-	public  	$get  = array();
-	private   $pin  = $get['pin'];;
-	private 	$morse = $get['morse'];
-	private 	$show_sleep_time = $get['show_sleep_time'];
-	private 	$verbose = $get['verbose'];
+class lampctl {
+	private  	$get = array("mode"=>"morse", "pin"=>"15", "morse"=>"false", "show_sleep_time"=>"false", "verbose"=>"false");
+	public    $mode = "morse";
+//	this->$mode = $get['mode'];
+	public    $pin  = '35';
+//	$get['pin'];
+	public 	$morse = 'true';
+//	$get['morse'];
+	public 	$show_sleep_time = 'false';
+//	$get['show_sleep_time'];
+	public 	$verbose = 'false';
+//	$get['verbose'];
 	public function mode_select(){
-		private $mode = $this->get['mode'];
 		switch ($this->mode) {
 			case "morse":
 				$this->morse();
@@ -34,8 +39,8 @@ class lampctl{
 		}
 	}
 	private function morse() {
-		private $base_time_unit = $this->get['base_time_unit'];
-		private $message = str_split($this->get['message'],1);
+		$base_time_unit = $this->get['base_time_unit'];
+		$message = str_split($this->get['message'],1);
 		$i=1;
 		foreach ($this->message as $message_char) {
 			switch (strtolower($message_char)) {
@@ -660,7 +665,7 @@ class lampctl{
 		if ($this->morse && $this->show_sleep_time && $this->verbose) { 
 			file_put_contents(output,'<p style="margin:100px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 		} elseif ($morse && $show_sleep_time) {
-			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit.*3 ' seconds.  </p>', FILE_APPEND);
+			file_put_contents(output,'<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 		}
 		sleep($base_time_unit*3);
 		$this->off();
@@ -706,7 +711,6 @@ if ('root' != exec('whoami')) {
 	echo('Running as root');
 	mode_select();
 	$lampctl = new lampctl;
-	$lampctl->get=unserialize($argv[1]);
 	$lampctl->mode_select();
 }
 
