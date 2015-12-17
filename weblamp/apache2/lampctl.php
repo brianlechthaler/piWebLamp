@@ -34,7 +34,6 @@ class lampctl{
 		}
 	}
 	private function morse() {
-		private $this->pin = $this->get['pin'];
 		private $base_time_unit = $this->get['base_time_unit'];
 		private $message = str_split($this->get['message'],1);
 		$i=1;
