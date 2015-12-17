@@ -2,18 +2,14 @@
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
 class lampctl {
-	private  	$get = array("mode"=>"morse", "pin"=>"15", "morse"=>"false", "show_sleep_time"=>"false", "verbose"=>"false");
+	public  	$get = array("mode"=>"none", "pin"=>"0", "morse"=>"false", "show_sleep_time"=>"false", "verbose"=>"false");
 	public    $mode = "morse";
-//	this->$mode = $get['mode'];
-	public    $pin  = '35';
-//	$get['pin'];
-	public 	$morse = 'true';
-//	$get['morse'];
+	public    $pin  = '0';
+	public 	$morse = 'false';
 	public 	$show_sleep_time = 'false';
-//	$get['show_sleep_time'];
 	public 	$verbose = 'false';
-//	$get['verbose'];
-	public function mode_select(){
+
+	public function mode_select() {
 		switch ($this->mode) {
 			case "morse":
 				$this->morse();
@@ -711,6 +707,12 @@ if ('root' != exec('whoami')) {
 	echo('Running as root');
 	mode_select();
 	$lampctl = new lampctl;
+	$lampctl->get             = unserialize($argv[2]);
+	$lampctl->mode            = $get['mode'];
+	$lampctl->pin             = $get['pin'];
+	$lampctl->morse           = $get['morse'];
+	$lampctl->show_sleep_time = $get['show_sleep_time'];
+	$lampctl->verbose         = $get['verbose'];
 	$lampctl->mode_select();
 }
 
