@@ -1,8 +1,12 @@
 <?php
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
-if ('root' == exec('whoami')) {
-	echo('Running as root');
+if ('root' !== exec('whoami')) {
+	echo('Not running as root');
+	shell_exec('sudo -u root php /usr/lib/cgi-bin/lampctl.php '.escapeshellarg(serialize($_GET)));
+	die();
+} else {
+ 	echo('Running as root');
 	parse_str(unserialize($argv[1]), $_GET);
 	mode_select();
 	function mode_select(){
@@ -743,11 +747,8 @@ if ('root' == exec('whoami')) {
 			file_put_contents(output,'<p style="margin:0px;">OFF</p>', FILE_APPEND);
 		}
 	}
-} else {
-	echo('Not running as root');
-	shell_exec('sudo -u root php /usr/lib/cgi-bin/lampctl.php '.escapeshellarg(serialize($_GET)));
-	die();
 }
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
