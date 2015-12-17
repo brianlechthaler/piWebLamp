@@ -116,4 +116,5 @@ interface GpioInterface
      * @return boolean
      */
     public function isValidPin($pinNo);
+    public function readValuePin($pinNo);
 }

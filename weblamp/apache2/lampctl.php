@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-use PhpGpio\Gpio;
+use php-gpio\Gpio;
 $mode = $_GET['mode'];
 switch ($mode) {
 	case "morse":
@@ -565,6 +565,7 @@ function morse() {
 			sleep($base_time_unit*3);
 		}
 	}
+	die();
 }
 function simple() {
 	$morse = $_GET['morse'];
@@ -586,6 +587,7 @@ function simple() {
 		}
 		sleep($off_time);
 	}
+	die();
 }
 function ramp() {
 	$morse = $_GET['morse'];
@@ -613,6 +615,7 @@ function ramp() {
 		}
 		sleep($off_time);
 	}
+	die();
 }
 function setup() {
 	$morse = $_GET['morse'];
@@ -622,6 +625,7 @@ function setup() {
 	$command = '/usr/bin/gpio -g mode '.$pin.' out';
 	$safecommand = escapeshellcmd($cmd); 
 	shell_exec($safecommand);
+	die();
 }
 function on_function() {
 	$morse = $_GET['morse'];
@@ -629,6 +633,7 @@ function on_function() {
 	$verbose = $_GET['verbose'];
 	$pin = $_GET['pin'];
 	on($pin);
+	die();
 }
 function off_function() {
 	$morse = $_GET['morse'];
@@ -636,6 +641,7 @@ function off_function() {
 	$verbose = $_GET['verbose'];
 	$pin = $_GET['pin'];
 	off($pin);
+	die();
 }
 function toggle() {
 	$morse = $_GET['morse'];
@@ -643,7 +649,7 @@ function toggle() {
 	$verbose = $_GET['verbose'];
 	$pin = $_GET['pin'];
 	$gpio = new GPIO();
-	$state = $gpio-> readValuePin($pin);
+	$state = $gpio->readValuePin($pin);
 	switch ($state) {
 		case 0:
 			on($pin);
@@ -652,6 +658,7 @@ function toggle() {
 			off($pin);
 			break;
 	}
+	die();
 }
 function dot($pin, $base_time_unit, $last_in_letter) {
 	$morse = $_GET['morse'];
