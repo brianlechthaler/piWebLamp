@@ -3,10 +3,10 @@ require 'vendor/autoload.php';
 use PhpGpio\Gpio;
 class lampctl{
 	public  	$get;
-	private   $pin  = $this->get['pin'];;
-	private 	$morse = $this->get['morse'];
-	private 	$show_sleep_time = $this->get['show_sleep_time'];
-	private 	$verbose = $this->get['verbose'];
+	private   $pin  = $get['pin'];;
+	private 	$morse = $get['morse'];
+	private 	$show_sleep_time = $get['show_sleep_time'];
+	private 	$verbose = $get['verbose'];
 	public function mode_select(){
 		private $mode = $this->get['mode'];
 		switch ($this->mode) {
