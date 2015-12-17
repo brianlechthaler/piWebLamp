@@ -122,10 +122,5 @@ interface GpioInterface
      * @param int, $pinNo
       * @return bool|string
      */
-    public function readValuePin($pinNo) {
-     if (!$this->isValidPin($pinNo)) {
-         return false;
-     }
-     return trim(file_get_contents(GpioInterface::PATH_GPIO.$pinNo.'/value'));
-	}
+    public function readValuePin($pinNo);
 }
