@@ -4,6 +4,8 @@ use PhpGpio\Gpio;
 if ('root' != $_SERVER['USER'] && !(empty($_SERVER['SUDO_USER'])) {
 	shell_exec( 'sudo php -B "\$_GET = '.$_GET.'" -F /usr/lib/cgi-bin/lampctl.php' );
 	die();
+} else {
+	echo('Running as root');
 }
 $mode = $_GET['mode'];
 switch ($mode) {
