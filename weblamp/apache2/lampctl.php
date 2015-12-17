@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-use php-gpio\Gpio;
+use PhpGpio\Gpio;
 $mode = $_GET['mode'];
 switch ($mode) {
 	case "morse":
