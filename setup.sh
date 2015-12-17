@@ -44,12 +44,15 @@ function setup ()
 		cp weblamp/apache2/cgi-bin/lamphtml.sh  /usr/lib/cgi-bin/lamphtml.sh
 		cp weblamp/apache2/output.php           /usr/lib/cgi-bin/output.php
 		cp weblamp/apache2/lampctl.php          /usr/lib/cgi-bin/lampctl.php
+		cp -r weblamp/apache2/php-gpio          /usr/lib/cgi-bin/php-gpio
+		cp weblamp/apache2/output_comet.php     /usr/lib/cgi-bin/output_comet.php
+		cp weblamp/apache2/status_comet.php     /usr/lib/cgi-bin/status_comet.php
 	echo "Copying files to /var/www/html/"
 		cp weblamp/apache2/lamp.html            /var/www/html/lamp.html
 		cp weblamp/apache2/menu.js              /var/www/html/menu.js
 		cp weblamp/apache2/jquery-2.1.4.js      /var/www/html/jquery-2.1.4.js
-		cp weblamp/apache2/comet.js             /var/www/html/comet.js
-		
+		cp weblamp/apache2/output_comet.js      /var/www/html/output_comet.js
+		cp weblamp/apache2/status_comet.js      /var/www/html/status_comet.js
 		cp weblamp/apache2/.htaccess            /var/www/html/.htaccess
 	echo "Copying lampctl to /usr/local/bin/"
 		cp weblamp/apache2/lampctl              /usr/local/bin/lampctl
@@ -61,7 +64,7 @@ function setup ()
 		chmod 777 /usr/lib/cgi-bin/
 		chmod 777 /usr/lib/cgi-bin/*
 	echo "Restarting Apache"
-		service apache2 restart
+		service apache2 reload
 	echo ""
 	echo "Done."
 		sleep 0.5
