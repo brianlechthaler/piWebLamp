@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
-if ('root' !== exec('whoami')) {
+if ('root' != exec('whoami')) {
 	echo('Not running as root');
 	shell_exec('sudo -u root php /usr/lib/cgi-bin/lampctl.php '.escapeshellarg(serialize($_GET)));
 	die();
