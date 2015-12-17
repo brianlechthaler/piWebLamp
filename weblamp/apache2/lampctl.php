@@ -1,15 +1,11 @@
 <?php
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
-if ('root' == $_SERVER['USER']) {
+if ('root' == exec('whoami')) {
 	echo('Running as root');
 	mode_select();
-} elseif ($_SERVER['SUDO_USER']) {	
+} else {	
 	shell_exec('sudo -u root php -B "\$_GET = '.$_GET.'" -F /usr/lib/cgi-bin/lampctl.php');
-	die();
-} else {
-	echo('Not running as a sudo user');
-	die();
 }
 function mode_select(){
 	$mode = $_GET['mode'];
