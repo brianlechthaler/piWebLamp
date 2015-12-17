@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 use PhpGpio\Gpio;
 if ('root' == exec('whoami')) {
 	echo('Running as root');
-	echo('$_GET');
+	echo($_GET);
 	mode_select();
 } else {	
 	exec('sudo -u root php -B "\$_GET = array('.$_GET.'" -F /usr/lib/cgi-bin/lampctl.php');
