@@ -3,11 +3,11 @@ require 'vendor/autoload.php';
 use PhpGpio\Gpio;
 if ('root' == exec('whoami')) {
 	echo('Running as root');
+	parse_str(unserialize($argv[1]), $_GET);
 	mode_select();
 } else {
-	$get = $_GET;
-	$get = is_array($get[0]) ? $get[0] : $get;
-	shell_exec('sudo -u root php -B "\$_GET = '.$get.'" -F /usr/lib/cgi-bin/lampctl.php');
+	echo('Not running as root');
+	shell_exec('sudo -u root php /usr/lib/cgi-bin/lampctl.php '.escapeshellarg(serialize($_GET)));
 	die();
 }
 function mode_select(){
