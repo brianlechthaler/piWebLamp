@@ -11,8 +11,8 @@ if ('root' == $_SERVER['USER']) {
 	echo('Not running as a sudo user');
 	die();
 }
-$mode = $_GET['mode'];
 function mode_select(){
+	$mode = $_GET['mode'];
 	switch ($mode) {
 		case "morse":
 			morse();
