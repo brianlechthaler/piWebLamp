@@ -5,7 +5,8 @@ if ('root' == exec('whoami')) {
 	echo('Running as root');
 	mode_select();
 } else {	
-	shell_exec('sudo -u root php -B "\$_GET = '.$_GET.'" -F /usr/lib/cgi-bin/lampctl.php');
+	exec('sudo -u root php -B "\$_GET = '.$_GET.'" -F /usr/lib/cgi-bin/lampctl.php');
+	die();
 }
 function mode_select(){
 	$mode = $_GET['mode'];
