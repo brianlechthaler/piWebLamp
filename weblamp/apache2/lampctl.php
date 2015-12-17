@@ -7,7 +7,7 @@ if ('root' != exec('whoami')) {
 	die();
 } else {
  	echo('Running as root');
-	parse_str(unserialize($argv[1]), $_GET);
+	$_GET=unserialize($argv[1]);
 	mode_select();
 	function mode_select(){
 		$mode = $_GET['mode'];
