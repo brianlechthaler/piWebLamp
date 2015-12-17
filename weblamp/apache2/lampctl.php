@@ -1,35 +1,41 @@
 <?php
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
-if ('root' != $_SERVER['USER'] && !(empty($_SERVER['SUDO_USER'])) {
+if ('root' == $_SERVER['USER']) {
+	echo('Running as root');
+	mode_select();
+} elseif ($_SERVER['SUDO_USER']) {	
 	shell_exec( 'sudo php -B "\$_GET = '.$_GET.'" -F /usr/lib/cgi-bin/lampctl.php' );
 	die();
 } else {
-	echo('Running as root');
+	echo('Not running as a sudo user');
+	die();
 }
 $mode = $_GET['mode'];
-switch ($mode) {
-	case "morse":
-		morse();
-		break;
-	case "simple":
-		simple();
-		break;
-	case "ramp":
-		ramp();
-		break;
-	case "setup":
-		setup();
-		break;
-	case "on":
-		on_function();
-		break;
-	case "off":
-		off_function();
-		break;
-	case "toggle":
-		toggle();
-		break;
+function mode_select(){
+	switch ($mode) {
+		case "morse":
+			morse();
+			break;
+		case "simple":
+			simple();
+			break;
+		case "ramp":
+			ramp();
+			break;
+		case "setup":
+			setup();
+			break;
+		case "on":
+			on_function();
+			break;
+		case "off":
+			off_function();
+			break;
+		case "toggle":
+			toggle();
+			break;
+	}
 }
 function morse() {
 	$morse = $_GET['morse'];
