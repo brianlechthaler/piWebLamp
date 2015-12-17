@@ -1,4 +1,6 @@
 <?php
+require 'vendor/autoload.php';
+use PhpGpio\Gpio;
 $mode = $_GET['mode'];
 switch ($mode) {
 	case "morse":
@@ -640,9 +642,8 @@ function toggle() {
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
 	$pin = $_GET['pin'];
-	$command = '/usr/bin/gpio -g read '.$pin;
-	$safecommand = escapeshellcmd($cmd); 
-	passthru($safecommand, $state);
+	$gpio = new GPIO();
+	$state = $gpio-> readValuePin($pin);
 	switch ($state) {
 		case 0:
 			on($pin);
@@ -703,9 +704,9 @@ function on($pin) {
 	$morse = $_GET['morse'];
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
-	$safearg = escapeshellarg($pin); 
-	$command = '/usr/bin/gpio -g write 1 '.$safearg;
-	shell_exec($command);
+	$gpio = new GPIO();
+	$gpio->setup($pin, "out");
+	$gpio->output($pin, 1);
 	if ($verbose && $morse) {
 		file_put_contents(output,'<p style="margin:50px;">ON</p>', FILE_APPEND);
 	} elseif ($verbose && $show_sleep_time) {
@@ -714,13 +715,13 @@ function on($pin) {
 		file_put_contents(output,'<p style="margin:0px;">ON</p>', FILE_APPEND);
 	}
 }
-function off($pAin) {
+function off($pin) {
 	$morse = $_GET['morse'];
 	$show_sleep_time = $_GET['show_sleep_time'];
 	$verbose = $_GET['verbose'];
-	$safearg = escapeshellarg($pin); 
-	$command = '/usr/bin/gpio -g write 1 '.$safearg;
-	shell_exec($command);
+	$gpio = new GPIO();
+	$gpio->setup($pin, "out");
+	$gpio->output($pin, 0);
 	if ($verbose && $morse) {
 		file_put_contents(output,'<p style="margin:50px;">OFF</p>', FILE_APPEND);
 	} elseif ($verbose && $show_sleep_time) {

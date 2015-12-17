@@ -1,6 +1,6 @@
 <?php
 $lastmodif    = isset($_GET['timestamp']) ? $_GET['timestamp'] : 0;
-$currentmodif = filemtime($filename);
+$currentmodif = filemtime("output.txt");
 while ($currentmodif <= $lastmodif) // check if the data file has been modified
 {
 	usleep(10000); // sleep 10ms to unload the CPU
@@ -8,8 +8,7 @@ while ($currentmodif <= $lastmodif) // check if the data file has been modified
 	$currentmodif = filemtime($filename);
 }
 $response = array();
-$response['msg']       = file_get_contents($filename);
-$response['timestamp'] = $currentmodif;
+$response['output'] = file_get_contents($filename);
 echo json_encode($response);
 flush();
 ?>
