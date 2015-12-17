@@ -2,7 +2,7 @@
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
 class lampctl{
-	public  	$this->get;
+	public  	$get;
 	private   $pin  = $this->get['pin'];;
 	private 	$morse = $this->get['morse'];
 	private 	$show_sleep_time = $this->get['show_sleep_time'];
