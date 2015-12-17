@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
-if ('root' = $_SERVER['USER']) {
+if ('root' == $_SERVER['USER']) {
 	echo('Running as root');
 	mode_select();
 } elseif ($_SERVER['SUDO_USER']) {	
