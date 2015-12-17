@@ -1,6 +1,9 @@
 <?php
 require 'vendor/autoload.php';
 use PhpGpio\Gpio;
+if ('root' !== $_SERVER['USER'] || empty($_SERVER['SUDO_USER'])) {
+	shell_exec(sudo php -B "\$_GET = $_GET " -F lampctl.php )
+}
 $mode = $_GET['mode'];
 switch ($mode) {
 	case "morse":
