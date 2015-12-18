@@ -35,8 +35,8 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function morse() {
-		$base_time_unit = $this->get['base_time_unit'];
-		$message = str_split($this->get['message'],1);
+		$base_time_unit = (float) $this->get['base_time_unit'];
+		$message = (array) str_split($this->get['message'],1);
 		$i=1;
 		foreach ($message as $message_char) {
 			switch (strtolower($message_char)) {
@@ -572,9 +572,9 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function simple() {
-		$on_time = $this->get['on_time'];
-		$off_time = $this->get['off_time'];
-		$cycles = $this->get['cycles'];
+		$on_time = (float) $this->get['on_time'];
+		$off_time = (float) $this->get['off_time'];
+		$cycles = (int) $this->get['cycles'];
 		for ($i = 1; $i <= $cycles; $i++) {
 			$this->on();
 			if ($show_sleep_time && $verbose) {
@@ -589,11 +589,11 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function ramp() {
-		$start_on_time = $this->get['start_on_time'];
-		$end_on_time = $this->get['end_on_time'];
-		$start_off_time = $this->get['start_off_time'];
-		$end_off_time = $this->get['end_off_time'];
-		$cycles = $this->get['cycles'];
+		$start_on_time = (float) $this->get['start_on_time'];
+		$end_on_time = (float) $this->get['end_on_time'];
+		$start_off_time = (float) $this->get['start_off_time'];
+		$end_off_time = (float) $this->get['end_off_time'];
+		$cycles = (int) $this->get['cycles'];
 		$on_fraction = ($end_on_time - $start_on_time) / $cycles;
 		$off_fraction = ($end_off_time - $start_off_time) / $cycles;
 		for ($i = 1; $i <= $cycles; $i++) {
