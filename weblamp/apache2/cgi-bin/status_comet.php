@@ -27,7 +27,7 @@ $status = array
 	'27'=>array('27','none','0')
 );
 json_decode('status.json');
-while (!($Comet->checkForUpdates($status[0],'status.json'))) {
+while (!($Comet->checkForUpdates($status['last_mod_time'],'status.json'))) {
 	foreach ($pin_list as $pin){
 		if ($GPIO->isExported()) {
 			$status[$pin][1] = $GPIO->currentDirection($pin);
