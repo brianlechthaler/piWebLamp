@@ -613,7 +613,7 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function setup() {
-		setupPin($this->pin, "out");
+		$this->setupPin($this->pin, "out");
 	}
 	public function toggle() {
 		$state = $this->input($this->pin);
