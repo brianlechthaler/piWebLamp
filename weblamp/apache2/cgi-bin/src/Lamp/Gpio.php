@@ -84,7 +84,7 @@ class Gpio implements GpioInterface
      * @param  string $direction
      * @return mixed  string GPIO value or boolean false
      */
-    public function setup($pinNo, $direction)
+    public function setupPin($pinNo, $direction)
     {
         if (!$this->isValidPin($pinNo)) {
             return false;

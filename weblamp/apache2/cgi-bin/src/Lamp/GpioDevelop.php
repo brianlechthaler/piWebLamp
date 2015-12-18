@@ -49,7 +49,7 @@ class GpioDevelop implements GpioInterface
      *
      * @return GpioDevelop or boolean false
      */
-    public function setup($pinNo, $direction)
+    public function setupPin($pinNo, $direction)
     {
         return $this;
     }

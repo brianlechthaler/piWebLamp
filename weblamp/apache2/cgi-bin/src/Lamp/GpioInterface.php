@@ -35,7 +35,7 @@ interface GpioInterface
      *
      * @return GpioDevelop string GPIO value or boolean false
      */
-    public function setup($pinNo, $direction);
+    public function setupPin($pinNo, $direction);
 
     /**
      * Get input value
