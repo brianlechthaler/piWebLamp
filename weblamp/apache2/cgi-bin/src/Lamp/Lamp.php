@@ -621,7 +621,7 @@ class Lamp extends Gpio implements LampInterface {
 	}
 	public function setup() {
 		$gpio = new GPIO();
-		$gpio->setup($this->pin, "out");
+		$gpio->setupPin($this->pin, "out");
 	}
 	public function toggle() {
 		$gpio = new GPIO();
@@ -679,7 +679,7 @@ class Lamp extends Gpio implements LampInterface {
 	}
 	public function on() {
 		$gpio = new GPIO();
-		$gpio->setup($this->pin, "out");
+		$gpio->setupPin($this->pin, "out");
 		$gpio->output($this->pin, 1);
 		if ($verbose && $morse) {
 			file_put_contents(output,'<p style="margin:50px;">ON</p>', FILE_APPEND);
@@ -691,7 +691,7 @@ class Lamp extends Gpio implements LampInterface {
 	}
 	public function off() {
 		$gpio = new GPIO();
-		$gpio->setup($this->pin, "out");
+		$gpio->setupPin($this->pin, "out");
 		$gpio->output($this->pin, 0);
 		if ($this->verbose && $this->morse) {
 			file_put_contents(output,'<p style="margin:50px;">OFF</p>', FILE_APPEND);
