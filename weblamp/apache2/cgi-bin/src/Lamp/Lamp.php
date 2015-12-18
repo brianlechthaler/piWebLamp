@@ -1,6 +1,6 @@
 <?php
 namespace Lamp;
-class Lamp extends Gpio implements LampInterface {
+class Lamp implements LampInterface {
 	public $get = array("mode"=>"none", "pin"=>"0", "morse"=>"false", "show_sleep_time"=>"false", "verbose"=>"false");
 	public $mode = '';
 	public $pin  = '0';
@@ -613,10 +613,10 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function setup() {
-		$this->setupPin($this->pin, "out");
+		$Gpio->setupPin($this->pin, "out");
 	}
 	public function toggle() {
-		$state = $this->input($this->pin);
+		$state = $Gpio->input($this->pin);
 		switch ($state) {
 			case 0:
 				$this->on();
@@ -669,8 +669,8 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function on() {
-		$this->setupPin($this->pin, "out");
-		$this->output($this->pin, 1);
+		$Gpio->setupPin($this->pin, "out");
+		$Gpio->output($this->pin, 1);
 		if ($this->verbose && $this->morse) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">ON</p>', FILE_APPEND);
 		} elseif ($this->verbose && $this->show_sleep_time) {
@@ -680,8 +680,8 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function off() {
-		$this->setupPin($this->pin, "out");
-		$this->output($this->pin, 0);
+		$Gpio->setupPin($this->pin, "out");
+		$Gpio->output($this->pin, 0);
 		if ($this->verbose && $this->morse) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">OFF</p>', FILE_APPEND);
 		} elseif ($this->verbose && $this->show_sleep_time) {
