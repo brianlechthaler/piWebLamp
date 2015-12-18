@@ -7,14 +7,6 @@ class Lamp extends Gpio implements LampInterface {
 	public $morse = 'false';
 	public $show_sleep_time = 'false';
 	public $verbose = 'false';
-	public function construct() {
-		$this->get             = unserialize($argv[1]);
-		$this->mode            = $get['mode'];
-		$this->pin             = $get['pin'];
-		$this->morse           = $get['morse'];
-		$this->show_sleep_time = $get['show_sleep_time'];
-		$this->verbose         = $get['verbose'];
-	}
 	public function mode_select() {
 		switch ($this->mode) {
 			case "morse":
