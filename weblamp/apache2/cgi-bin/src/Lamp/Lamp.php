@@ -35,6 +35,7 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function morse() {
+		global $base_time_unit;
 		$base_time_unit = floatval($this->get['base_time_unit']);
 		$message = str_split(strval($this->get['message']),1);
 		$i=1;
