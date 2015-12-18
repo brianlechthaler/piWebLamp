@@ -1,7 +1,6 @@
 <?php
 namespace Lamp;
 class Lamp extends Gpio implements LampInterface {
-	const  OUTPUT_FILE = 'output';
 	public $get = array("mode"=>"none", "pin"=>"0", "morse"=>"false", "show_sleep_time"=>"false", "verbose"=>"false");
 	public $mode = '';
 	public $pin  = '0';
@@ -36,6 +35,7 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function morse() {
+		define ('OUTPUT_FILE', 'output');
 		$base_time_unit = floatval($this->get['base_time_unit']);
 		$message = str_split(strval($this->get['message']),1);
 		$i=0;
