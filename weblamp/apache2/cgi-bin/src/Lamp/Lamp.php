@@ -578,12 +578,12 @@ class Lamp extends Gpio implements LampInterface {
 		$cycles = intval($this->get['cycles']);
 		for ($i = 1; $i <= $cycles; $i++) {
 			$this->on();
-			if ($show_sleep_time && $verbose) {
+			if ($this->show_sleep_time && $this->verbose) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$on_time .' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($on_time*1000000);
 			$this->off();
-			if ($show_sleep_time && $verbose) {
+			if ($this->show_sleep_time && $this->verbose) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$off_time .' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($off_time*1000000);
@@ -601,12 +601,12 @@ class Lamp extends Gpio implements LampInterface {
 			$on_time = $on_fraction * $i + $start_on_time;
 			$off_time = $off_fraction * $i + $start_off_time;
 			$this->on();
-			if ($show_sleep_time && $verbose) {
+			if ($this->show_sleep_time && $this->verbose) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$on_time.' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($on_time*1000000);
 			$this->off();
-			if ($show_sleep_time && $verbose) {
+			if ($this->show_sleep_time && $this->verbose) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$off_time.' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($off_time*1000000);
@@ -633,7 +633,7 @@ class Lamp extends Gpio implements LampInterface {
 		$this->on();
 		if ($this->morse && $this->show_sleep_time && $this->verbose) { 
 			file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
-		} elseif ($morse && $show_sleep_time) {
+		} elseif ($this->morse && $this->show_sleep_time) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		}
 		usleep($base_time_unit*1000000);
@@ -654,7 +654,7 @@ class Lamp extends Gpio implements LampInterface {
 		$this->on();
 		if ($this->morse && $this->show_sleep_time && $this->verbose) { 
 			file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
-		} elseif ($morse && $show_sleep_time) {
+		} elseif ($this->morse && $this->show_sleep_time) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 		}
 		usleep($base_time_unit*3000000);
@@ -673,9 +673,9 @@ class Lamp extends Gpio implements LampInterface {
 		$this->output($this->pin, 1);
 		if ($this->verbose && $this->morse) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">ON</p>', FILE_APPEND);
-		} elseif ($verbose && $show_sleep_time) {
+		} elseif ($this->verbose && $this->show_sleep_time) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">ON</p>', FILE_APPEND);
-		} elseif ($verbose){
+		} elseif ($this->verbose){
 			file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">ON</p>', FILE_APPEND);
 		}
 	}
