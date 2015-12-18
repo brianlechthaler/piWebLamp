@@ -3,10 +3,10 @@ require 'vendor/autoload.php';
 use Lamp\Lamp;
 if ('root' != exec('whoami')) {
 	echo('Not running as root');
-	echo(shell_exec('sudo -u root php /usr/lib/cgi-bin/lamprun.php '.escapeshellarg(serialize($_GET))));
+	echo(exec('sudo -u root php /usr/lib/cgi-bin/lamprun.php '.escapeshellarg(serialize($_GET))));
 	flush();
 } else {
-	echo(shell_exec('sudo -u root php /usr/lib/cgi-bin/lamprun.php '.escapeshellarg($argv[1])));
+	echo(exec('sudo -u root php /usr/lib/cgi-bin/lamprun.php '.escapeshellarg($argv[1])));
 	flush();
 }
 ?>
