@@ -2,19 +2,19 @@
 require 'vendor/autoload.php';
 use Lamp\Comet;
 use Lamp\Gpio;
-$Comet=new Comet;
-$GPIO=new Gpio;
+$Comet = new Comet;
+$GPIO = new Gpio;
 $pin_list = $GPIO->getHackablePins();
 while (!($Comet->checkForUpdates('status.txt'))) {
 	$status = array();
 	foreach ($pin_list as $pin){
 		file_put_contents('status.txt',"");
 		if ($GPIO->isExported) {
-			$status[$pin].direction=$GPIO->currentDirection($pin));
+			$status[$pin].direction = $GPIO->currentDirection($pin));
 		} else {
-			$status[$pin].direction='None';
+			$status[$pin].direction = 'None';
 		}
-		$status[$pin].value=$GPIO->input($pin);
+		$status[$pin].value = $GPIO->input($pin);
 		file_put_contents('status.txt', $pin.','.$status[$pin].value .','.$status[$pin].value .'/n', FILE_APPEND);
 	}
 }
