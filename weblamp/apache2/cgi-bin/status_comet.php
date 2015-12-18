@@ -5,7 +5,7 @@ use Lamp\Gpio;
 $Comet=new Comet;
 $GPIO=new Gpio;
 $pin_list = $GPIO->getHackablePins();
-while (!($Comet->checkForUpdates('status.txt')) {
+while (!($Comet->checkForUpdates('status.txt'))) {
 	$status = array();
 	foreach ($pin_list as $pin){
 		file_put_contents('status.txt',"");
