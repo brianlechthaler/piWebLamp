@@ -1,6 +1,6 @@
 <?php
 namespace Lamp;
-class Lamp extends GPIO implements LampInterface {
+class Lamp extends Gpio implements LampInterface {
 	public $get = array("mode"=>"none", "pin"=>"0", "morse"=>"false", "show_sleep_time"=>"false", "verbose"=>"false");
 	public $mode = '';
 	public $pin  = '0';
