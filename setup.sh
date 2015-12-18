@@ -43,7 +43,8 @@ function setup ()
 	echo "Copying files to /usr/lib/cgi-bin/"
 		cp -r weblamp/apache2/cgi-bin/          /usr/lib/cgi-bin
 	echo "Copying files to /var/www/html/"
-		cp -r weblamp/apache2/html            /var/www/html
+		cp -r weblamp/apache2/html            /var/www/
+		
 	echo "Copying lampctl to /usr/local/bin/"
 		cp weblamp/apache2/lampctl              /usr/local/bin/lampctl
 	echo ""
