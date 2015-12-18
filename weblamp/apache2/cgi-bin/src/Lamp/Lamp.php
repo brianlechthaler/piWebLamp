@@ -9,6 +9,7 @@ class Lamp extends Gpio implements LampInterface {
 	public $verbose = 'false';
 	public function construct() {
 		$this->get             = unserialize($argv[1]);
+		$get                   =$this->get;
 		$this->mode            = $get['mode'];
 		$this->pin             = $get['pin'];
 		$this->morse           = $get['morse'];
