@@ -563,9 +563,9 @@ class Lamp extends Gpio implements LampInterface {
 			$i++;
 			if ($message[$i] != " ") {
 				if ($this->morse && $this->show_sleep_time && $this->verbose) { 
-					file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '.$this->base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+					file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '.base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 				} elseif ($this->morse && $this->show_sleep_time) {
-					file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$this->base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+					file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 				}
 				usleep($base_time_unit*3000000);
 			}
