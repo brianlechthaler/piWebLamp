@@ -3,9 +3,9 @@ require 'vendor/autoload.php';
 use Lamp\Lamp;
 if ('root' != exec('whoami')) {
 	echo('Not running as root');
-	shell_exec('sudo -u root php ./cgi-bin/lamprun.php '.escapeshellarg(serialize($_GET)));
+	echo(shell_exec('sudo -u root php ./cgi-bin/lamprun.php '.escapeshellarg(serialize($_GET))));
 } else {
-	shell_exec('sudo -u root php ./cgi-bin/lamprun.php '.escapeshellarg($argv[1]));
+	echo(shell_exec('sudo -u root php ./cgi-bin/lamprun.php '.escapeshellarg($argv[1])));
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
