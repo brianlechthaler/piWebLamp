@@ -4,8 +4,10 @@ use Lamp\Lamp;
 if ('root' != exec('whoami')) {
 	echo('Not running as root');
 	echo(shell_exec('sudo -u root php /usr/lib/cgi-bin/lamprun.php '.escapeshellarg(serialize($_GET))));
+	flush();
 } else {
 	echo(shell_exec('sudo -u root php /usr/lib/cgi-bin/lamprun.php '.escapeshellarg($argv[1])));
+	flush();
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
