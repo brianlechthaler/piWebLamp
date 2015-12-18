@@ -3,7 +3,7 @@
 namespace Lamp;
 interface LampInterface
 {
-	const output = 'output';
+	const output_file = 'output';
 	public function mode_select();
 	public function morse();
 	public function simple();
