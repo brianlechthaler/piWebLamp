@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 use Lamp\Lamp;
 if ('root' != exec('whoami')) {
 	echo('Not running as root');
-	shell_exec('sudo -u root php ./cgi-bin/lampctl.php '.escapeshellarg(serialize($_GET)));
+	passthru('sudo -u root php ./cgi-bin/lampctl.php '.escapeshellarg(serialize($_GET)));
 } else {
 	echo('Running as root');
 	$lamp = new Lamp;
