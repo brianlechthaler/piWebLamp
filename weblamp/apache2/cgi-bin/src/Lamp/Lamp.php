@@ -8,6 +8,7 @@ class Lamp extends Gpio implements LampInterface {
 	public $show_sleep_time = 'false';
 	public $verbose = 'false';
 	public function mode_select() {
+		define ('OUTPUT_FILE', 'output');
 		switch ($this->mode) {
 			case "morse":
 				$this->morse();
@@ -35,7 +36,6 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function morse() {
-		define ('OUTPUT_FILE', 'output');
 		$base_time_unit = floatval($this->get['base_time_unit']);
 		$message = str_split(strval($this->get['message']),1);
 		$i=0;
@@ -573,7 +573,6 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function simple() {
-		define ('OUTPUT_FILE', 'output');
 		$on_time = floatval($this->get['on_time']);
 		$off_time = floatval($this->get['off_time']);
 		$cycles = intval($this->get['cycles']);
@@ -591,7 +590,6 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function ramp() {
-		define ('OUTPUT_FILE', 'output');
 		$start_on_time = floatval($this->get['start_on_time']);
 		$end_on_time = floatval($this->get['end_on_time']);
 		$start_off_time = floatval($this->get['start_off_time']);
@@ -671,7 +669,6 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function on() {
-		define ('OUTPUT_FILE', 'output');
 		$this->setupPin($this->pin, "out");
 		$this->output($this->pin, 1);
 		if ($this->verbose && $this->morse) {
@@ -683,7 +680,6 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function off() {
-		define ('OUTPUT_FILE', 'output');
 		$this->setupPin($this->pin, "out");
 		$this->output($this->pin, 0);
 		if ($this->verbose && $this->morse) {
