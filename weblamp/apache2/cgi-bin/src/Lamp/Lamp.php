@@ -35,9 +35,8 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function morse() {
-		$base_time_unit_get = $this->get['base_time_unit'];
-		$base_time_unit = $base_time_unit_get + 0.0;
-		$message = (array) str_split($this->get['message'],1);
+		$base_time_unit = floatval($this->get['base_time_unit']);
+		$message = str_split(strval($this->get['message']),1);
 		$i=1;
 		foreach ($message as $message_char) {
 			switch (strtolower($message_char)) {
@@ -573,9 +572,9 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function simple() {
-		$on_time = (float) $this->get['on_time'];
-		$off_time = (float) $this->get['off_time'];
-		$cycles = (int) $this->get['cycles'];
+		$on_time = floatval($this->get['on_time']);
+		$off_time = floatval($this->get['off_time']);
+		$cycles = intval($this->get['cycles']);
 		for ($i = 1; $i <= $cycles; $i++) {
 			$this->on();
 			if ($show_sleep_time && $verbose) {
@@ -590,11 +589,11 @@ class Lamp extends Gpio implements LampInterface {
 		}
 	}
 	public function ramp() {
-		$start_on_time = (float) $this->get['start_on_time'];
-		$end_on_time = (float) $this->get['end_on_time'];
-		$start_off_time = (float) $this->get['start_off_time'];
-		$end_off_time = (float) $this->get['end_off_time'];
-		$cycles = (int) $this->get['cycles'];
+		$start_on_time = floatval($this->get['start_on_time']);
+		$end_on_time = floatval($this->get['end_on_time']);
+		$start_off_time = floatval($this->get['start_off_time']);
+		$end_off_time = floatval($this->get['end_off_time']);
+		$cycles = intval($this->get['cycles']);
 		$on_fraction = ($end_on_time - $start_on_time) / $cycles;
 		$off_fraction = ($end_off_time - $start_off_time) / $cycles;
 		for ($i = 1; $i <= $cycles; $i++) {
@@ -671,7 +670,7 @@ class Lamp extends Gpio implements LampInterface {
 	public function on() {
 		$this->setupPin($this->pin, "out");
 		$this->output($this->pin, 1);
-		if ($verbose && $morse) {
+		if ($this->verbose && $this->morse) {
 			file_put_contents(output,'<p style="margin:50px;">ON</p>', FILE_APPEND);
 		} elseif ($verbose && $show_sleep_time) {
 			file_put_contents(output,'<p style="margin:0px;">ON</p>', FILE_APPEND);
