@@ -41,7 +41,7 @@ function setup ()
 	echo ""
 	
 	echo "Copying files to /usr/lib/cgi-bin/"
-		cp -r weblamp/apache2/cgi-bin/          /usr/lib/cgi-bin
+		cp -r weblamp/apache2/cgi-bin/          /usr/lib/
 	echo "Copying files to /var/www/html/"
 		cp -r weblamp/apache2/html            /var/www/
 		
