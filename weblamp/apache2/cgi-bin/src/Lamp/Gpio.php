@@ -121,12 +121,8 @@ class Gpio implements GpioInterface
             return false;
         }
         if ($this->isExported($pinNo)) {
-            if ($this->currentDirection($pinNo) != "out") {
-                return trim(file_get_contents(GpioInterface::PATH_GPIO.$pinNo.'/value'));
-            }
-            throw new \Exception('Error!' . $this->currentDirection($pinNo) . ' is a wrong direction for this pin!');
+            return trim(file_get_contents(GpioInterface::PATH_GPIO.$pinNo.'/value'));
         }
-
         return false;
     }
 
@@ -152,7 +148,6 @@ class Gpio implements GpioInterface
                 throw new \Exception('Error! Wrong Direction for this pin! Meant to be out while it is ' . $this->currentDirection($pinNo));
             }
         }
-
         return $this;
     }
 
