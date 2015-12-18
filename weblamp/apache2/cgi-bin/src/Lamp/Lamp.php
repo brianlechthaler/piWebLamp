@@ -37,7 +37,7 @@ class Lamp extends Gpio implements LampInterface {
 	public function morse() {
 		$base_time_unit = floatval($this->get['base_time_unit']);
 		$message = str_split(strval($this->get['message']),1);
-		$i=1;
+		$i=0;
 		foreach ($message as $message_char) {
 			switch (strtolower($message_char)) {
 				case "a":
@@ -567,7 +567,7 @@ class Lamp extends Gpio implements LampInterface {
 				} elseif ($this->morse && $this->show_sleep_time) {
 					file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$this->base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 				}
-				sleep($base_time_unit*3);
+				usleep($base_time_unit*3000000);
 			}
 		}
 	}
@@ -580,12 +580,12 @@ class Lamp extends Gpio implements LampInterface {
 			if ($show_sleep_time && $verbose) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$on_time .' seconds.  </p>', FILE_APPEND);
 			}
-			sleep($on_time);
+			usleep($on_time*1000000);
 			$this->off();
 			if ($show_sleep_time && $verbose) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$off_time .' seconds.  </p>', FILE_APPEND);
 			}
-			sleep($off_time);
+			usleep($off_time*1000000);
 		}
 	}
 	public function ramp() {
@@ -603,12 +603,12 @@ class Lamp extends Gpio implements LampInterface {
 			if ($show_sleep_time && $verbose) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$on_time.' seconds.  </p>', FILE_APPEND);
 			}
-			sleep($on_time);
+			usleep($on_time*1000000);
 			$this->off();
 			if ($show_sleep_time && $verbose) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$off_time.' seconds.  </p>', FILE_APPEND);
 			}
-			sleep($off_time);
+			usleep($off_time*1000000);
 		}
 	}
 	public function setup() {
@@ -635,7 +635,7 @@ class Lamp extends Gpio implements LampInterface {
 		} elseif ($morse && $show_sleep_time) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		}
-		sleep($base_time_unit);
+		usleep($base_time_unit*1000000);
 		$this->off();
 		if ($last_in_letter != true) {
 			if ($this->morse && $this->show_sleep_time && $this->verbose) { 
@@ -643,7 +643,7 @@ class Lamp extends Gpio implements LampInterface {
 			} elseif ($this->morse && $this->show_sleep_time) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 			}
-			sleep($base_time_unit);
+			usleep($base_time_unit*1000000);
 		}
 	}
 	public function dash($base_time_unit, $last_in_letter) {
@@ -656,7 +656,7 @@ class Lamp extends Gpio implements LampInterface {
 		} elseif ($morse && $show_sleep_time) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 		}
-		sleep($base_time_unit*3);
+		usleep($base_time_unit*3000000);
 		$this->off();
 		if ($last_in_letter != true) {
 			if ($this->morse && $this->show_sleep_time && $this->verbose) { 
@@ -664,7 +664,7 @@ class Lamp extends Gpio implements LampInterface {
 			} elseif ($this->morse && $this->show_sleep_time) {
 				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 			}
-			sleep($base_time_unit);
+			usleep($base_time_unit*1000000);
 		}
 	}
 	public function on() {
