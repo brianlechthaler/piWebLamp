@@ -1,6 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 use Lamp\Lamp;
+echo(exec('whoami'));
 $get = unserialize($argv[1]);
 $lamp = new Lamp;
 $lamp->get = $get;
