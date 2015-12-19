@@ -11,21 +11,21 @@ while ($current_mod_time <= $status['last_mod_time']) {
 		if ($Gpio->isExported($pin)) {
 			if($status[$pin]['1'] != $Gpio->currentDirection($pin)) {
 				$status[$pin]['1'] = $Gpio->currentDirection($pin);
-				file_set_contents('/var/www/html/status.json', json_encode($status));
+				file_put_contents('/var/www/html/status.json', json_encode($status));
 			}
 		} else {
 				$status[$pin]['1'] = 'None';
-				file_set_contents('var/www/html/status.json', json_encode($status));
+				file_put_contents('var/www/html/status.json', json_encode($status));
 		}
 		if ($status[$pin]['2'] != $Gpio->input($pin)) {
 			$status[$pin]['2'] = $Gpio->input($pin);
-			file_set_contents('/var/www/html/status.json', json_encode($status));
+			file_put_contents('/var/www/html/status.json', json_encode($status));
 		}
 		usleep(10000);
 		clearstatcache();
 		$current_mod_time = filemtime('/var/www/html/status.json');
 	}
 }
-file_set_contents('/var/www/html/status.json', json_encode($status));
+file_put_contents('/var/www/html/status.json', json_encode($status));
 echo(json_encode($status));
 flush();
