@@ -3,7 +3,7 @@ function setRow(tableId, rowId, colNum, newValue) {
 }
 
 function long_polling() { 
-    $.getJSON("cgi-bin/status_comet.php",'ajax', function(data) { 
+    $.getJSON("cgi-bin/status_comet.php",'', function(data) { 
 		setRow("odd_pins", 3, 3, data[2][1]);
 		setRow("odd_pins", 3, 4, data[2][2]);
 		setRow("odd_pins", 3, 3, data[3][1]);
@@ -39,6 +39,7 @@ function long_polling() {
 		setRow("odd_pins", 3, 3, data[27][1]);
 		setRow("odd_pins", 3, 4, data[27][2]);
     }); 
+    long_polling();
 } 
 long_polling();
 
