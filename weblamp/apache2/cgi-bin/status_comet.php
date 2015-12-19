@@ -23,7 +23,7 @@ $status_old = array
 	'25'=>array('25','none','0'),
 	'27'=>array('27','none','0')
 );
-$status_old = json_decode($status_json,  true);
+// $status_old = json_decode($status_json,  true);
 $status = $status_old ;
 while ($status_old === $status) {
 	global $status, $pin_list;
