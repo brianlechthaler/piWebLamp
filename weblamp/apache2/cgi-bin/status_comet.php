@@ -4,7 +4,7 @@ use Lamp\Gpio;
 $pin_list = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27); 
 $status = array
 (
-	'last_mod_time'=>filemtime('/var/www/html/status.json'),
+	'last_mod_time'=>filemtime('../../../var/www/html/status.json'),
 	'2' =>array('2' ,'none','0'),
 	'3' =>array('3' ,'none','0'),
 	'4' =>array('4' ,'none','0'),
@@ -23,7 +23,7 @@ $status = array
 	'25'=>array('25','none','0'),
 	'27'=>array('27','none','0')
 );
-while (checkForUpdates($status['last_mod_time'],'/var/www/html/status.json')) {
+while (checkForUpdates($status['last_mod_time'],'../../../var/www/html/status.json')) {
 	global $status, $pin_list;
 	$Gpio = new Gpio;
 	foreach ($pin_list as $pin){
@@ -33,7 +33,7 @@ while (checkForUpdates($status['last_mod_time'],'/var/www/html/status.json')) {
 			$status[$pin]['1'] = 'None';
 		}
 		$status[$pin]['2'] = $Gpio->input($pin);
-		file_put_contents('/var/www/html/status.json',json_encode($status));
+		file_put_contents('../../../var/www/html/status.json',json_encode($status));
 	}
 }
 function checkForUpdates($last_mod_time, $file) {
