@@ -23,7 +23,7 @@ $status = array
 	'25'=>array('25','none','0'),
 	'27'=>array('27','none','0')
 );
-while (checkForUpdates($status['last_mod_time'],'../../../var/www/html/status.json')) {
+while ($current_mod_time <= $status['last_mod_time']) {
 	global $status, $pin_list;
 	$Gpio = new Gpio;
 	foreach ($pin_list as $pin){
@@ -35,17 +35,9 @@ while (checkForUpdates($status['last_mod_time'],'../../../var/www/html/status.js
 		$status[$pin]['2'] = $Gpio->input($pin);
 		file_put_contents('../../../var/www/html/status.json',json_encode($status));
 	}
-}
-function checkForUpdates($last_mod_time, $file) {
-	global $status, $pin_list;
 	usleep(10000);
 	clearstatcache();
-	$current_mod_time = filemtime($file);
-	if ($current_mod_time <= $last_mod_time) {
-		return false;
-	} else {
-		echo(json_encode($status));
-		flush();
-		return true;
-	}
+	$current_mod_time = filemtime('../../../var/www/html/status.json');
 }
+echo(json_encode($status));
+flush();
