@@ -15,7 +15,7 @@ while ($current_mod_time <= $status['last_mod_time']) {
 			}
 		} else {
 				$status[$pin]['1'] = 'None';
-				file_put_contents('var/www/html/status.json', json_encode($status));
+				file_put_contents('/var/www/html/status.json', json_encode($status));
 		}
 		if ($status[$pin]['2'] != $Gpio->input($pin)) {
 			$status[$pin]['2'] = $Gpio->input($pin);
