@@ -48,7 +48,7 @@ while ($status_old === $status) {
 		clearstatcache();
 	}
 }
-if ($status_old === $status){
+if ($status === $status_old){
 	file_put_contents('/var/www/html/status.json', json_encode($status));
 	echo(json_encode($status));
 	flush();
