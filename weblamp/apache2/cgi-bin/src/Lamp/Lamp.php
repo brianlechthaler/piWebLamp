@@ -9,6 +9,7 @@ class Lamp implements LampInterface {
 	public $verbose = 'false';
 	public function mode_select() {
 		define ('OUTPUT_FILE', 'output');
+		$Gpio = new Gpio;
 		switch ($this->mode) {
 			case "morse":
 				$this->morse();
