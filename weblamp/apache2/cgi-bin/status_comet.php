@@ -1,9 +1,9 @@
 <?php
 require 'vendor/autoload.php';
 use Lamp\Gpio;
-$GPIO = new Gpio;
-$pin_list=array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27);
-$status = array
+global $Gpio = new Gpio;
+global $pin_list=array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27);
+global $status = array
 (
 	'last_mod_time'=>filemtime('status.json'),
 	'2' =>array('2' ,'none','0'),
@@ -24,27 +24,26 @@ $status = array
 	'25'=>array('25','none','0'),
 	'27'=>array('27','none','0')
 );
-json_decode('status.json');
-while (!(checkForUpdates($status['last_mod_time'],'status.json'))) {
+while (checkForUpdates($status['last_mod_time'],'status.json')) {
 	foreach ($pin_list as $pin){
-		if ($GPIO->isExported()) {
-			$status[$pin][1] = $GPIO->currentDirection($pin);
+		if ($Gpio->isExported()) {
+			$status[$pin]['1'] = $Gpio->currentDirection($pin);
 		} else {
-			$status[$pin][1] = 'None';
+			$status[$pin]['1'] = 'None';
 		}
-		$status[$pin][2] = $GPIO->input($pin);
+		$status[$pin]['2'] = $Gpio->input($pin);
 		file_put_contents('status.json',json_encode($status));
 	}
 }
-echo(json_encode($status));
-flush();
 function checkForUpdates($last_mod_time, $file) {
 	usleep(10000);
 	clearstatcache();
 	$current_mod_time = filemtime($file);
 	if ($current_mod_time <= $last_mod_time) {
-		return true;
-	} else {
 		return false;
+	} else {
+		echo(json_encode($status));
+		flush();
+		return true;
 	}
 }
