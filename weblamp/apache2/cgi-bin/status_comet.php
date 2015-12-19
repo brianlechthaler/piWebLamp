@@ -28,7 +28,7 @@ $status = array
 while (checkForUpdates($status['last_mod_time'],'status.json')) {
 	$Gpio = new Gpio;
 	foreach ($pin_list as $pin){
-		if ($Gpio->isExported()) {
+		if ($Gpio->isExported($pin)) {
 			$status[$pin]['1'] = $Gpio->currentDirection($pin);
 		} else {
 			$status[$pin]['1'] = 'None';
