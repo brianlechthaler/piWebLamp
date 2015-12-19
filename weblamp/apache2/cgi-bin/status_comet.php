@@ -33,7 +33,6 @@ while ($current_mod_time <= $status['last_mod_time']) {
 			$status[$pin]['1'] = 'None';
 		}
 		$status[$pin]['2'] = $Gpio->input($pin);
-		file_put_contents('../../../var/www/html/status.json',json_encode($status));
 	}
 	usleep(10000);
 	clearstatcache();
