@@ -3,9 +3,8 @@ require 'vendor/autoload.php';
 use Lamp\Gpio;
 $pin_list = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27); 
 $status_json = file_get_contents('/var/www/html/status.json');
-$status = array
+$status_old = array
 (
-	'last_mod_time'=>filemtime('../../../var/www/html/status.json'),
 	'2' =>array('2' ,'none','0'),
 	'3' =>array('3' ,'none','0'),
 	'4' =>array('4' ,'none','0'),
@@ -26,7 +25,6 @@ $status = array
 );
 $status = json_decode($status_json,  true);
 $status_old = $status;
-$current_mod_time = filemtime('/var/www/html/status.json');
 while ($status_old === $status) {
 	global $status, $pin_list;
 	$Gpio = new Gpio;
@@ -48,7 +46,6 @@ while ($status_old === $status) {
 		}
 		usleep(10000);
 		clearstatcache();
-		$current_mod_time = filemtime('/var/www/html/status.json');
 	}
 }
 if ($status_old === $status){
