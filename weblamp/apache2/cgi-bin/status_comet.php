@@ -5,7 +5,7 @@ $pin_list = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27);
 $status = file_get_contents('/var/www/html/status.json');
 $status = json_decode($status,  true);
 $current_mod_time = filemtime('/var/www/html/status.json');
-while ($current_mod_time <= $status['last_mod_time']) {
+while ($current_mod_time == $status['last_mod_time']) {
 	global $status, $pin_list;
 	$Gpio = new Gpio;
 	foreach ($pin_list as $pin) {
