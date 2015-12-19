@@ -39,7 +39,6 @@ function long_polling() {
 		setRow("odd_pins", 3, 3, data[27][1]);
 		setRow("odd_pins", 3, 4, data[27][2]);
     }); 
-    long_polling(); 
 } 
 long_polling();
 
