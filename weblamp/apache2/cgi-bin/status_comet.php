@@ -1,9 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 use Lamp\Gpio;
-global $pin_list;
-$pin_list = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27);
-global $status; 
+$pin_list = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27); 
 $status = array
 (
 	'last_mod_time'=>filemtime('status.json'),
@@ -26,6 +24,7 @@ $status = array
 	'27'=>array('27','none','0')
 );
 while (checkForUpdates($status['last_mod_time'],'status.json')) {
+	global $status, $pin_list;;
 	$Gpio = new Gpio;
 	foreach ($pin_list as $pin){
 		if ($Gpio->isExported($pin)) {
