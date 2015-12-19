@@ -24,7 +24,7 @@ $status = array
 	'25'=>array('25','none','0'),
 	'27'=>array('27','none','0')
 );
-$status = json_decode($status_json,  true);
+// $status = json_decode($status_json,  true);
 $current_mod_time = filemtime('/var/www/html/status.json');
 while ($current_mod_time == $status['last_mod_time']) {
 	global $status, $pin_list;
