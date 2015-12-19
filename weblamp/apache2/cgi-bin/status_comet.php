@@ -1,8 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-use Lamp\Comet;
 use Lamp\Gpio;
-$Comet = new Comet;
 $GPIO = new Gpio;
 $pin_list=array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27);
 $status = array
@@ -39,19 +37,13 @@ while (!($Comet->checkForUpdates($status['last_mod_time'],'status.json'))) {
 	}
 }
 $Comet->response($status);
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<head>
-	<title></title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="generator" content="Geany 1.26" />
-</head>
-
-<body>
-	
-</body>
-
-</html>
+function checkForUpdates($last_mod_time, $file) {
+	usleep(10000);
+	clearstatcache();
+	$current_mod_time = filemtime($file);
+	if ($current_mod_time <= $last_mod_time) {
+		return true;
+	} else {
+		return false;
+	}
+}
