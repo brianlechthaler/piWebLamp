@@ -50,3 +50,4 @@ if ($status == $status_old){
 	echo(json_encode($status));
 	flush();
 }
+file_put_contents('/var/www/html/status.json', json_encode($status));
