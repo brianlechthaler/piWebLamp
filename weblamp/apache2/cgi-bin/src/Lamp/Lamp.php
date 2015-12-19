@@ -43,14 +43,14 @@ class Lamp implements LampInterface {
 			switch (strtolower($message_char)) {
 				case "a":
 					if ($this->morse) {
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">A</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">A</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, true);
 					break;
 				case "b":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">B</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">B</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -59,7 +59,7 @@ class Lamp implements LampInterface {
 					break;
 				case "c":
 						if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">C</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">C</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -68,7 +68,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "d":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">D</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">D</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -76,13 +76,13 @@ class Lamp implements LampInterface {
 					break; 
 				case "e":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">E</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">E</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					break; 
 				case "f":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">F</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">F</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -91,7 +91,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "g":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">G</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">G</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -99,7 +99,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "h":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">H</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">H</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -108,14 +108,14 @@ class Lamp implements LampInterface {
 					break; 
 				case "i":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">I</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">I</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, true);
 					break; 
 				case "j":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">J</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">J</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -124,7 +124,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "k":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">K</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">K</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -132,7 +132,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "l":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">L</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">L</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -141,21 +141,21 @@ class Lamp implements LampInterface {
 					break; 
 				case "m":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">M</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">M</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, true);
 					break; 
 				case "n":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">N</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">N</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, true);
 					break; 
 				case "o":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">O</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">O</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -163,7 +163,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "p":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">P</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">P</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -172,7 +172,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "q":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">Q</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">Q</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -181,7 +181,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "r":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">R</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">R</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -189,7 +189,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "s":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">S</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">S</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -197,13 +197,13 @@ class Lamp implements LampInterface {
 					break; 
 				case "t":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">T</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">T</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					break; 
 				case "u":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">U</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">U</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -211,7 +211,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "v":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">V</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">V</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -220,7 +220,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "w":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">W</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">W</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -228,7 +228,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "x":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">X</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">X</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -237,7 +237,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "y":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">Y</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">Y</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -246,7 +246,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "z":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">Z</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">Z</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -255,7 +255,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "1":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">1</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">1</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -265,7 +265,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "2":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">2</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">2</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -275,7 +275,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "3":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">3</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">3</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -285,7 +285,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "4":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">4</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">4</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -295,7 +295,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "5":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">5</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">5</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -305,7 +305,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "6":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">6</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">6</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -315,7 +315,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "7":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">7</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">7</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -325,7 +325,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "8":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">8</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">8</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -335,7 +335,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "9":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p margin:0px;>9</p>', FILE_APPEND);
+						file_put_contents('output.json','<p margin:0px;>9</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -345,7 +345,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "0":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">0</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">0</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -355,7 +355,7 @@ class Lamp implements LampInterface {
 					break; 
 				case ".":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">.</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">.</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -367,7 +367,7 @@ class Lamp implements LampInterface {
 					break; 
 				case ",":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">,</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">,</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -378,7 +378,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "?":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">?</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">?</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -389,7 +389,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "'":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">\'</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">\'</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -400,7 +400,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "!":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">!</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">!</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -411,7 +411,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "/":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">/</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">/</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -421,7 +421,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "(":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">(</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">(</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -431,7 +431,7 @@ class Lamp implements LampInterface {
 					break; 
 				case ")":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">)</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">)</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -442,7 +442,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "&":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">&</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">&</p>', FILE_APPEND);
 					}		sleep($base_time_unit*3);
 	
 					$this->dot($base_time_unit, false);
@@ -453,7 +453,7 @@ class Lamp implements LampInterface {
 					break; 
 				case ":":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">:</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">:</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -464,7 +464,7 @@ class Lamp implements LampInterface {
 					break; 
 				case ";":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">;</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">;</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -475,7 +475,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "=":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">=</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">=</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -485,7 +485,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "+":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">+</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">+</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -495,7 +495,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "-":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">-</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">-</p>', FILE_APPEND);
 					}
 					$this->dash($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -506,7 +506,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "$":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">$</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">$</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -518,7 +518,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "_":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">_</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">_</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dot($base_time_unit, false);
@@ -540,7 +540,7 @@ class Lamp implements LampInterface {
 					break; 
 				case "@":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">@</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">@</p>', FILE_APPEND);
 					}
 					$this->dot($base_time_unit, false);
 					$this->dash($base_time_unit, false);
@@ -551,12 +551,12 @@ class Lamp implements LampInterface {
 					break;
 				case " ":
 					if ($this->morse) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">SPACE</p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:0px;">SPACE</p>', FILE_APPEND);
 					}
 					if ($this->morse && $show_sleep_time && $verbose) { 
-						file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '. $base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:100px;">Sleeping '. $base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
 					} elseif ($this->morse && $show_sleep_time) {
-						file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
+						file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$base_time_unit*7 .' seconds.  </p>', FILE_APPEND);
 					}
 					sleep($base_time_unit*7);
 					break;
@@ -564,9 +564,9 @@ class Lamp implements LampInterface {
 			$i++;
 			if (array_key_exists($i, $message) && $message[$i] != " ") {
 				if ($this->morse && $this->show_sleep_time && $this->verbose) { 
-					file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+					file_put_contents('output.json','<p style="margin:100px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 				} elseif ($this->morse && $this->show_sleep_time) {
-					file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+					file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 				}
 				usleep($base_time_unit*3000000);
 			}
@@ -580,12 +580,12 @@ class Lamp implements LampInterface {
 		for ($i = 1; $i <= $cycles; $i++) {
 			$this->on();
 			if ($this->show_sleep_time && $this->verbose) {
-				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$on_time .' seconds.  </p>', FILE_APPEND);
+				file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$on_time .' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($on_time*1000000);
 			$this->off();
 			if ($this->show_sleep_time && $this->verbose) {
-				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$off_time .' seconds.  </p>', FILE_APPEND);
+				file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$off_time .' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($off_time*1000000);
 		}
@@ -604,12 +604,12 @@ class Lamp implements LampInterface {
 			$off_time = $off_fraction * $i + $start_off_time;
 			$this->on();
 			if ($this->show_sleep_time && $this->verbose) {
-				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$on_time.' seconds.  </p>', FILE_APPEND);
+				file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$on_time.' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($on_time*1000000);
 			$this->off();
 			if ($this->show_sleep_time && $this->verbose) {
-				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$off_time.' seconds.  </p>', FILE_APPEND);
+				file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$off_time.' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($off_time*1000000);
 		}
@@ -633,21 +633,21 @@ class Lamp implements LampInterface {
 	public function dot($base_time_unit, $last_in_letter) {
 		$Gpio = new Gpio;
 		if ($this->morse) {
-			file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">DOT</p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:0px;">DOT</p>', FILE_APPEND);
 		}
 		$this->on();
 		if ($this->morse && $this->show_sleep_time && $this->verbose) { 
-			file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		} elseif ($this->morse && $this->show_sleep_time) {
-			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 		}
 		usleep($base_time_unit*1000000);
 		$this->off();
 		if ($last_in_letter != true) {
 			if ($this->morse && $this->show_sleep_time && $this->verbose) { 
-				file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+				file_put_contents('output.json','<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 			} elseif ($this->morse && $this->show_sleep_time) {
-				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+				file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($base_time_unit*1000000);
 		}
@@ -655,21 +655,21 @@ class Lamp implements LampInterface {
 	public function dash($base_time_unit, $last_in_letter) {
 		$Gpio = new Gpio;
 		if ($this->morse) {
-			file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">DASH</p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:0px;">DASH</p>', FILE_APPEND);
 		}
 		$this->on();
 		if ($this->morse && $this->show_sleep_time && $this->verbose) { 
-			file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:100px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 		} elseif ($this->morse && $this->show_sleep_time) {
-			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$base_time_unit*3 .' seconds.  </p>', FILE_APPEND);
 		}
 		usleep($base_time_unit*3000000);
 		$this->off();
 		if ($last_in_letter != true) {
 			if ($this->morse && $this->show_sleep_time && $this->verbose) { 
-				file_put_contents(OUTPUT_FILE,'<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+				file_put_contents('output.json','<p style="margin:100px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 			} elseif ($this->morse && $this->show_sleep_time) {
-				file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
+				file_put_contents('output.json','<p style="margin:50px;">Sleeping '.$base_time_unit.' seconds.  </p>', FILE_APPEND);
 			}
 			usleep($base_time_unit*1000000);
 		}
@@ -679,11 +679,11 @@ class Lamp implements LampInterface {
 		$Gpio->setupPin($this->pin, "out");
 		$Gpio->output($this->pin, 1);
 		if ($this->verbose && $this->morse) {
-			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">ON</p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:50px;">ON</p>', FILE_APPEND);
 		} elseif ($this->verbose && $this->show_sleep_time) {
-			file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">ON</p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:0px;">ON</p>', FILE_APPEND);
 		} elseif ($this->verbose){
-			file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">ON</p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:0px;">ON</p>', FILE_APPEND);
 		}
 	}
 	public function off() {
@@ -691,11 +691,11 @@ class Lamp implements LampInterface {
 		$Gpio->setupPin($this->pin, "out");
 		$Gpio->output($this->pin, 0);
 		if ($this->verbose && $this->morse) {
-			file_put_contents(OUTPUT_FILE,'<p style="margin:50px;">OFF</p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:50px;">OFF</p>', FILE_APPEND);
 		} elseif ($this->verbose && $this->show_sleep_time) {
-			file_put_contents($this->OUTPUT_FILE,'<p style="margin:0px;">OFF</p>', FILE_APPEND);
+			file_put_contents($this->'output.json','<p style="margin:0px;">OFF</p>', FILE_APPEND);
 		} elseif ($this->verbose){
-			file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">OFF</p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:0px;">OFF</p>', FILE_APPEND);
 		}
 	}
 }
