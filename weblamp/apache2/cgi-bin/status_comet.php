@@ -24,7 +24,7 @@ $status = array
 	'27'=>array('27','none','0')
 );
 while (checkForUpdates($status['last_mod_time'],'status.json')) {
-	global $status, $pin_list;;
+	global $status, $pin_list;
 	$Gpio = new Gpio;
 	foreach ($pin_list as $pin){
 		if ($Gpio->isExported($pin)) {
@@ -37,6 +37,7 @@ while (checkForUpdates($status['last_mod_time'],'status.json')) {
 	}
 }
 function checkForUpdates($last_mod_time, $file) {
+	global $status, $pin_list;
 	usleep(10000);
 	clearstatcache();
 	$current_mod_time = filemtime($file);
