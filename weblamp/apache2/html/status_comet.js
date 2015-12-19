@@ -1,8 +1,7 @@
-function long_polling() { 
-    $.getJSON("cgi-bin/status_comet.php",{}, function(data) { 
-	    function setRow(tableId, rowId, colNum, newValue) {
-			$('#'+tableId).find('tr#'+rowId).find('td:eq(colNum)').html(newValue);
-		}
+function setRow(tableId, rowId, colNum, newValue) {
+    $('#'+tableId).find('tr#'+rowId).find('td:eq(colNum)').html(newValue);
+}
+function handleResponse(data) {
 		setRow("odd_pins", 3, 3, data[2][1]);
 		setRow("odd_pins", 3, 4, data[2][2]);
 		setRow("odd_pins", 3, 3, data[3][1]);
@@ -37,8 +36,41 @@ function long_polling() {
 		setRow("even_pins", 3, 4, data[25][2]);
 		setRow("odd_pins", 3, 3, data[27][1]);
 		setRow("odd_pins", 3, 4, data[27][2]);
-    }); 
-    long_polling();
-} 
-long_polling();
+}
+var url = '/cgi-bin/status_comet.php';
+var noerror = true;
+var ajax;
+function connect()
+{
+ajax = $.ajax(url, {
+type: 'get',
+data: {},
+success: function(transport) {
+// handle the server response
+eval('var data = '+transport);
 
+handleResponse(data);
+noerror = true;
+}, 
+complete: function(transport) {
+// send a new ajax request when this request is finished
+if (!noerror)
+// if a connection problem occurs, try to reconnect each 5 seconds
+setTimeout(function(){ connect() }, 5000); 
+else
+connect();
+
+noerror = false;
+} 
+}); 
+}
+function doRequest(request)
+{
+$.ajax(url, {
+type: 'get',
+data: {}
+}); 
+}
+$(document).ready(function(){
+connect();
+});
