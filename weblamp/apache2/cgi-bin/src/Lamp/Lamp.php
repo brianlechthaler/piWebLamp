@@ -693,7 +693,7 @@ class Lamp implements LampInterface {
 		if ($this->verbose && $this->morse) {
 			file_put_contents('output.json','<p style="margin:50px;">OFF</p>', FILE_APPEND);
 		} elseif ($this->verbose && $this->show_sleep_time) {
-			file_put_contents($this->'output.json','<p style="margin:0px;">OFF</p>', FILE_APPEND);
+			file_put_contents('output.json','<p style="margin:0px;">OFF</p>', FILE_APPEND);
 		} elseif ($this->verbose){
 			file_put_contents('output.json','<p style="margin:0px;">OFF</p>', FILE_APPEND);
 		}
