@@ -36,7 +36,8 @@ while (!(checkForUpdates($status['last_mod_time'],'status.json'))) {
 		file_put_contents('status.json',json_encode($status));
 	}
 }
-$Comet->response($status);
+echo(json_encode($status));
+flush();
 function checkForUpdates($last_mod_time, $file) {
 	usleep(10000);
 	clearstatcache();
