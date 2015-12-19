@@ -31,7 +31,7 @@ while ($current_mod_time == $status['last_mod_time']) {
 	$Gpio = new Gpio;
 	foreach ($pin_list as $pin) {
 		if ($Gpio->isExported($pin)) {
-			if($status[$pin]['1'] != $Gpio->currentDirection($pin) {
+			if($status[$pin]['1'] != $Gpio->currentDirection($pin)) {
 			$status[$pin]['1'] = $Gpio->currentDirection($pin);
 			file_put_contents('/var/www/html/status.json', json_encode($status));
 			}
