@@ -8,8 +8,6 @@ class Lamp implements LampInterface {
 	public $show_sleep_time = 'false';
 	public $verbose = 'false';
 	public function mode_select() {
-		define ('OUTPUT_FILE', 'output');
-		$Gpio = new Gpio;
 		switch ($this->mode) {
 			case "morse":
 				$this->morse();
@@ -37,6 +35,7 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function morse() {
+		$Gpio = new Gpio;
 		$base_time_unit = floatval($this->get['base_time_unit']);
 		$message = str_split(strval($this->get['message']),1);
 		$i=0;
@@ -574,6 +573,7 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function simple() {
+		$Gpio = new Gpio;
 		$on_time = floatval($this->get['on_time']);
 		$off_time = floatval($this->get['off_time']);
 		$cycles = intval($this->get['cycles']);
@@ -591,6 +591,7 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function ramp() {
+		$Gpio = new Gpio;
 		$start_on_time = floatval($this->get['start_on_time']);
 		$end_on_time = floatval($this->get['end_on_time']);
 		$start_off_time = floatval($this->get['start_off_time']);
@@ -614,9 +615,11 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function setup() {
+		$Gpio = new Gpio;
 		$Gpio->setupPin($this->pin, "out");
 	}
 	public function toggle() {
+		$Gpio = new Gpio;
 		$state = $Gpio->input($this->pin);
 		switch ($state) {
 			case 0:
@@ -628,6 +631,7 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function dot($base_time_unit, $last_in_letter) {
+		$Gpio = new Gpio;
 		if ($this->morse) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">DOT</p>', FILE_APPEND);
 		}
@@ -649,6 +653,7 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function dash($base_time_unit, $last_in_letter) {
+		$Gpio = new Gpio;
 		if ($this->morse) {
 			file_put_contents(OUTPUT_FILE,'<p style="margin:0px;">DASH</p>', FILE_APPEND);
 		}
@@ -670,6 +675,7 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function on() {
+		$Gpio = new Gpio;
 		$Gpio->setupPin($this->pin, "out");
 		$Gpio->output($this->pin, 1);
 		if ($this->verbose && $this->morse) {
@@ -681,6 +687,7 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function off() {
+		$Gpio = new Gpio;
 		$Gpio->setupPin($this->pin, "out");
 		$Gpio->output($this->pin, 0);
 		if ($this->verbose && $this->morse) {
