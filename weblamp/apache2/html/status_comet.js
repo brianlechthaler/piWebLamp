@@ -42,26 +42,25 @@ var noerror = true;
 var ajax;
 function connect()
 {
-ajax = $.ajax(url, {
-type: 'get',
-data: {},
-success: function(transport) {
-// handle the server response
-var response = JSON.parse(transport);
-handleResponse(response);
-noerror = true;
-}, 
-complete: function(transport) {
-// send a new ajax request when this request is finished
-if (!noerror)
-// if a connection problem occurs, try to reconnect each 5 seconds
-setTimeout(function(){ connect() }, 5000); 
-else
-connect();
-
-noerror = false;
-} 
-}); 
+	ajax = $.ajax(url, {
+		type: 'get',
+		data: {},
+		success: function(transport) {
+			// handle the server response
+			var response = JSON.parse(transport);
+			handleResponse(response);
+			noerror = true;
+		}, 
+		complete: function(transport) {
+			// send a new ajax request when this request is finished
+			if (!noerror)
+				// if a connection problem occurs, try to reconnect each 5 seconds
+				setTimeout(function(){ connect() }, 5000); 
+			else
+				connect();
+				noerror = false;
+		} 
+	}); 
 }
 function doRequest(request)
 {

@@ -51,6 +51,11 @@ while ($status_old === $status) {
 		$current_mod_time = filemtime('/var/www/html/status.json');
 	}
 }
-file_put_contents('/var/www/html/status.json', json_encode($status));
-echo(json_encode($status));
-flush();
+if ($status_old === $status){
+	file_put_contents('/var/www/html/status.json', json_encode($status));
+	echo(json_encode($status));
+	flush();
+} else {
+	die();
+}
+
