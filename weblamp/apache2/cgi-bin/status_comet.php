@@ -31,15 +31,16 @@ while ($current_mod_time == $status['last_mod_time']) {
 	$Gpio = new Gpio;
 	foreach ($pin_list as $pin) {
 		if ($Gpio->isExported($pin)) {
-		if($status[$pin]['1'] != $Gpio->currentDirection($pin) {
+			if($status[$pin]['1'] != $Gpio->currentDirection($pin) {
 			$status[$pin]['1'] = $Gpio->currentDirection($pin);
 			file_put_contents('/var/www/html/status.json', json_encode($status));
-		}
-		else {
+			}
+		} else {
   			if ($status[$pin]['1'] != 'none') {
 				$status[$pin]['1'] = 'None';
 				file_get_contents('/var/www/html/status.json', json_encode($status));
-				}
+			}
+		}
 		if ($status[$pin]['2'] != $Gpio->input($pin)) {
 			$status[$pin]['2'] = $Gpio->input($pin);
 			file_put_contents('/var/www/html/status.json', json_encode($status));
