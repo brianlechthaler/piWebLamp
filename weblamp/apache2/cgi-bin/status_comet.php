@@ -25,7 +25,7 @@ $status_old = array
 );
 // $status_old = json_decode($status_json,  true);
 $status = $status_old ;
-while ($status_old === $status) {
+while ($status_old == $status) {
 	global $status, $pin_list;
 	$Gpio = new Gpio;
 	foreach ($pin_list as $pin) {
