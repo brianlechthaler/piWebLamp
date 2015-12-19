@@ -4,7 +4,7 @@ use Lamp\Gpio;
 $pin_list = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27); 
 $status = array
 (
-	'last_mod_time'=>filemtime('../../../var/www/html/status.json'),
+	'last_mod_time'=>time(),
 	'2' =>array('2' ,'none','0'),
 	'3' =>array('3' ,'none','0'),
 	'4' =>array('4' ,'none','0'),
