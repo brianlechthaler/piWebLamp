@@ -42,10 +42,10 @@ function checkForUpdates($last_mod_time, $file) {
 	clearstatcache();
 	$current_mod_time = filemtime($file);
 	if ($current_mod_time <= $last_mod_time) {
-		return true;
+		return false;
 	} else {
 		echo(json_encode($status));
 		flush();
-		return false;
+		return true;
 	}
 }
