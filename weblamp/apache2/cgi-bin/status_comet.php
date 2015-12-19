@@ -22,7 +22,7 @@ while ($current_mod_time <= $status['last_mod_time']) {
 		}
 		usleep(10000);
 		clearstatcache();
-		$current_mod_time = filemtime('/var/www/html/status.json');\
+		$current_mod_time = filemtime('/var/www/html/status.json');
 	}
 }
 file_set_contents('/var/www/html/status.json', json_encode($status));
