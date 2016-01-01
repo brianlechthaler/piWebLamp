@@ -5,7 +5,8 @@ function myloader($class_name)
 }
 spl_autoload_register('myloader');
 session_name('status');
-if(session_start()) {
+session_start();
+/* if(session_start()) {
 	$_SESSION['pin_list'] = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 7, 18, 22, 23, 24, 25, 27); 
 	$_SESSION['status'] = array
 	(
@@ -27,7 +28,8 @@ if(session_start()) {
 		'pin_25'=>array('pin_25','None','N/A'),
 		'pin_27'=>array('pin_27','None','N/A')
 	);
-}
+} */
+$_SESSION['pin_list'] = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 7, 18, 22, 23, 24, 25, 27);
 $status = $_SESSION['status'];
 while (true) {
 	global $status;
