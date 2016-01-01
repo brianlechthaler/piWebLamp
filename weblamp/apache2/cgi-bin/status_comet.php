@@ -1,53 +1,47 @@
 <?php
 require 'vendor/autoload.php';
 use Lamp\Gpio;
-$pin_list = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27); 
-$status_json = file_get_contents('/var/www/html/status.json');
-$status_old = array
-(
-	'2' =>array('2' ,'none','0'),
-	'3' =>array('3' ,'none','0'),
-	'4' =>array('4' ,'none','0'),
-	'7' =>array('7' ,'none','0'),
-	'8' =>array('8' ,'none','0'),
-	'9' =>array('9' ,'none','0'),
-	'10'=>array('10','none','0'),
-	'11'=>array('11','none','0'),
-	'14'=>array('14','none','0'),
-	'15'=>array('15','none','0'),
-	'17'=>array('17','none','0'),
-	'18'=>array('18','none','0'),
-	'22'=>array('22','none','0'),
-	'23'=>array('23','none','0'),
-	'24'=>array('24','none','0'),
-	'25'=>array('25','none','0'),
-	'27'=>array('27','none','0')
-);
+if(session_start()) {
+	$_SESSION['pin_list'] = array('pin_2', 'pin_3', 'pin_4', 'pin_7', 'pin_8', 'pin_9', 'pin_10', 'pin_11', 'pin_14', 'pin_15', 'pin_7', 'pin_18', 'pin_22', 'pin_23', 'pin_24', 'pin_25', 'pin_27'); 
+	$_SESSION['status'] = array
+	(
+		'pin_2' =>array('pin_2' ,'None','N/A'),
+		'pin_3' =>array('pin_3' ,'None','N/A'),
+		'pin_4' =>array('pin_4' ,'None','N/A'),
+		'pin_7' =>array('pin_7' ,'None','N/A'),
+		'pin_8' =>array('pin_8' ,'None','N/A'),
+		'pin_9' =>array('pin_9' ,'None','N/A'),
+		'pin_10'=>array('pin_10','None','N/A'),
+		'pin_11'=>array('pin_11','None','N/A'),
+		'pin_14'=>array('pin_14','None','N/A'),
+		'pin_15'=>array('pin_15','None','N/A'),
+		'pin_17'=>array('pin_17','None','N/A'),
+		'pin_18'=>array('pin_18','None','N/A'),
+		'pin_22'=>array('pin_22','None','N/A'),
+		'pin_23'=>array('pin_23','None','N/A'),
+		'pin_24'=>array('pin_24','None','N/A'),
+		'pin_25'=>array('pin_25','None','N/A'),
+		'pin_27'=>array('pin_27','None','N/A')
+	);
+}
 // $status_old = json_decode($status_json,  true);
-$status = $status_old ;
-while ($status_old == $status) {
-	global $status, $pin_list;
+
+while ($_SESSION['status'] == $status) {
+	global $status;
+	$status = array();
 	$Gpio = new Gpio;
-	foreach ($pin_list as $pin) {
-		if ($Gpio->isExported($pin)) {
-			if($status[$pin]['1'] != $Gpio->currentDirection($pin)) {
+	foreach ($_SESSION['pin_list'] as $pin) {
+		$status[$pin] = array();
+		if($Gpio->isExported($pin)) {
 			$status[$pin]['1'] = $Gpio->currentDirection($pin);
-			}
-		} else {
-  			if ($status[$pin]['1'] != 'none') {
-				$status[$pin]['1'] = 'none';
-			}
-		}
-		if ($status[$pin]['2'] != $Gpio->input($pin)) {
 			$status[$pin]['2'] = $Gpio->input($pin);
+		} else {
+			$status[$pin]['1'] = 'None'
+			$status[$pin]['2'] = 'N/A'
 		}
-		usleep(10000);
-		clearstatcache();
 	}
+	usleep(50);
+	clearstatcache();
 }
-if ($status == $status_old){
-	file_put_contents('/var/www/html/status.json', json_encode($status));
-	echo(json_encode($status));
-	flush();
-}
-file_put_contents('/var/www/html/status.json', json_encode($status));
+echo(json_encode($status));
+flush();
