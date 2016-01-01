@@ -1,5 +1,4 @@
 <?php
-
 namespace Lamp;
 interface LampInterface
 {
@@ -14,3 +13,4 @@ interface LampInterface
 	public function on();
 	public function off();
 }
+?>

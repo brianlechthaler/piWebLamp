@@ -161,3 +161,4 @@ class GpioDevelop implements GpioInterface
         return in_array($pinNo, $this->pins) || in_array($pinNo, $this->hackablePins);
     }
 }
+?>

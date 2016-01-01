@@ -57,3 +57,4 @@ class Pi
         return $frequency;
     }
 }
+?>
