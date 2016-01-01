@@ -46,7 +46,7 @@ function comet() {
 		global $status;
 		readStatus();
 		usleep(50);
-		if($_SESSION['status'] = $status) {
+		if($_SESSION['status'] == $status) {
 			break;
 		}
 	}
