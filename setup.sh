@@ -41,16 +41,16 @@ function setup ()
 	echo ""
 	
 	echo "Copying files to /usr/lib/cgi-bin/"
-		cp -r weblamp/apache2/cgi-bin/          /usr/lib/
+		cp -r weblamp/cgi-bin/          /usr/lib/
 	echo "Copying files to /var/www/html/"
-		cp -r weblamp/apache2/html            /var/www/
+		cp -r weblamp/html            /var/www/
 		
 	echo "Copying lampctl to /usr/local/bin/"
-		cp weblamp/apache2/lampctl              /usr/local/bin/lampctl
+		cp weblamp/lampctl              /usr/local/bin/lampctl
 	echo ""
 	echo "Copying configuration files to /etc/apache2/"
-		cp weblamp/apache2/etc/apache2.conf     /etc/apache2/apache2.conf
-		cp weblamp/apache2/etc/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+		cp weblamp/etc/apache2.conf     /etc/apache2/apache2.conf
+		cp weblamp/etc/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 	echo "Restarting Apache"
 		service apache2 reload
 	echo ""
