@@ -5,10 +5,10 @@ function connect()
 {
 	ajax = $.ajax(url, {
 		type: 'get',
+		dataType='json',
 		data: {},
 		success: function(response) {
-			var data = JSON.parse(response);
-			updateTable(data);
+			updateTable(response);
 			noerror = true;
 			if (!noerror)
 				// if a connection problem occurs, try to reconnect each 5 seconds
