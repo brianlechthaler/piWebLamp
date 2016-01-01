@@ -43,6 +43,7 @@ function comet() {
 		);
 	}
 	while (true) {
+		global $status;
 		readStatus();
 		usleep(50);
 		if($_SESSION['status'] != $status) {
