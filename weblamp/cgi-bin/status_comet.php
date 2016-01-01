@@ -44,15 +44,18 @@ function readStatus(){
 		}
 	}
 }
-$status = $_SESSION['status'];
-while (true) {
-	readStatus();
-	usleep(50);
-	clearstatcache();
-	if($_SESSION['status'] != $status) {
-		break;
+function comet() {
+	$status = $_SESSION['status'];
+	while (true) {
+		readStatus();
+		usleep(50);
+		clearstatcache();
+		if($_SESSION['status'] != $status) {
+			break;
+		}
 	}
+	header("content-type:application/json");
+	echo(json_encode($status));
+	flush();
 }
-header("content-type:application/json");
-echo(json_encode($status));
-flush();
+comet();
