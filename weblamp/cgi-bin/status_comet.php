@@ -28,7 +28,7 @@ if(session_start()) {
 	);
 }
 $status = $_SESSION['status'];
-while ($_SESSION['status'] == $status) {
+while (true) {
 	global $status;
 	$status = array();
 	$Gpio = new Gpio;
@@ -44,6 +44,9 @@ while ($_SESSION['status'] == $status) {
 	}
 	usleep(50);
 	clearstatcache();
+	if($_SESSION['status'] != $status) {
+		break;
+	}
 }
 echo(json_encode($status));
 flush();
