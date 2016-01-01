@@ -7,7 +7,6 @@ spl_autoload_register('myloader');
 session_name('status');
 session_start();
 /* if(session_start()) {
-	$_SESSION['pin_list'] = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 7, 18, 22, 23, 24, 25, 27); 
 	$_SESSION['status'] = array
 	(
 		'pin_2' =>array('pin_2' ,'None','N/A'),
@@ -29,13 +28,12 @@ session_start();
 		'pin_27'=>array('pin_27','None','N/A')
 	);
 } */
-$_SESSION['pin_list'] = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 7, 18, 22, 23, 24, 25, 27);
-$status = $_SESSION['status'];
-while (true) {
+function readStatus(){
+	$pin_list = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 7, 18, 22, 23, 24, 25, 27);
 	global $status;
 	$status = array();
 	$Gpio = new Gpio;
-	foreach ($_SESSION['pin_list'] as $pin) {
+	foreach ($pin_list as $pin) {
 		$status['pin_'.$pin] = array();
 		if($Gpio->isExported($pin)) {
 			$status['pin_'.$pin]['1'] = $Gpio->currentDirection($pin);
@@ -45,6 +43,10 @@ while (true) {
 			$status['pin_'.$pin]['2'] = 'N/A';
 		}
 	}
+}
+$status = $_SESSION['status'];
+while (true) {
+	readStatus();
 	usleep(50);
 	clearstatcache();
 	if($_SESSION['status'] != $status) {
