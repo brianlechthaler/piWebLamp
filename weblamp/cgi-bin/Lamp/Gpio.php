@@ -1,7 +1,5 @@
 <?php
 
-namespace Lamp;
-
 class Gpio implements GpioInterface
 {
     // Using BCM pin numbers.

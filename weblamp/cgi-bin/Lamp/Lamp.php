@@ -1,5 +1,4 @@
 <?php
-namespace Lamp;
 class Lamp implements LampInterface {
 	public $get = array("mode"=>"none", "pin"=>"0", "morse"=>"false", "show_sleep_time"=>"false", "verbose"=>"false");
 	public $mode = '';

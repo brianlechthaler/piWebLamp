@@ -1,7 +1,5 @@
 <?php
 
-namespace Lamp;
-
 /**
  * This Gpio class is for developing not in raspberry environment
  * There is no need for root user and special file structure.

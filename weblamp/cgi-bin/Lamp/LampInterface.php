@@ -1,5 +1,4 @@
 <?php
-namespace Lamp;
 interface LampInterface
 {
 	public function mode_select();

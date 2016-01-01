@@ -1,7 +1,4 @@
 <?php
-
-namespace Lamp;
-
 /**
  * Gpio interface
  *
