@@ -53,21 +53,6 @@ while (true) {
 		break;
 	}
 }
+header("content-type:application/json");
 echo(json_encode($status));
 flush();
-
-?>
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title></title>
-	<meta http-equiv="content-type" content="application/json;charset=utf-8" />
-	<meta name="generator" content="Geany 1.26" />
-</head>
-
-<body>
-	
-</body>
-
-</html>
