@@ -1,0 +1,623 @@
+#!/bin/bash
+
+#		Lamp Control Script Version 0.5.1
+#		Copyright (C) 2015  Mel McCalla
+
+
+		#### Changelog ####
+#
+#
+		###  Version 0.5 	
+#
+		## Version 0.5.1
+		# Minor bug fixes
+#
+		## Version 0.5.0
+		# Added ramping mode.  
+#
+#
+		### Version 0.4
+#
+		## Version 0.4.0
+		# Added Morse code functionality.  
+		
+		
+		
+#		####  License  ####
+#	This program is free software: you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation, either version 3 of the License, or
+#	(at your option) any later version.
+#
+#	This program is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU General Public License for more details.
+#
+#	You should have received a copy of the GNU General Public License
+#	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+
+# Variable Setup
+VERSION="0.5.1"
+
+EXIT_STATUS=1
+VERBOSE="false"
+
+
+function simpleOnOff ()
+{
+	for i in $(seq -s " " 1 $CYCLES)
+	do
+	{
+		on $PIN
+		sleep $ON_TIME
+		off $PIN
+		sleep $OFF_TIME
+	}
+	done
+}
+
+function morse ()
+{
+# Takes input, converts it into Morse code, then flashes it on the lamp
+	
+	# Finds length of input for for loop
+	local LENGTH=${#TEXT}
+	
+	# Performs the next block of commands on each character in the input
+	for i in $(seq -s " " 1 $LENGTH)
+	do
+	{
+		# Gets the currrent character and saves it to a variable
+		local CHARACTER=$(echo $TEXT | cut -c$i)
+		
+		# Converts the character into Morse code and flashes the output
+		case "$CHARACTER" in
+			a|A)
+				if [ "$MORSE" = "true" ] ; then echo "A" ; fi
+				dot ; dash
+			;;
+			b|B)
+				if [ "$MORSE" = "true" ] ; then echo "B" ; fi
+				dash ; dot ; dot ; dot
+			;;
+			c|C)
+				if [ "$MORSE" = "true" ] ; then echo "C" ; fi
+				dash ; dot ; dash ; dot
+			;;
+			d|D)
+				if [ "$MORSE" = "true" ] ; then echo "D" ; fi
+				dash ; dot ; dot
+			;;
+			e|E)
+				if [ "$MORSE" = "true" ] ; then echo "E" ; fi
+				dot
+			;;
+			f|F)
+				if [ "$MORSE" = "true" ] ; then echo "F" ; fi
+				dot ; dot ; dash ; dot
+			;;
+			g|G)
+				if [ "$MORSE" = "true" ] ; then echo "G" ; fi
+				dash ; dash ; dot
+			;;
+			h|H)
+				if [ "$MORSE" = "true" ] ; then echo "H" ; fi
+				dot ; dot ; dot ; dot
+			;;
+			i|I)
+				if [ "$MORSE" = "true" ] ; then echo "I" ; fi
+				dot ; dot
+			;;
+			j|J)
+				if [ "$MORSE" = "true" ] ; then echo "J" ; fi
+				dot ; dash ; dash ; dash
+			;;
+			k|K)
+				if [ "$MORSE" = "true" ] ; then echo "K" ; fi
+				dash ; dot ; dash
+			;;
+			l|L)
+				if [ "$MORSE" = "true" ] ; then echo "L" ; fi
+				dot ; dash ; dot ; dot
+			;;
+			m|M)
+				if [ "$MORSE" = "true" ] ; then echo "M" ; fi
+				dash ; dash
+			;;
+			n|N)
+				if [ "$MORSE" = "true" ] ; then echo "N" ; fi
+				dash ; dot
+			;;
+			o|O)
+				if [ "$MORSE" = "true" ] ; then echo "O" ; fi
+				dash ; dash ; dash
+			;;
+			p|P)
+				if [ "$MORSE" = "true" ] ; then echo "P" ; fi
+				dot ; dash ; dash ; dot
+			;;
+			q|Q)
+				if [ "$MORSE" = "true" ] ; then echo "Q" ; fi
+				dash ; dash ; dot ; dash
+			;;
+			r|R)
+				if [ "$MORSE" = "true" ] ; then echo "R" ; fi
+				dot ; dash ; dot
+			;;
+			s|S)
+				if [ "$MORSE" = "true" ] ; then echo "S" ; fi
+				dot ; dot ; dot
+			;;
+			t|T)
+				if [ "$MORSE" = "true" ] ; then echo "T" ; fi
+				dash
+			;;
+			u|U)
+				if [ "$MORSE" = "true" ] ; then echo "U" ; fi
+				dot ; dot ; dash
+			;;
+			v|V)
+				if [ "$MORSE" = "true" ] ; then echo "V" ; fi
+				dot ; dot ; dot ; dash
+			;;
+			w|W)
+				if [ "$MORSE" = "true" ] ; then echo "W" ; fi
+				dot ; dash ; dash
+			;;
+			x|X)
+				if [ "$MORSE" = "true" ] ; then echo "X" ; fi
+				dash ; dot ; dot ; dash
+			;;
+			y|Y)
+				if [ "$MORSE" = "true" ] ; then echo "Y" ; fi
+				dash ; dot ; dash ; dash
+			;;
+			z|Z)
+				if [ "$MORSE" = "true" ] ; then echo "Z" ; fi
+				dash ; dash ; dot ; dot
+			;;
+			1)
+				if [ "$MORSE" = "true" ] ; then echo "1" ; fi
+				dot ; dash ; dash ; dash ; dash
+			;;
+			2)
+				if [ "$MORSE" = "true" ] ; then echo "2" ; fi
+				dot ; dot ; dash ; dash ; dash
+			;;
+			3)
+				if [ "$MORSE" = "true" ] ; then echo "3" ; fi
+				dot ; dot ; dot ; dash ; dash
+			;;
+			4)
+				if [ "$MORSE" = "true" ] ; then echo "4" ; fi
+				dot ; dot ; dot ; dot ; dash
+			;;
+			5)
+				if [ "$MORSE" = "true" ] ; then echo "5" ; fi
+				dot ; dot ; dot ; dot ; dot
+			;;
+			6)
+				if [ "$MORSE" = "true" ] ; then echo "6" ; fi
+				dash ; dot ; dot ; dot ; dot
+			;;
+			7)
+				if [ "$MORSE" = "true" ] ; then echo "7" ; fi
+				dash ; dash ; dot ; dot ; dot
+			;;
+			8)
+				if [ "$MORSE" = "true" ] ; then echo "8" ; fi
+				dash ; dash ; dash ; dot ; dot
+			;;
+			9)
+				if [ "$MORSE" = "true" ] ; then echo "9" ; fi
+				dash ; dash ; dash ; dash ; dot
+			;;
+			0)
+				if [ "$MORSE" = "true" ] ; then echo "0" ; fi
+				dash ; dash ; dash ; dash ; dash
+			;;
+			\.)
+				if [ "$MORSE" = "true" ] ; then echo "." ; fi
+				dot ; dash ; dot ; dash ; dot ; dash ; 
+			;;
+			\,)
+				if [ "$MORSE" = "true" ] ; then echo "," ; fi
+				dash ; dash ; dot ; dot ; dash ; dash
+			;;
+			\?)
+				if [ "$MORSE" = "true" ] ; then echo "?" ; fi
+				dot ; dot ; dash ; dash ; dot ; dot
+			;;
+			\')
+				if [ "$MORSE" = "true" ] ; then echo "'" ; fi
+				dot ; dash ; dash ; dash ; dash ; dot
+			;;
+			\!)
+				if [ "$MORSE" = "true" ] ; then echo "!" ; fi
+				dash ; dot ; dash ; dot ; dash ; dash
+			;;
+			\/)
+				if [ "$MORSE" = "true" ] ; then echo "/" ; fi
+				dash ; dot ; dot ; dash ; dot
+			;;
+			\()
+				if [ "$MORSE" = "true" ] ; then echo "(" ; fi
+				dash ; dot ; dash ; dash ; dot
+			;;
+			\))
+				if [ "$MORSE" = "true" ] ; then echo ")" ; fi
+				dash ; dot ; dash ; dash ; dot ; dash
+			;;
+			\&)
+				if [ "$MORSE" = "true" ] ; then echo "&" ; fi
+				dot ; dash ; dot ; dot ; dot
+			;;
+			\:)
+				if [ "$MORSE" = "true" ] ; then echo ":" ; fi
+				dash ; dash ; dash ; dot ; dot ; dot
+			;;
+			\;)
+				if [ "$MORSE" = "true" ] ; then echo ";" ; fi
+				dash ; dot ; dash ; dot ; dash ; dot
+			;;
+			\=)
+				if [ "$MORSE" = "true" ] ; then echo "=" ; fi
+				dash ; dot ; dot ; dot ; dash
+			;;
+			\+)
+				if [ "$MORSE" = "true" ] ; then echo "+" ; fi
+				dot ; dash ; dot ; dash ; dot
+			;;
+			\-)
+				if [ "$MORSE" = "true" ] ; then echo "-" ; fi
+				dash ; dot ; dot ; dot ; dot ; dash
+			;;
+			\$)
+				if [ "$MORSE" = "true" ] ; then echo "$" ; fi
+				dot ; dot ; dot ; dash ; dot ; dot ; dash
+			;;
+			_)
+				if [ "$MORSE" = "true" ] ; then echo "_" ; fi
+				dot ; dot ; dash ; dash ; dot ; dash
+			;;
+			\")
+				if [ "$MORSE" = "true" ] ; then echo '"' ; fi
+				dot ; dash ; dot ; dot ; dash ; dot
+			;;
+			\@)
+				if [ "$MORSE" = "true" ] ; then echo "@" ; fi
+				dot ; dash ; dash ; dot ; dash ; dot
+			;;
+			
+			# Space
+			$'\x20')
+				if [ "$MORSE" = "true" ] ; then echo "SPACE" ; fi
+				if [ "$MORSE" = "true" ] ; then	if [ "$SHOW_SLEEP_TIME" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "			Sleeping $(echo "$BASE_TIME * 6" | bc -l) seconds" ; else echo "	Sleeping $(echo "$BASE_TIME * 6" | bc -l) seconds" ; fi  fi fi
+				sleep $(echo "$BASE_TIME * 6" | bc -l)
+			;;
+			
+			*)
+				echo "Invalid character $CHARACTER."
+				exit 1
+			;;
+		esac
+		
+		# Determines whether the next character is a space so it can properly implement the delay between letters and words
+		if [ "$(echo $TEXT | cut -c$((i+1)))" != "$(echo $'\x20')" ]
+		then
+			if [ $LENGTH -ge 2 ]
+			then 
+				if [ "$MORSE" = "true" ] ; then	if [ "$SHOW_SLEEP_TIME" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "			Sleeping $(echo "$BASE_TIME * 2" | bc -l) seconds" ; else echo "	Sleeping $(echo "$BASE_TIME * 2" | bc -l) seconds" ; fi  fi fi
+				sleep $(echo "$BASE_TIME * 2" | bc -l) 
+			fi
+		fi
+	}
+	done
+}
+
+function rampOnOff ()
+{
+# Ramps delay between two values
+	for i in $(seq -s " " 1 $CYCLES)
+	do
+	{
+		local ON_FRACTION=$( echo "($END_ON_TIME - $START_ON_TIME) / $CYCLES" | bc -l )
+		local OFF_FRACTION=$( echo "($END_OFF_TIME - $START_OFF_TIME ) / $CYCLES" | bc -l )
+		local ON_TIME=$( echo "$ON_FRACTION * $i + $START_ON_TIME" | bc -l )
+		local OFF_TIME=$( echo "$OFF_FRACTION * $i + $START_OFF_TIME" | bc -l )
+		on $PIN
+		if [ "$SHOW_SLEEP_TIME" = "true" ] ; then echo "Sleeping $ON_TIME seconds" ; fi 
+		sleep $ON_TIME
+		off $PIN
+		if [ "$SHOW_SLEEP_TIME" = "true" ] ; then echo "Sleeping $OFF_TIME seconds" ; fi 
+		sleep $OFF_TIME
+	}
+	done
+}
+
+function dot ()
+{
+	# Flashes a dot in Morse code
+	if [ "$MORSE" = "true" ] ; then echo "	DOT" ; fi
+	on $PIN
+	if [ "$MORSE" = "true" ] ; then	if [ "$SHOW_SLEEP_TIME" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "			Sleeping $BASE_TIME seconds" ; else echo "	Sleeping $BASE_TIME seconds" ; fi  fi fi
+	sleep $BASE_TIME
+	off $PIN
+	if [ "$MORSE" = "true" ] ; then	if [ "$SHOW_SLEEP_TIME" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "			Sleeping $BASE_TIME seconds" ; else echo "	Sleeping $BASE_TIME seconds" ; fi  fi fi
+	sleep $BASE_TIME
+}
+
+function dash ()
+{
+	# Flashes a dash in Morse code
+	local DASH_LENGTH=$(echo "$BASE_TIME * 3" | bc -l)
+	if [ "$MORSE" = "true" ] ; then echo "	DASH" ; fi
+	on $PIN
+	if [ "$MORSE" = "true" ] ; then	if [ "$SHOW_SLEEP_TIME" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "			Sleeping $DASH_LENGTH seconds" ; else echo "	Sleeping $DASH_LENGTH seconds" ; fi fi fi
+	sleep $DASH_LENGTH
+	off $PIN
+	if [ "$MORSE" = "true" ] ; then	if [ "$SHOW_SLEEP_TIME" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "			Sleeping $BASE_TIME seconds" ; else echo "	Sleeping $BASE_TIME seconds" ; fi  fi fi
+	sleep $BASE_TIME
+}
+
+function setup ()
+{
+	# Sets up a GPIO pin for output
+	if [ "$VERBOSE" = "true" ] ; then echo "Setting GPIO pin $PIN to output." ; fi
+	gpio -g mode $PIN out
+}
+
+function on ()
+{
+	# Turns the selected GPIO pin on
+	if [ "$DRY_RUN" != "true" ] ; then gpio -g write $PIN 1 ; fi
+	if [ "$MORSE" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "		ON" ; fi ; else if [ "$VERBOSE" = "true" ] ; then echo "ON" ; fi fi
+}
+
+function off ()
+{
+	# Turns the selected GPIO pin off
+	if [ "$DRY_RUN" != "true" ] ; then gpio -g write $PIN 0 ; fi
+	if [ "$MORSE" = "true" ] ; then	if [ "$VERBOSE" = "true" ] ; then echo "		OFF" ; fi ; else if [ "$VERBOSE" = "true" ] ; then echo "OFF" ; fi fi
+}
+
+function toggle ()
+{
+	local STATE=$(gpio -g read $PIN)
+	case $STATE in
+		0)
+			on $PIN
+		;;
+		1)
+			off $PIN
+		;;
+	esac
+}
+
+function read ()
+{
+	local GPIO=$(gpio -g read $PIN)
+	if [ "$VERBOSE" = "true" ] ; then echo $GPIO ; fi
+}
+
+function usage ()
+{
+	# Prints out usage information
+	echo 'Usage:'
+	echo '	lampctl ramp|morse|simple|on|off|dot|dash'
+	echo '	For more options, run "lampctl -h"'
+}
+
+function version ()
+{
+	# Prints out version information
+	echo "Lamp Control Script version $VERSION by Mel McCalla"
+}
+
+function arguments ()
+{
+	# Parses command line input
+	case $1 in
+		"")
+			version
+			usage
+			exit 1
+		;;
+		"-h"|"--help")
+			# andles mode specific help
+			case $2 in
+				simple)
+					echo 'Turns on and off the lamp on a cycle.  '
+					echo '	lampctl simple PIN ON_TIME OFF_TIME CYCLES'
+					exit 0
+				;;
+				ramp)
+					echo 'Increases or decreases the speed and time the lamp spends flashing.  '
+					echo '	lampctl ramp PIN START_ON_TIME START_OFF_TIME END_ON_TIME END_OFF_TIME CYCLES'
+					exit 0
+				;;
+				morse)
+					echo 'Converts an input into Morse code and then flashes it on the lamp.  '
+					echo '	lampctl morse PIN BASE_UNIT MESSAGE'
+				;;
+				setup)
+					echo 'Initializes a GPIO pin and prepares it for output.  '
+					echo '	lampctl setup PIN'
+					exit 0
+				;;
+				on)
+					echo 'Turns on the lamp.  '
+					echo '	lampctl on PIN'
+					exit 0	
+				;;
+				off)
+					echo 'Turns off the lamp.  '
+					echo '	lampctl off PIN'
+					exit 0
+				;;
+				toggle)
+					echo 'Toggles the lamp from off to on or on to off.  '
+					echo '	lampctl toggle PIN'
+				;;
+				dot)
+					echo 'Flashes a dot in Morse code.  '
+					echo '	lampctl dot PIN BASE_TIME'
+					exit 0
+				;;
+				dash)
+					echo 'Flashes a dash in Morse code.  '
+					echo '	lampctl dash PIN BASE_TIME'
+					exit 0
+				;;
+				'')
+					version
+					usage
+					exit 0
+				;;
+				*)
+					echo "Error: No such mode $2"
+					usage
+					exit 1
+				;;
+			esac
+		;;
+		"-V"|"--version")
+			version
+			exit 0
+		;;
+		"-v"|"--verbose")
+			# If selected, each time a pin turns on or off, "ON" or "OFF" is printed to STDOUT, respectively.  
+			VERBOSE="true"
+			if [ "$2" != "" ]; then
+				shift
+				arguments "$@"
+			else 
+				exit 1
+			fi
+		;;
+		"-d"|"--dry-run")
+			# If selected, no GPIO pins are affected
+			DRY_RUN="true"
+			if [ "$2" != "" ]; then
+				shift
+				arguments "$@"
+			else 
+				exit 1
+			fi
+		;;
+		"-m"|"--morse-output")
+			# If selected, every time the morse function flashes a dot or a dash, "DOT" or "DASH" is printed to STDOUT, respectively.
+			MORSE="true"
+			if [ "$2" != "" ]; then
+				shift
+				arguments "$@"
+			else 
+				exit 1
+			fi
+		;;
+		"-t"|"--show-sleep-time")
+			# If selected, the time spent waiting is printed to STDOUT
+			SHOW_SLEEP_TIME="true"
+			if [ "$2" != "" ]; then
+				shift
+				arguments "$@"
+			else 
+				exit 1
+			fi
+		;;
+		"-*")
+			echo "Error:  No such option $1.  "
+			usage
+		;;
+		*)
+			# Handles mode parsing
+			while test "$1" != "" ; do
+				case $1 in
+					"ramp")
+						EXIT_STATUS="0"
+						PIN=$2
+						START_ON_TIME=$3
+						START_OFF_TIME=$4
+						END_ON_TIME=$5
+						END_OFF_TIME=$6
+						CYCLES=$7
+						rampOnOff
+						shift 6
+					;;
+					"simple")
+						EXIT_STATUS="0"
+						PIN=$2
+						ON_TIME=$3
+						OFF_TIME=$4
+						CYCLES=$5
+						simpleOnOff
+						shift 4
+					;;
+					"morse")
+						EXIT_STATUS="0"
+						PIN="$2"
+						BASE_TIME="$3"
+						TEXT="$4"
+						morse
+						shift 3
+					;;
+					"setup")
+						EXIT_STATUS="0"
+						PIN=$2
+						setup
+						exit 0
+					;;
+					"on")
+						EXIT_STATUS="0"
+						PIN=$2
+						on 
+						shift
+					;;
+					"off")
+						EXIT_STATUS="0"
+						PIN=$2
+						off
+						shift
+					;;
+					"toggle")
+						EXIT_STATUS="0"
+						PIN=$2
+						toggle
+						shift
+					;;
+					"read")
+						EXIT_STATUS="0"
+						PIN=$2
+						read
+						shift
+					;;
+					"dot")
+						EXIT_STATUS="0"
+						PIN=$2
+						off
+						shift
+					;;
+					"dash")
+						EXIT_STATUS="0"
+						PIN=$2
+						dash
+						shift
+					;;
+					*)
+						echo "Error:  No such mode $1.  "
+						usage
+						exit 1
+					;;
+				esac
+			shift
+			done
+	esac
+}
+arguments "$@"
+if [ "$EXIT_STATUS" = 1 ]; then
+		echo 'An error occurred.  '
+fi
+exit $EXIT_STATUS
