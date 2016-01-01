@@ -5,7 +5,7 @@ function connect()
 {
 	ajax = $.ajax(url, {
 		type: 'get',
-		dataType='json',
+		dataType: 'json',
 		data: {},
 		success: function(response) {
 			updateTable(response);
