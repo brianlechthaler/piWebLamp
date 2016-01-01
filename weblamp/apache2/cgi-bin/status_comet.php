@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 use Lamp\Gpio;
-/*if(*/session_start();//) {
+if(session_start();) {
 	$_SESSION['pin_list'] = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 7, 18, 22, 23, 24, 25, 27); 
 	$_SESSION['status'] = array
 	(
@@ -23,8 +23,7 @@ use Lamp\Gpio;
 		'pin_25'=>array('pin_25','None','N/A'),
 		'pin_27'=>array('pin_27','None','N/A')
 	);
-//}
-// $status_old = json_decode($status_json,  true);
+}
 $status = $_SESSION['status'];
 while ($_SESSION['status'] == $status) {
 	global $status;
