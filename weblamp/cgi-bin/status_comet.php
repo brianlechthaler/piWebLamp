@@ -23,23 +23,23 @@ function comet() {
 	if(!array_key_exists('status', $_SESSION)) {
 		$_SESSION['status'] = array
 		(
-			2' =>array('None','N/A'),
-			3' =>array('None','N/A'),
-			4' =>array('None','N/A'),
-			7' =>array('None','N/A'),
-			8' =>array('None','N/A'),
-			9' =>array('None','N/A'),
-			10'=>array('None','N/A'),
-			11'=>array('None','N/A'),
-			14'=>array('None','N/A'),
-			15'=>array('None','N/A'),
-			17'=>array('None','N/A'),
-			18'=>array('None','N/A'),
-			22'=>array('None','N/A'),
-			23'=>array('None','N/A'),
-			24'=>array('None','N/A'),
-			25'=>array('None','N/A'),
-			27'=>array('None','N/A')
+			'pin_2' =>array('None','N/A'),
+			'pin_3' =>array('None','N/A'),
+			'pin_4' =>array('None','N/A'),
+			'pin_7' =>array('None','N/A'),
+			'pin_8' =>array('None','N/A'),
+			'pin_9' =>array('None','N/A'),
+			'pin_10'=>array('None','N/A'),
+			'pin_11'=>array('None','N/A'),
+			'pin_14'=>array('None','N/A'),
+			'pin_15'=>array('None','N/A'),
+			'pin_17'=>array('None','N/A'),
+			'pin_18'=>array('None','N/A'),
+			'pin_22'=>array('None','N/A'),
+			'pin_23'=>array('None','N/A'),
+			'pin_24'=>array('None','N/A'),
+			'pin_25'=>array('None','N/A'),
+			'pin_27'=>array('None','N/A')
 		);
 	}
 	while (true) {
