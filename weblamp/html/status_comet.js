@@ -7,7 +7,8 @@ function connect()
 		type: 'get',
 		data: {},
 		success: function(response) {
-			updateTable(response);
+			var data = JSON.parse(response);
+			updateTable(data);
 			noerror = true;
 			if (!noerror)
 				// if a connection problem occurs, try to reconnect each 5 seconds
@@ -21,8 +22,7 @@ function connect()
 function setRow(tableId, rowId, colNum, newValue) {
     $(tableId).find('tr#'+rowId).find('td:eq(colNum)').html(newValue);
 }
-function updateTable(response) {
-	var data = JSON.parse(response);
+function updateTable(data) {
 /*	setRow("#odd_pins", 3, 3,    data[pin_2][1]);
 	setRow("#odd_pins", 3, 4,    data[pin_2][2]);
 	setRow("#odd_pins", 5, 3,    data[pin_3][1]);
