@@ -6,7 +6,7 @@ function myloader($class_name)
 spl_autoload_register('myloader');
 session_name('status');
 session_start();
-if(array_key_exists('status', $_SESSION)) {
+if(!array_key_exists('status', $_SESSION)) {
 	$_SESSION['status'] = array
 	(
 		'pin_2' =>array('pin_2' ,'None','N/A'),
