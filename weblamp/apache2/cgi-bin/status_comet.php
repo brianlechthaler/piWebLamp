@@ -36,8 +36,8 @@ while ($_SESSION['status'] == $status) {
 			$status[$pin]['1'] = $Gpio->currentDirection($pin);
 			$status[$pin]['2'] = $Gpio->input($pin);
 		} else {
-			$status[$pin]['1'] = 'None'
-			$status[$pin]['2'] = 'N/A'
+			$status[$pin]['1'] = 'None';
+			$status[$pin]['2'] = 'N/A';
 		}
 	}
 	usleep(50);
