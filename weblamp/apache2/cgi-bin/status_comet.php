@@ -1,8 +1,8 @@
 <?php
 require 'vendor/autoload.php';
 use Lamp\Gpio;
-if(session_start()) {
-	$_SESSION['pin_list'] = array('pin_2', 'pin_3', 'pin_4', 'pin_7', 'pin_8', 'pin_9', 'pin_10', 'pin_11', 'pin_14', 'pin_15', 'pin_7', 'pin_18', 'pin_22', 'pin_23', 'pin_24', 'pin_25', 'pin_27'); 
+/*if(*/session_start();//) {
+	$_SESSION['pin_list'] = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 7, 18, 22, 23, 24, 25, 27); 
 	$_SESSION['status'] = array
 	(
 		'pin_2' =>array('pin_2' ,'None','N/A'),
@@ -23,21 +23,21 @@ if(session_start()) {
 		'pin_25'=>array('pin_25','None','N/A'),
 		'pin_27'=>array('pin_27','None','N/A')
 	);
-}
+//}
 // $status_old = json_decode($status_json,  true);
-
+$status = $_SESSION['status'];
 while ($_SESSION['status'] == $status) {
 	global $status;
 	$status = array();
 	$Gpio = new Gpio;
 	foreach ($_SESSION['pin_list'] as $pin) {
-		$status[$pin] = array();
+		$status['pin_'.$pin] = array();
 		if($Gpio->isExported($pin)) {
-			$status[$pin]['1'] = $Gpio->currentDirection($pin);
-			$status[$pin]['2'] = $Gpio->input($pin);
+			$status['pin_'.$pin]['1'] = $Gpio->currentDirection($pin);
+			$status['pin_'.$pin]['2'] = $Gpio->input($pin);
 		} else {
-			$status[$pin]['1'] = 'None';
-			$status[$pin]['2'] = 'N/A';
+			$status['pin_'.$pin]['1'] = 'None';
+			$status['pin_'.$pin]['2'] = 'N/A';
 		}
 	}
 	usleep(50);
