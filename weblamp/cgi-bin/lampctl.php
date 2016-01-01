@@ -1,6 +1,10 @@
 <?php
-require 'vendor/autoload.php';
-use Lamp\Lamp;
+function myloader($class_name)
+{
+	return @include_once('Lamp/'.$class_name . ".php");
+}
+spl_autoload_register('myloader');
+
 if ('root' != exec('whoami')) {
 	echo(escapeshellarg(serialize($_GET)));
 	echo(exec('sudo -u root php /usr/lib/cgi-bin/lamprun.php '.escapeshellarg(serialize($_GET))));

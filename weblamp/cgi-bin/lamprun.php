@@ -1,6 +1,10 @@
 <?php
-require 'vendor/autoload.php';
-use Lamp\Lamp;
+function myloader($class_name)
+{
+	return @include_once('Lamp/'.$class_name . ".php");
+}
+spl_autoload_register('myloader');
+
 $get = unserialize($argv[1]);
 $lamp = new Lamp;
 $lamp->get = (array) $get;

@@ -1,6 +1,9 @@
 <?php
-includeFile(src/);
-use Lamp\Gpio;
+function myloader($class_name)
+{
+	return @include_once('Lamp/'.$class_name . ".php");
+}
+spl_autoload_register('myloader');
 if(session_start()) {
 	$_SESSION['pin_list'] = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 7, 18, 22, 23, 24, 25, 27); 
 	$_SESSION['status'] = array
@@ -44,6 +47,7 @@ while ($_SESSION['status'] == $status) {
 }
 echo(json_encode($status));
 flush();
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
