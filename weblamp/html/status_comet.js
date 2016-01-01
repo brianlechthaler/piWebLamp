@@ -9,16 +9,13 @@ function connect()
 		success: function(response) {
 			updateTable(response);
 			noerror = true;
-		}, 
-		complete: function(transport) {
-			// send a new ajax request when this request is finished
 			if (!noerror)
 				// if a connection problem occurs, try to reconnect each 5 seconds
 				setTimeout(function(){ connect(); }, 5000); 
 			else
 				connect();
 				noerror = false;
-		} 
+		}
 	}); 
 }
 function setRow(tableId, rowId, colNum, newValue) {
