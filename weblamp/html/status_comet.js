@@ -26,7 +26,7 @@ function setRow(tableId, rowId, colNum, newValue) {
 }
 function updateTable(response) {
 	var data = JSON.parse(response);
-	setRow("#odd_pins", 3, 3,    data[pin_2][1]);
+/*	setRow("#odd_pins", 3, 3,    data[pin_2][1]);
 	setRow("#odd_pins", 3, 4,    data[pin_2][2]);
 	setRow("#odd_pins", 5, 3,    data[pin_3][1]);
 	setRow("#odd_pins", 5, 4,    data[pin_3][2]);
@@ -60,6 +60,7 @@ function updateTable(response) {
 	setRow("#even_pins", 22, 4,  data[pin_25][2]);
 	setRow("#odd_pins", 13, 3,   data[pin_27][1]);
 	setRow("#odd_pins", 13, 4,   data[pin_27][2]);
+*/
 }
 $(document).ready(function(){
 connect();
