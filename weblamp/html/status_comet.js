@@ -1,24 +1,6 @@
 var url = '/cgi-bin/status_comet.php';
 var noerror = true;
 var ajax;
-function connect()
-{
-	ajax = $.ajax(url, {
-		type: 'get',
-		dataType: 'json',
-		data: {},
-		success: function(response) {
-			updateTable(response);
-			noerror = true;
-			if (!noerror)
-				// if a connection problem occurs, try to reconnect each 5 seconds
-				setTimeout(function(){ connect(); }, 5000); 
-			else
-				connect();
-				noerror = false;
-		}
-	}); 
-}
 function setRow(tableId, rowId, colNum, newValue) {
     $('#'+tableId).find('tr#'+rowId).find('td:eq(colNum)').html(newValue);
 }
@@ -58,6 +40,15 @@ function updateTable(data) {
 	setRow("odd_pins", 'row_13, 3,   data['pin_27'][0]);
 	setRow("odd_pins", 'row_13, 4,   data['pin_27'][1]);
 }
-$(document).ready(function(){
-connect();
-});
+var conn = new ab.Session('ws://localhost:8080',
+        function() {
+            conn.subscribe('status', function(topic, data) {
+                // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
+                console.log('New article published to category "' + topic + '" : ' + data.title);
+            });
+        },
+        function() {
+            console.warn('WebSocket connection closed');
+        },
+        {'skipSubprotocolCheck': true}
+    );

@@ -1,0 +1,11 @@
+{
+	"autoload": {
+        "psr-0": {
+            "Lamp": "src"
+        }
+    },
+    "require": {
+        "cboden/ratchet": "^0.3.4",
+        "ronanguilloux/php-gpio": "^1.0"
+    }
+}
