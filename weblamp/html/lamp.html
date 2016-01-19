@@ -14,14 +14,14 @@
 		Lamp Control
 		<br>
 		<br>
-		<form id="mode_select">
-			<input type="radio" name="MODE" value="morse" onclick="mode()"> Morse<br>
-			<input type="radio" name="MODE" value="simple" onclick="mode()"> Simple On Off<br>
-			<input type="radio" name="MODE" value="ramp" onclick="mode()"> Ramp On Off<br>
-			<input type="radio" name="MODE" value="setup" onclick="mode()"> Setup<br>
-			<input type="radio" name="MODE" value="on" onclick="mode()"> On<br>
-			<input type="radio" name="MODE" value="off" onclick="mode()"> Off<br>
-			<input type="radio" name="MODE" value="toggle" onclick="mode()"> Toggle<br>
+		<form id="mode">
+			<input type="radio" name="MODE" value="morse" onclick="mode_select()"> Morse<br>
+			<input type="radio" name="MODE" value="simple" onclick="mode_select()"> Simple On Off<br>
+			<input type="radio" name="MODE" value="ramp" onclick="mode_select()"> Ramp On Off<br>
+			<input type="radio" name="MODE" value="setup" onclick="mode_select()"> Setup<br>
+			<input type="radio" name="MODE" value="on" onclick="mode_select()"> On<br>
+			<input type="radio" name="MODE" value="off" onclick="mode_select()"> Off<br>
+			<input type="radio" name="MODE" value="toggle" onclick="mode_select()"> Toggle<br>
 		</form>
 		<form id="parameters">
 			<input type="checkbox" name="VERBOSE" value="-v"> Verbose<br>
@@ -38,7 +38,7 @@
 					<tr><td>Message</td><td><input type="text" name="MESSAGE" size="12" id="message"></td></tr>
 				</tbody>
 			</table>
-			<input type="submit" value="Execute">
+			<input type="button" value="Execute" onclick="morse()">
 		</form>
 	</div>
 	<div id="simple" style="display: none;">
@@ -51,7 +51,7 @@
 					<tr><td>Cycles</td><td><input type="text" name="CYCLES" size="12"></td></tr>
 				</tbody>
 			</table>
-			<input type="submit" value="Execute">
+			<input type="button" value="Execute" onclick="simple()">
 		</form>
 	</div>
 	<div id="ramp" style="display: none;">
@@ -66,7 +66,7 @@
 					<tr><td>Cycles</td><td><input type="text" name="CYCLES" size="12" id="cycles"></td></tr>
 				</tbody>
 			</table>
-			<input type="submit" value="Execute">
+			<input type="button" value="Execute" onclick="ramp()">
 		</form>
 	</div>
 	<div id="setup" style="display: none;">
@@ -76,7 +76,7 @@
 					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
 				</tbody>
 			</table>
-			<input type="submit" value="Execute">
+			<input type="button" value="Execute" onclick="setup()">
 		</form>
 	</div>
 	<div id="on" style="display: none;">
@@ -86,7 +86,7 @@
 					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
 				</tbody>
 			</table>
-			<input type="submit" value="Execute">
+			<input type="button" value="Execute" onclick="on()">
 		</form>
 	</div>
 	<div id="off" style="display: none;">
@@ -96,7 +96,7 @@
 					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
 				</tbody>
 			</table>
-			<input type="submit" value="Execute">
+			<input type="button" value="Execute" onclick="off()">
 		</form>
 	</div>
 	<div id="toggle" style="display: none;">
@@ -106,7 +106,7 @@
 					<tr><td>Pin</td><td><input type="text" name="PIN" size="12" id="pin"></td></tr>
 				</tbody>
 			</table>
-			<input type="submit" value="Execute">
+			<input type="button" value="Execute" onclick="toggle()">
 		</form>
 	</div>
 	<div id="status">

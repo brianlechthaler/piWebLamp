@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'React\\ZMQ' => array($vendorDir . '/react/zmq/src'),
     'PhpGpio' => array($vendorDir . '/ronanguilloux/php-gpio/src'),
+    'Lamp' => array($baseDir . '/src'),
     'Guzzle\\Stream' => array($vendorDir . '/guzzle/stream'),
     'Guzzle\\Parser' => array($vendorDir . '/guzzle/parser'),
     'Guzzle\\Http' => array($vendorDir . '/guzzle/http'),

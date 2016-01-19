@@ -1,8 +1,8 @@
-function mode() {
-	var mode = document.forms[0];
-	for (i = 0; i < mode.length; i++) {
-		if (mode[i].checked) {
-			selected_mode = mode[i].value;
+function mode_select() {
+	var mode_forms = document.forms[0];
+	for (i = 0; i < mode_forms.length; i++) {
+		if (mode_forms[i].checked) {
+			selected_mode = mode_forms[i].value;
 			switch(selected_mode) {
 				case "morse": 
 					$("#simple").hide();
@@ -91,7 +91,7 @@ function morse(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lampctl.php", { mode: "morse", pin: data.pin, base_time_unit: data.base_time_unit, message: data.message, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse });
+	conn.socket.send(JSON.stringify({ mode: "morse", pin: data.pin, base_time_unit: data.base_time_unit, message: data.message, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse }));
 	return false;
 }
 function simple(){
@@ -105,7 +105,7 @@ function simple(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lampctl.php", { mode: "simple", pin: data.pin, on_time: data.on_time, off_time: data.off_time, cycles: data.cycles, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse });
+	conn.socket.send(JSON.stringify({ mode: "simple", pin: data.pin, on_time: data.on_time, off_time: data.off_time, cycles: data.cycles, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse }));
 	return false;
 }
 function ramp(){
@@ -121,7 +121,7 @@ function ramp(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lampctl.php", { mode: "ramp", pin: data.pin, start_on_time: data.start_on_time, start_off_time: data.start_off_time, end_on_time: data.end_on_time, end_off_time: data.end_off_time, cycles: data.cycles, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse });
+	conn.socket.send(JSON.stringify({ mode: "ramp", pin: data.pin, start_on_time: data.start_on_time, start_off_time: data.start_off_time, end_on_time: data.end_on_time, end_off_time: data.end_off_time, cycles: data.cycles, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse }));
 	return false;
 }
 function setup(){
@@ -132,7 +132,7 @@ function setup(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	jQuery.get("cgi-bin/lampctl.php", { mode: "setup", pin: data.pin, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse });
+	conn.socket.send(JSON.stringify({ mode: "setup", pin: data.pin, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse }));
 	return false;
 }
 function on(){
@@ -143,7 +143,7 @@ function on(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lampctl.php", { mode: "on", pin: data.pin, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse });
+	conn.socket.send(JSON.stringify({ mode: "on", pin: data.pin, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse }));
 	return false;
 }
 function off(){
@@ -154,7 +154,7 @@ function off(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lampctl.php", { mode: "off", pin: data.pin, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse });
+	conn.socket.send(JSON.stringify({ mode: "off", pin: data.pin, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse }));
 	return false;
 }
 function toggle(){
@@ -165,6 +165,6 @@ function toggle(){
 	data.verbose=options[0].checked;
 	data.show_sleep_time=options[1].checked;
 	data.morse=options[2].checked;
-	$.get("cgi-bin/lampctl.php", { mode: "toggle", pin: data.pin, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse });
+	conn.socket.send(JSON.stringify({ mode: "toggle", pin: data.pin, verbose: data.verbose, show_sleep_time: data.show_sleep_time, morse: data.morse }));
 	return false;
 }

@@ -6,6 +6,7 @@
     },
     "require": {
         "cboden/ratchet": "^0.3.4",
-        "ronanguilloux/php-gpio": "^1.0"
+        "ronanguilloux/php-gpio": "^1.0",
+		"react/zmq": "^0.3.0"
     }
 }

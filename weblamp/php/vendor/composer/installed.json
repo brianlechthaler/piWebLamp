@@ -690,5 +690,52 @@
             "raspberry pi",
             "sensors"
         ]
+    },
+    {
+        "name": "react/zmq",
+        "version": "v0.3.0",
+        "version_normalized": "0.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reactphp/zmq.git",
+            "reference": "2865e3b23000751ed443d3f108da2735abf80716"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reactphp/zmq/zipball/2865e3b23000751ed443d3f108da2735abf80716",
+            "reference": "2865e3b23000751ed443d3f108da2735abf80716",
+            "shasum": ""
+        },
+        "require": {
+            "evenement/evenement": "~2.0",
+            "ext-zmq": "*",
+            "php": ">=5.4.0",
+            "react/event-loop": "0.4.*"
+        },
+        "require-dev": {
+            "ext-pcntl": "*"
+        },
+        "time": "2014-05-25 17:54:51",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "React\\ZMQ": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "ZeroMQ bindings for React.",
+        "keywords": [
+            "zeromq",
+            "zmq"
+        ]
     }
 ]

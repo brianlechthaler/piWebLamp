@@ -1,5 +1,6 @@
 <?php
 namespace Lamp\Lamp;
+require 'vendor/autoload.php';
 class Lamp implements LampInterface {
 	public $morse = 'false';
 	public $show_sleep_time = 'false';
@@ -7,9 +8,9 @@ class Lamp implements LampInterface {
 	protected $context;
 	protected $socket;
 	public function __construct() {
-		$this->context = new ZMQContext();
-		$this->socket = $this->context->getSocket(ZMQ::SOCKET_PUSH, 'status');
-		$this->socket->connect("tcp://localhost:5555");
+//		$this->context = new ZMQContext();
+//		$this->socket = $this->context->getSocket(ZMQ::SOCKET_PUSH, 'status');
+//		$this->socket->connect("tcp://localhost:5555");
 	}
 	public function morse($pin, $base_time_unit, $message) {
 		$Gpio = new Gpio;
@@ -21,7 +22,7 @@ class Lamp implements LampInterface {
 			} else {
 				$next_character= false;
 			}
-			$updateData=array(
+	/*		$updateData=array(
 				'function'=>'status', 
 				'mode'=>'morse', 
 				'character'=>strtolower($message_char), 
@@ -32,6 +33,7 @@ class Lamp implements LampInterface {
 				'verbose'=>$this->verbose,
 			);
 			$this->socket->send(json_encode($updateData));
+	*/
 			switch (strtolower($message_char)) {
 				case "a":
 					$this->dot($pin, $base_time_unit, false);
@@ -380,7 +382,7 @@ class Lamp implements LampInterface {
 					$this->dot($pin, $base_time_unit, true);
 					break;
 				case " ";
-					$updateData=array(
+/*					$updateData=array(
 						'function'=>'status', 
 						'mode'=>'sleep', 
 						'morse'=>$this->morse,
@@ -389,11 +391,12 @@ class Lamp implements LampInterface {
 						'sleep_time'=>$base_time_unit*7
 					);
 					$this->socket->send(json_encode($updateData));
+*/
 					usleep($base_time_unit*7000000);
 					break;
 			}
 			if ($next_character != " ") {
-				$updateData=array(
+/*				$updateData=array(
 					'function'=>'status', 
 					'mode'=>'sleep', 
 					'morse'=>$this->morse,
@@ -402,13 +405,14 @@ class Lamp implements LampInterface {
 					'sleep_time'=>$base_time_unit*3000000
 				);
 				$this->socket->send(json_encode($updateData));
+*/
 				usleep($base_time_unit*3000000);
 			}
 		}
 	}
 	public function simple($pin, $on_time, $off_time, $cycles) {
 		$Gpio = new Gpio;
-		$updateData=array(
+/*		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'simple', 
 			'pin'=> $pin,
@@ -417,9 +421,10 @@ class Lamp implements LampInterface {
 			'verbose'=>$this->verbose,
 		);
 		$this->socket->send(json_encode($updateData));
+*/
 		for ($i = 1; $i <= $cycles; $i++) {
 			$this->on();
-			$updateData=array(
+/*			$updateData=array(
 				'function'=>'status', 
 				'mode'=>'sleep', 
 				'pin'=> $pin,
@@ -429,9 +434,10 @@ class Lamp implements LampInterface {
 				'sleep_time'=>$on_time
 			);
 			$this->socket->send(json_encode($updateData));
+*/
 			usleep($on_time*1000000);
 			$this->off($pin);
-			$updateData=array(
+/*			$updateData=array(
 				'function'=>'status', 
 				'mode'=>'sleep', 
 				'pin'=> $pin,
@@ -441,14 +447,15 @@ class Lamp implements LampInterface {
 				'sleep_time'=>$off_time
 			);
 			$this->socket->send(json_encode($updateData));
+*/
 			usleep($off_time*1000000);
 		}
 	}
 	public function ramp($pin, $start_on_time, $start_off_time, $end_on_time, $end_off_time, $cycles) {
 		$Gpio = new Gpio;
 		$on_fraction = ($end_on_time - $start_on_time) / $cycles;
-		$off_fraction = ($end_off_time - $start_off_time) / $cycles
-		$updateData=array(
+		$off_fraction = ($end_off_time - $start_off_time) / $cycles;
+/*		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'ramp', 
 			'pin'=> $pin,
@@ -457,11 +464,12 @@ class Lamp implements LampInterface {
 			'verbose'=>$this->verbose,
 		);
 		$this->socket->send(json_encode($updateData));
+*/
 		for ($i = 1; $i <= $cycles; $i++) {
 			$on_time = $on_fraction * $i + $start_on_time;
 			$off_time = $off_fraction * $i + $start_off_time;
 			$this->on($pin);
-			$updateData=array(
+/*			$updateData=array(
 				'function'=>'status', 
 				'mode'=>'sleep', 
 				'pin'=> $pin,
@@ -471,9 +479,10 @@ class Lamp implements LampInterface {
 				'sleep_time'=>$on_time
 				);
 			$this->socket->send(json_encode($updateData));
+*/
 			usleep($on_time*1000000);
 			$this->off($pin);
-			$updateData=array(
+/*			$updateData=array(
 				'function'=>'status', 
 				'mode'=>'sleep', 
 				'pin'=> $pin,
@@ -483,12 +492,13 @@ class Lamp implements LampInterface {
 				'sleep_time'=>$off_time
 			);
 			$this->socket->send(json_encode($updateData));
+*/
 			usleep($off_time*1000000);
 		}
 	}
 	public function setup($pin) {
 		$Gpio = new Gpio;
-		$updateData=array(
+/*		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'setup', 
 			'pin'=> $pin,
@@ -497,12 +507,13 @@ class Lamp implements LampInterface {
 			'verbose'=>$this->verbose,
 		);
 		$this->socket->send(json_encode($updateData));
+*/
 		$Gpio->setupPin($pin, "out");
 	}
 	public function toggle($pin) {
 		$Gpio = new Gpio;
 		$state = $Gpio->input($pin);
-		$updateData=array(
+/*		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'toggle', 
 			'pin'=> $pin,
@@ -511,6 +522,7 @@ class Lamp implements LampInterface {
 			'verbose'=>$this->verbose,
 		);
 		$this->socket->send(json_encode($updateData));
+*/
 		switch ($state) {
 			case 0:
 				$this->on($pin);
@@ -522,7 +534,7 @@ class Lamp implements LampInterface {
 	}
 	public function dot($pin, $base_time_unit, $last_in_letter) {
 		$Gpio = new Gpio;
-		$updateData=array(
+/*		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'dot', 
 			'pin'=> $pin,
@@ -531,8 +543,9 @@ class Lamp implements LampInterface {
 			'verbose'=>$this->verbose,
 		);
 		$this->socket->send(json_encode($updateData));
+*/
 		$this->on($pin);
-		$updateData=array(
+/*		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'sleep', 
 			'pin'=> $pin,
@@ -542,10 +555,11 @@ class Lamp implements LampInterface {
 			'sleep_time'=>$base_time_unit
 		);
 		$this->socket->send(json_encode($updateData));
+*/
 		usleep($base_time_unit*1000000);
 		$this->off($pin);
 		if (!$last_in_letter){
-			$updateData=array(
+/*			$updateData=array(
 				'function'=>'status', 
 				'mode'=>'sleep', 
 				'pin'=> $pin,
@@ -555,12 +569,13 @@ class Lamp implements LampInterface {
 				'sleep_time'=>$base_time_unit
 			);
 			$this->socket->send(json_encode($updateData));
+*/			
 			usleep($base_time_unit*1000000);
 		}
 	}
 	public function dash($pin, $base_time_unit, $last_in_letter) {
 		$Gpio = new Gpio;
-		$updateData=array(
+/*		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'dash', 
 			'pin'=> $pin,
@@ -569,8 +584,9 @@ class Lamp implements LampInterface {
 			'verbose'=>$this->verbose,
 		);
 		$this->socket->send(json_encode($updateData));
+*/
 		$this->on($pin);
-		$updateData=array(
+/*		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'sleep', 
 			'pin'=> $pin,
@@ -580,10 +596,11 @@ class Lamp implements LampInterface {
 			'sleep_time'=>$base_time_unit*3
 		);
 		$this->socket->send(json_encode($updateData));
+*/
 		usleep($base_time_unit*3000000);
 		$this->off($pin);
 		if (!$last_in_letter){
-			$updateData=array(
+/*			$updateData=array(
 				'function'=>'status', 
 				'mode'=>'sleep', 
 				'pin'=> $pin,
@@ -593,6 +610,7 @@ class Lamp implements LampInterface {
 				'sleep_time'=>$base_time_unit
 			);
 			$this->socket->send(json_encode($updateData));
+*/
 			usleep($base_time_unit*1000000);
 		}
 	}
@@ -600,25 +618,27 @@ class Lamp implements LampInterface {
 		$Gpio = new Gpio;
 		$Gpio->setupPin($pin, "out");
 		$Gpio->output($pin, 1);
-		$updateData = array(
+/*		$updateData = array(
 			'function'   => 'status',
 			'pin'        => $pin,
 			'mode'       => 'output',
 			'new_value'  => 1,
 		);
 		$socket->send(json_encode($updateData));
+*/
 	}
 	public function off($pin) {
 		$Gpio = new Gpio;
 		$Gpio->setupPin($pin, "out");
 		$Gpio->output($pin, 0);
-		$updateData = array(
+/*		$updateData = array(
 			'function'   => 'status',
 			'pin'        => $pin,
 			'mode'       => 'output',
 			'new_value'  => 0,
 		);
 		$socket->send(json_encode($updateData));
+*/
 	}
 }
 ?>
