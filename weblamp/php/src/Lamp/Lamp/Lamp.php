@@ -1,6 +1,7 @@
 <?php
 namespace Lamp\Lamp;
 require 'vendor/autoload.php';
+use PhpGpio\Gpio;
 class Lamp implements LampInterface {
 	public $morse = 'false';
 	public $show_sleep_time = 'false';
