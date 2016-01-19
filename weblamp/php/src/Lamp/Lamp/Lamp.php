@@ -498,6 +498,7 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function setup($pin) {
+		$pin = intval($pin);
 		$Gpio = new Gpio;
 /*		$updateData=array(
 			'function'=>'status', 
@@ -512,6 +513,7 @@ class Lamp implements LampInterface {
 		$Gpio->setup($pin, "out");
 	}
 	public function toggle($pin) {
+		$pin = intval($pin);
 		$Gpio = new Gpio;
 		$state = $Gpio->input($pin);
 /*		$updateData=array(
@@ -616,6 +618,7 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function on($pin) {
+		$pin = intval($pin);
 		$Gpio = new Gpio;
 		$Gpio->setup($pin, "out");
 		$Gpio->output($pin, 1);
@@ -629,6 +632,7 @@ class Lamp implements LampInterface {
 */
 	}
 	public function off($pin) {
+		$pin = intval($pin);
 		$Gpio = new Gpio;
 		$Gpio->setup($pin, "out");
 		$Gpio->output($pin, 0);
