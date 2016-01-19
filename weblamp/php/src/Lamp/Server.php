@@ -72,7 +72,7 @@ class Server implements MessageComponentInterface
     {
         // Parse the json
         $decodedData = json_decode($data, true);
-        $operation = $decodedData['operation'];
+        $operation = $decodedData['mode'];
 		$Lamp = new Lamp;
 		$Lamp->morse = (boolean) $decodedData['morse'];
 		$Lamp->show_sleep_time = (boolean) $decodedData['show_sleep_time'];
