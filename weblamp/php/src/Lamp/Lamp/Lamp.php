@@ -509,7 +509,7 @@ class Lamp implements LampInterface {
 		);
 		$this->socket->send(json_encode($updateData));
 */
-		$Gpio->setupPin($pin, "out");
+		$Gpio->setup($pin, "out");
 	}
 	public function toggle($pin) {
 		$Gpio = new Gpio;
@@ -617,7 +617,7 @@ class Lamp implements LampInterface {
 	}
 	public function on($pin) {
 		$Gpio = new Gpio;
-		$Gpio->setupPin($pin, "out");
+		$Gpio->setup($pin, "out");
 		$Gpio->output($pin, 1);
 /*		$updateData = array(
 			'function'   => 'status',
@@ -630,7 +630,7 @@ class Lamp implements LampInterface {
 	}
 	public function off($pin) {
 		$Gpio = new Gpio;
-		$Gpio->setupPin($pin, "out");
+		$Gpio->setup($pin, "out");
 		$Gpio->output($pin, 0);
 /*		$updateData = array(
 			'function'   => 'status',
