@@ -112,5 +112,5 @@ var Connection = (function() {
 
 })();
 $(document).ready(function(){
-	conn = new Connection('status',"localhost:8080");
+	conn = new Connection('status',"raspberry-pi.local:8080");
 });
