@@ -16,6 +16,7 @@ class Lamp implements LampInterface {
 	public function morse($pin, $base_time_unit, $message) {
 		$Gpio = new Gpio;
 		$i=0;
+		$message= str_split($message);
 		foreach ($message as $message_char) {
 			$i++;
 			if (array_key_exists($i, $message)) {
