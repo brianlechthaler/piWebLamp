@@ -13,19 +13,29 @@ class Server implements MessageComponentInterface
     /**
      * The chat repository
      *
-     * @var ChatRepository
+   function connectSocket($socket, $address){
+		if(false === socket_connect($socket, $address)){
+			echo "Could not connect socket " .$socket." to ".$address.": \nReason:	".socket_strerror(socket_last_error($socket))."\n";
+			return false;
+//			die;
+		} else {
+			echo "Connected socket " .$socket." to ".$address."\n";
+			return true;
+		}
+	}  * @var ChatRepository
      */
-    protected $repository;
+    public $repository;
+    protected $loop;
     protected $status;
     protected $pin_list;
     protected $Gpio;
-
+	
     /**
      * Chat Constructor
      */
-    public function __construct()
+    public function __construct($loop)
     {
-        $this->repository = new ClientRepository;
+        $this->repository = new ClientRepository();
         $this->status = array
 			(
 				'pin_2' =>array('None','N/A'),
@@ -48,6 +58,7 @@ class Server implements MessageComponentInterface
 			);
 		$this->pin_list = array(2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 22, 23, 24, 25, 27);
 		$this->Gpio = new Gpio;
+		$this->loop = $loop;
     }
 
     /**
@@ -58,7 +69,9 @@ class Server implements MessageComponentInterface
      */
     public function onOpen(ConnectionInterface $conn)
     {
-        $this->repository->addClient($conn);
+        $client = $this->repository->addClient($conn);
+		echo "Client ".$client->getName()." connected \n";
+        $this->readStatus();
     }
 
     /**
@@ -68,64 +81,27 @@ class Server implements MessageComponentInterface
      * @param string              $msg
      * @return void
      */
-    public function onMessage(ConnectionInterface $conn, $data)
-    {
-        // Parse the json
-        $decodedData = json_decode($data, true);
-        $operation = $decodedData['mode'];
-		$Lamp = new Lamp;
-		$Lamp->morse = (boolean) $decodedData['morse'];
-		$Lamp->show_sleep_time = (boolean) $decodedData['show_sleep_time'];
-		$Lamp->verbose = (boolean) $decodedData['verbose'];
-		$this->readStatus();
-		switch ($operation) {
-			case "morse":
-				$Lamp->morse($decodedData['pin'],$decodedData['base_time_unit'],$decodedData['message']);
-				break;
-			case "simple":
-				$Lamp->simple($decodedData['pin'],$decodedData['on_time'],$decodedData['off_time'],$decodedData['cycles']);
-				break;
-			case "ramp":
-				$Lamp->ramp($decodedData['pin'],$decodedData['start_on_time'],$decodedData['start_off_time'],$decodedData['end_on_time'],$decodedData['end_off_time'],$decodedData['cycles']);
-				break;
-			case "setup":
-				$Lamp->setup($decodedData['pin']);
-				break;
-			case "on":
-				$Lamp->on($decodedData['pin']);
-				break;
-			case "off":
-				$Lamp->off($decodedData['pin']);
-				break;
-			case "toggle":
-				$Lamp->toggle($decodedData['pin']);
-				break;
-			default:
-				break;
-		}
-        $currClient = $this->repository->getClientByConnection($conn);
-
-        // Distinguish between the actions
-        foreach ($this->repository->getClients() as $client){
-                // Send the message to the clients if, except for the client who sent the message originally
-                if ($currClient->getName() !== $client->getName())
-                    $client->sendMsg($currClient->getName(), $data->msg);
-		}
-    }
-
- 
-
-    /**
-     * Called when a connection is closed
-     *
-     * @param ConnectionInterface $conn
-     * @return void
-     */
-    public function onClose(ConnectionInterface $conn)
-    {
+    public function onMessage(ConnectionInterface $conn, $data){
+		$loop = $this->loop;
+		$lamp_process  = new \React\ChildProcess\Process('php lamp_process.php');
+		$lamp_process->on('exit', function($output) use ($loop) {
+			$loop->stop();
+		});
+		$lamp_process->start($loop);
+		$lamp_process->stdout->on('data', function($output) {
+			foreach ($this->repository->getClients() as $client){
+				$client->send($output);
+			}
+		});
+		$lamp_process->stdin->write($data);
+	}
+//		exit();
+	 public function onClose(ConnectionInterface $conn){
+        // The connection is closed, remove it, as we can no longer send it messages
+        $client = $this->repository->getClientByConnection($conn);
+        echo "Client ".$client->getName()." disconnected\n";
         $this->repository->removeClient($conn);
-    }
-
+	}
     /**
      * Called when an error occurs on a connection
      *
@@ -133,9 +109,8 @@ class Server implements MessageComponentInterface
      * @param Exception           $e
      * @return void
      */
-    public function onError(ConnectionInterface $conn, \Exception $e)
-    {
-        echo "The following error occured: " . $e->getMessage();
+    public function onError(ConnectionInterface $conn, \Exception $e){
+        echo "The following error occured: ".$e->getMessage();
 
         $client = $this->repository->getClientByConnection($conn);
 
@@ -147,24 +122,23 @@ class Server implements MessageComponentInterface
         }
     }
     private function readStatus(){
-			/*foreach ($pin_list as $pin) {
-				$this->status['pin_'.$pin] = array();
-				if($Gpio->isExported($pin)) {
-					$this->status['pin_'.$pin]['1'] = $Gpio->currentDirection($pin);
-					$this->status['pin_'.$pin]['2'] = $Gpio->input($pin);
-				} else {
-					$this->status['pin_'.$pin]['1'] = 'None';
-					$this->status['pin_'.$pin]['2'] = 'N/A';
-				}
+		/*foreach ($pin_list as $pin) {
+			$this->status['pin_'.$pin] = array();
+			if($Gpio->isExported($pin)) {
+				$this->status['pin_'.$pin]['1'] = $Gpio->currentDirection($pin);
+				$this->status['pin_'.$pin]['2'] = $Gpio->input($pin);
+			} else {
+				$this->status['pin_'.$pin]['1'] = 'None';
+				$this->status['pin_'.$pin]['2'] = 'N/A';
 			}
-			*/
-			$updateData = array();
-			$updateData['pin_status'] = $this->status;
-			$updateData['function']='status';
-			$updateData['mode']='update';
-			foreach ($this->repository->getClients() as $client){
-	                // Send the message to the clients if, except for the client who sent the message originally
-	                $client->sendMsg("server", json_encode($updateData));
-			}
+		}
+		*/
+		$updateData = array();
+		$updateData['pin_status'] = $this->status;
+		$updateData['function']='pin_update';
+		$updateData['mode']='update';
+		foreach ($this->repository->getClients() as $client){
+                $client->send(json_encode($updateData, true));
+		}
 	}
 }

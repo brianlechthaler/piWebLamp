@@ -65,7 +65,9 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function addClient(ConnectionInterface $conn)
     {
-        $this->clients->attach(new ClientConnection($conn, $this));
+		$client =new ClientConnection($conn, $this);
+        $this->clients->attach($client);
+        return $client;
     }
 
     /**

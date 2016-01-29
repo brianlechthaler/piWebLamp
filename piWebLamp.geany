@@ -28,10 +28,10 @@ long_line_column=72
 
 [files]
 current_page=3
-FILE_NAME_0=275;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fmel%2FpiWebLamp%2Fweblamp%2Fphp%2Fwebsocket_server.php;0;4
-FILE_NAME_1=1741;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fmel%2FpiWebLamp%2Fweblamp%2Fphp%2Fsrc%2FLamp%2FWebSocket%2FLampWebSocket.php;0;4
-FILE_NAME_2=0;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fmel%2FpiWebLamp%2Fweblamp%2Fphp%2Fvendor%2Fcboden%2Fratchet%2Fsrc%2FRatchet%2FHttp%2FHttpRequestParser.php;0;4
-FILE_NAME_3=0;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fmel%2FpiWebLamp%2Fweblamp%2Fphp%2Fvendor%2Fcboden%2Fratchet%2Fsrc%2FRatchet%2FWebSocket%2FWsServer.php;0;4
+FILE_NAME_0=1192;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fmel%2FpiWebLamp%2Fweblamp%2Fphp%2Fserver.php;0;4
+FILE_NAME_1=3175;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fmel%2FpiWebLamp%2Fweblamp%2Fphp%2Fsrc%2FLamp%2FServer.php;0;4
+FILE_NAME_2=439;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fmel%2FpiWebLamp%2Fweblamp%2Fphp%2Fsrc%2FLamp%2FLamp%2FLamp.php;0;4
+FILE_NAME_3=504;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fmel%2FpiWebLamp%2Fweblamp%2Fphp%2Fupdate.php;0;4
 
 [VTE]
 last_dir=/home/mel/piWebLamp/weblamp/php

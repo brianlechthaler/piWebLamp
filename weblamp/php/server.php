@@ -3,11 +3,17 @@
 
 require 'vendor/autoload.php';
 
-use Lamp\Server;
 
-use Ratchet\Server\IoServer;
-use Ratchet\Http\HttpServer;
-use Ratchet\WebSocket\WsServer;
+$loop = React\EventLoop\Factory::create();
 
-$server = IoServer::factory(new HttpServer(new WsServer(new Server)), 8080);
-$server->run();
+$webSock = new React\Socket\Server($loop);
+$webSock->listen(8080, '0.0.0.0'); // Binding to 0.0.0.0 means remotes can connect
+$webServer = new Ratchet\Server\IoServer(
+	new Ratchet\Http\HttpServer(
+		new Ratchet\WebSocket\WsServer(
+			new Lamp\Server($loop)
+		)
+	),
+	$webSock
+);
+$loop->run();

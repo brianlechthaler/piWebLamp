@@ -38,7 +38,7 @@ class ClientConnection implements ClientConnectionInterface
     public function __construct(ConnectionInterface $conn, ClientRepositoryInterface $repository, $name = "")
     {
         $this->connection = $conn;
-        $this->name = $name;
+        $this->name = uniqid();
         $this->repository = $repository;
     }
 
@@ -51,9 +51,7 @@ class ClientConnection implements ClientConnectionInterface
      */
     public function sendMsg($msg)
     {
-        $this->send([
-            'msg'      => $msg
-        ]);
+        $this->send($msg);
     }
 
     /**
@@ -74,28 +72,7 @@ class ClientConnection implements ClientConnectionInterface
      */
     public function setName($name)
     {
-        if ($name === "")
-            return;
-
-        // Check if the name exists already
-        if ($this->repository->getClientByName($name) !== null)
-        {
-            $this->send([
-                'action'   => 'setname',
-                'success'  => false,
-                'username' => $this->name
-            ]);
-
-            return;
-        }
-
         $this->name = $name;
-
-        $this->send([
-            'action'   => 'setname',
-            'success'  => true,
-            'username' => $this->name
-        ]);
     }
 
     /**
@@ -114,8 +91,9 @@ class ClientConnection implements ClientConnectionInterface
      * @param  array  $data
      * @return void
      */
-    private function send(array $data)
+    public function send($data)
     {
-        $this->connection->send(json_encode($data));
+//		$data['padding'] = 'padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding';
+        $this->connection->send($data);
     }
 }

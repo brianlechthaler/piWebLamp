@@ -92,6 +92,9 @@ var Connection = (function() {
         connectionClose: function(evt) {
             this.open = false;
             this.addSystemMessage("Disconnected");
+            setTimeout(function(){
+				conn = new Connection('status',"localhost:8080");
+            }, 1000);
         },
 
         sendMsg: function(message) {
@@ -112,5 +115,5 @@ var Connection = (function() {
 
 })();
 $(document).ready(function(){
-	conn = new Connection('status',"raspberry-pi.local:8080");
+	conn = new Connection('status',"localhost:8080");
 });

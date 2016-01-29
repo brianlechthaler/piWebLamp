@@ -11,4 +11,6 @@ interface ClientConnectionInterface
     public function setName($name);
 
     public function sendMsg($msg);
+    
+    public function send($data);
 }

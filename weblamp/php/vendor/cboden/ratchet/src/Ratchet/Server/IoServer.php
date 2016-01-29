@@ -68,7 +68,6 @@ class IoServer {
         $loop   = LoopFactory::create();
         $socket = new Reactor($loop);
         $socket->listen($port, $address);
-
         return new static($component, $socket, $loop);
     }
 

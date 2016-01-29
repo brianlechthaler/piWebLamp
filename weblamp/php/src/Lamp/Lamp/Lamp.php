@@ -6,14 +6,12 @@ class Lamp implements LampInterface {
 	public $morse = 'false';
 	public $show_sleep_time = 'false';
 	public $verbose = 'false';
-	protected $context;
-	protected $socket;
-	public function __construct() {
-//		$this->context = new ZMQContext();
-//		$this->socket = $this->context->getSocket(ZMQ::SOCKET_PUSH, 'status');
-//		$this->socket->connect("tcp://localhost:5555");
+	private $socket;
+	public function __construct($spawn) {
+		$this->socket = $spawn;
 	}
 	public function morse($pin, $base_time_unit, $message) {
+		//~ echo "Morse \n";
 		$Gpio = new Gpio;
 		$i=0;
 		$message= str_split($message);
@@ -24,7 +22,7 @@ class Lamp implements LampInterface {
 			} else {
 				$next_character= false;
 			}
-	/*		$updateData=array(
+			$updateData=array(
 				'function'=>'status', 
 				'mode'=>'morse', 
 				'character'=>strtolower($message_char), 
@@ -34,8 +32,7 @@ class Lamp implements LampInterface {
 				'show_sleep_time'=>$this->show_sleep_time,
 				'verbose'=>$this->verbose,
 			);
-			$this->socket->send(json_encode($updateData));
-	*/
+			echo json_encode($updateData), PHP_EOL;
 			switch (strtolower($message_char)) {
 				case "a":
 					$this->dot($pin, $base_time_unit, false);
@@ -384,37 +381,18 @@ class Lamp implements LampInterface {
 					$this->dot($pin, $base_time_unit, true);
 					break;
 				case " ";
-/*					$updateData=array(
-						'function'=>'status', 
-						'mode'=>'sleep', 
-						'morse'=>$this->morse,
-						'show_sleep_time'=>$this->show_sleep_time,
-						'verbose'=>$this->verbose,
-						'sleep_time'=>$base_time_unit*7
-					);
-					$this->socket->send(json_encode($updateData));
-*/
-					usleep($base_time_unit*7000000);
+					$this->sleep_time($base_time_unit*7, $pin);
 					break;
 			}
 			if ($next_character != " ") {
-/*				$updateData=array(
-					'function'=>'status', 
-					'mode'=>'sleep', 
-					'morse'=>$this->morse,
-					'show_sleep_time'=>$this->show_sleep_time,
-					'verbose'=>$this->verbose,
-					'sleep_time'=>$base_time_unit*3000000
-				);
-				$this->socket->send(json_encode($updateData));
-*/
-				usleep($base_time_unit*3000000);
+				$this->sleep_time($base_time_unit, $pin);
 			}
 		}
 	}
 	public function simple($pin, $on_time, $off_time, $cycles) {
+		//~ echo "Simple \n";
 		$Gpio = new Gpio;
-/*		$updateData=array(
+		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'simple', 
 			'pin'=> $pin,
@@ -422,42 +400,20 @@ class Lamp implements LampInterface {
 			'show_sleep_time'=>$this->show_sleep_time,
 			'verbose'=>$this->verbose,
 		);
-		$this->socket->send(json_encode($updateData));
-*/
+		echo json_encode($updateData), PHP_EOL;
 		for ($i = 1; $i <= $cycles; $i++) {
-			$this->on();
-/*			$updateData=array(
-				'function'=>'status', 
-				'mode'=>'sleep', 
-				'pin'=> $pin,
-				'morse'=>$this->morse,
-				'show_sleep_time'=>$this->show_sleep_time,
-				'verbose'=>$this->verbose,
-				'sleep_time'=>$on_time
-			);
-			$this->socket->send(json_encode($updateData));
-*/
-			usleep($on_time*1000000);
+			$this->on($pin);
+			$this->sleep_time($on_time, $pin);
 			$this->off($pin);
-/*			$updateData=array(
-				'function'=>'status', 
-				'mode'=>'sleep', 
-				'pin'=> $pin,
-				'morse'=>$this->morse,
-				'show_sleep_time'=>$this->show_sleep_time,
-				'verbose'=>$this->verbose,
-				'sleep_time'=>$off_time
-			);
-			$this->socket->send(json_encode($updateData));
-*/
-			usleep($off_time*1000000);
+			$this->sleep_time($off_time, $pin);
 		}
 	}
 	public function ramp($pin, $start_on_time, $start_off_time, $end_on_time, $end_off_time, $cycles) {
+		//~ echo "Ramp \n";
 		$Gpio = new Gpio;
 		$on_fraction = ($end_on_time - $start_on_time) / $cycles;
 		$off_fraction = ($end_off_time - $start_off_time) / $cycles;
-/*		$updateData=array(
+		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'ramp', 
 			'pin'=> $pin,
@@ -465,43 +421,21 @@ class Lamp implements LampInterface {
 			'show_sleep_time'=>$this->show_sleep_time,
 			'verbose'=>$this->verbose,
 		);
-		$this->socket->send(json_encode($updateData));
-*/
+		echo json_encode($updateData), PHP_EOL;
 		for ($i = 1; $i <= $cycles; $i++) {
 			$on_time = $on_fraction * $i + $start_on_time;
 			$off_time = $off_fraction * $i + $start_off_time;
 			$this->on($pin);
-/*			$updateData=array(
-				'function'=>'status', 
-				'mode'=>'sleep', 
-				'pin'=> $pin,
-				'morse'=>$this->morse,
-				'show_sleep_time'=>$this->show_sleep_time,
-				'verbose'=>$this->verbose,
-				'sleep_time'=>$on_time
-				);
-			$this->socket->send(json_encode($updateData));
-*/
-			usleep($on_time*1000000);
+			$this->sleep_time($on_time, $pin);
 			$this->off($pin);
-/*			$updateData=array(
-				'function'=>'status', 
-				'mode'=>'sleep', 
-				'pin'=> $pin,
-				'morse'=>$this->morse,
-				'show_sleep_time'=>$this->show_sleep_time,
-				'verbose'=>$this->verbose,
-				'sleep_time'=>$off_time
-			);
-			$this->socket->send(json_encode($updateData));
-*/
-			usleep($off_time*1000000);
+			$this->sleep_time($off_time, $pin);
 		}
 	}
 	public function setup($pin) {
-		$pin = intval($pin);
+		//~ echo "Setup \n";
+		$pin = (int) $pin;
 		$Gpio = new Gpio;
-/*		$updateData=array(
+		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'setup', 
 			'pin'=> $pin,
@@ -509,15 +443,15 @@ class Lamp implements LampInterface {
 			'show_sleep_time'=>$this->show_sleep_time,
 			'verbose'=>$this->verbose,
 		);
-		$this->socket->send(json_encode($updateData));
-*/
+		echo json_encode($updateData), PHP_EOL;
 		$Gpio->setup($pin, "out");
 	}
 	public function toggle($pin) {
-		$pin = intval($pin);
+		//~ echo "Toggle \n";
+		$pin = (int) $pin;
 		$Gpio = new Gpio;
 		$state = $Gpio->input($pin);
-/*		$updateData=array(
+		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'toggle', 
 			'pin'=> $pin,
@@ -525,8 +459,7 @@ class Lamp implements LampInterface {
 			'show_sleep_time'=>$this->show_sleep_time,
 			'verbose'=>$this->verbose,
 		);
-		$this->socket->send(json_encode($updateData));
-*/
+		echo json_encode($updateData), PHP_EOL;
 		switch ($state) {
 			case 0:
 				$this->on($pin);
@@ -537,8 +470,9 @@ class Lamp implements LampInterface {
 		}
 	}
 	public function dot($pin, $base_time_unit, $last_in_letter) {
+		//~ echo "Dot \n";
 		$Gpio = new Gpio;
-/*		$updateData=array(
+		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'dot', 
 			'pin'=> $pin,
@@ -546,40 +480,18 @@ class Lamp implements LampInterface {
 			'show_sleep_time'=>$this->show_sleep_time,
 			'verbose'=>$this->verbose,
 		);
-		$this->socket->send(json_encode($updateData));
-*/
+		echo json_encode($updateData), PHP_EOL;
 		$this->on($pin);
-/*		$updateData=array(
-			'function'=>'status', 
-			'mode'=>'sleep', 
-			'pin'=> $pin,
-			'morse'=>$this->morse,
-			'show_sleep_time'=>$this->show_sleep_time,
-			'verbose'=>$this->verbose,
-			'sleep_time'=>$base_time_unit
-		);
-		$this->socket->send(json_encode($updateData));
-*/
-		usleep($base_time_unit*1000000);
+		$this->sleep_time($base_time_unit);
 		$this->off($pin);
 		if (!$last_in_letter){
-/*			$updateData=array(
-				'function'=>'status', 
-				'mode'=>'sleep', 
-				'pin'=> $pin,
-				'morse'=>$this->morse,
-				'show_sleep_time'=>$this->show_sleep_time,
-				'verbose'=>$this->verbose,
-				'sleep_time'=>$base_time_unit
-			);
-			$this->socket->send(json_encode($updateData));
-*/			
-			usleep($base_time_unit*1000000);
+			$this->sleep_time($base_time_unit);
 		}
 	}
 	public function dash($pin, $base_time_unit, $last_in_letter) {
+		//~ echo "Dash \n";
 		$Gpio = new Gpio;
-/*		$updateData=array(
+		$updateData=array(
 			'function'=>'status', 
 			'mode'=>'dash', 
 			'pin'=> $pin,
@@ -587,64 +499,55 @@ class Lamp implements LampInterface {
 			'show_sleep_time'=>$this->show_sleep_time,
 			'verbose'=>$this->verbose,
 		);
-		$this->socket->send(json_encode($updateData));
-*/
+		echo json_encode($updateData), PHP_EOL;
 		$this->on($pin);
-/*		$updateData=array(
-			'function'=>'status', 
-			'mode'=>'sleep', 
-			'pin'=> $pin,
-			'morse'=>$this->morse,
-			'show_sleep_time'=>$this->show_sleep_time,
-			'verbose'=>$this->verbose,
-			'sleep_time'=>$base_time_unit*3
-		);
-		$this->socket->send(json_encode($updateData));
-*/
-		usleep($base_time_unit*3000000);
+		$this->sleep_time($base_time_unit*3);
 		$this->off($pin);
 		if (!$last_in_letter){
-/*			$updateData=array(
+			$this->sleep_time($base_time_unit);
+		}
+	}
+	public function on($pin) {
+		//~ echo "On \n";
+		$pin = (int) $pin;
+		$Gpio = new Gpio;
+		$Gpio->setup($pin, "out");
+		$Gpio->output($pin, 1);
+		$updateData = array(
+			'function'   => 'status',
+			'pin'        => $pin,
+			'mode'       => 'output',
+			'new_value'  => 1,
+		);
+		echo json_encode($updateData), PHP_EOL;
+	}
+	public function off($pin) {
+		//~ echo "Off \n";
+		$pin = (int) $pin;
+		$Gpio = new Gpio;
+		$Gpio->setup($pin, "out");
+		$Gpio->output($pin, 0);
+		$updateData = array(
+			'function'   => 'status',
+			'pin'        => $pin,
+			'mode'       => 'output',
+			'new_value'  => 0,
+		);
+		echo json_encode($updateData), PHP_EOL;
+
+	}
+	public function sleep_time($sleep_time, $pin){
+		$updateData= array(
 				'function'=>'status', 
 				'mode'=>'sleep', 
 				'pin'=> $pin,
 				'morse'=>$this->morse,
 				'show_sleep_time'=>$this->show_sleep_time,
 				'verbose'=>$this->verbose,
-				'sleep_time'=>$base_time_unit
+				'sleep_time'=>$sleep_time,
 			);
-			$this->socket->send(json_encode($updateData));
-*/
-			usleep($base_time_unit*1000000);
-		}
-	}
-	public function on($pin) {
-		$pin = intval($pin);
-		$Gpio = new Gpio;
-		$Gpio->setup($pin, "out");
-		$Gpio->output($pin, 1);
-/*		$updateData = array(
-			'function'   => 'status',
-			'pin'        => $pin,
-			'mode'       => 'output',
-			'new_value'  => 1,
-		);
-		$socket->send(json_encode($updateData));
-*/
-	}
-	public function off($pin) {
-		$pin = intval($pin);
-		$Gpio = new Gpio;
-		$Gpio->setup($pin, "out");
-		$Gpio->output($pin, 0);
-/*		$updateData = array(
-			'function'   => 'status',
-			'pin'        => $pin,
-			'mode'       => 'output',
-			'new_value'  => 0,
-		);
-		$socket->send(json_encode($updateData));
-*/
+			echo json_encode($updateData), PHP_EOL;
+			usleep($sleep_time*1000000);
 	}
 }
 ?>

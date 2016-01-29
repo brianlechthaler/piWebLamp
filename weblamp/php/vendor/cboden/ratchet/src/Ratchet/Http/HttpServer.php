@@ -15,7 +15,7 @@ class HttpServer implements MessageComponentInterface {
     /**
      * @var \Ratchet\Http\HttpServerInterface
      */
-    protected $_httpServer;
+    public $_httpServer;
 
     /**
      * @param HttpServerInterface
